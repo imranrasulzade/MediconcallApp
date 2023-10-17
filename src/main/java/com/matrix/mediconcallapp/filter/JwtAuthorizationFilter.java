@@ -48,7 +48,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
             if(claims != null & jwtUtil.validateClaims(claims)){
                 String user = claims.getSubject();
-                Collection<GrantedAuthority> authorities = extractAuthorities(claims);
+                Collection<GrantedAuthority> authorities = jwtUtil.extractAuthorities(claims);
                 log.info("user : {} ", user);
                 Authentication authentication =
                         new UsernamePasswordAuthenticationToken(user,"",authorities);
@@ -70,14 +70,5 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
 
     }
 
-    private Collection<GrantedAuthority> extractAuthorities(Claims claims) {
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        if (claims.containsKey("authorities")) {
-            List<String> roles = (List<String>) claims.get("authorities");
-            for (String role : roles) {
-                authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
-            }
-        }
-        return authorities;
-    }
+
 }

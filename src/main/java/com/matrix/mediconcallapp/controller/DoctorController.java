@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/doctor")
+@RequestMapping("/doctors")
 public class DoctorController {
     private final DoctorService doctorService;
 
@@ -21,7 +21,7 @@ public class DoctorController {
         return doctorService.getById(id);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<DoctorDto> getAll(){
         return doctorService.getAll();
     }

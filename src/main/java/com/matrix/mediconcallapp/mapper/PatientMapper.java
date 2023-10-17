@@ -25,10 +25,10 @@ public abstract class PatientMapper {
     @Mapping(source = "status", target = "status", qualifiedByName = "mapToStatus")
     public abstract Patient toPatientForAdd(PatientRegistrationRequestDto requestDto);
 
-//    @Mapping(source = "user", target = "name", qualifiedByName = "mapToName")
-//    @Mapping(source = "user", target = "surname", qualifiedByName = "mapToSurname")
-//    @Mapping(source = "user", target = "phone", qualifiedByName = "mapToPhone")
-//    @Mapping(source = "user", target = "info", qualifiedByName = "mapToInfo")
+    @Mapping(source = "user", target = "name", qualifiedByName = "mapToName")
+    @Mapping(source = "user", target = "surname", qualifiedByName = "mapToSurname")
+    @Mapping(source = "user", target = "phone", qualifiedByName = "mapToPhone")
+    @Mapping(source = "user", target = "info", qualifiedByName = "mapToInfo")
     public abstract PatientDto toPatientDto(Patient patient);
 
     @Named(value = "mapToDocumentPath")
@@ -37,24 +37,24 @@ public abstract class PatientMapper {
     }
 
 
-//    @Named("mapToName")
-//    public String mapToName(Patient patient){
-//        return patient.getUser().getName();
-//    }
-//
-//    @Named(value = "mapToSurname")
-//    public String mapToSurname(Patient patient){
-//        return patient.getUser().getSurname();
-//    }
-//
-//    @Named(value = "mapToPhone")
-//    public String mapToPhone(Patient patient){
-//        return patient.getUser().getPhone();
-//    }
-//
+    @Named("mapToName")
+    public String mapToName(User user){
+        return user.getName();
+    }
+
+    @Named(value = "mapToSurname")
+    public String mapToSurname(User user){
+        return user.getSurname();
+    }
+
+    @Named(value = "mapToPhone")
+    public String mapToPhone(User user){
+        return user.getPhone();
+    }
+
     @Named(value = "mapToInfo")
-    public String mapToInfo(Patient patient){
-        return patient.getUser().getInfo();
+    public String mapToInfo(User user){
+        return user.getInfo();
     }
 
     @Named(value = "mapToStatus")

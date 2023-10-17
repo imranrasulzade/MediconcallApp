@@ -1,6 +1,7 @@
 package com.matrix.mediconcallapp.mapper;
 
 import com.matrix.mediconcallapp.entity.Doctor;
+import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.model.UserStatus;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
@@ -12,10 +13,10 @@ import org.mapstruct.Named;
 @Mapper(componentModel = "spring")
 public abstract class DoctorMapper {
 
-//    @Mapping(source = "user", target = "name", qualifiedByName = "mapToName")
-//    @Mapping(source = "user", target = "surname", qualifiedByName = "mapToSurname")
-//    @Mapping(source = "user", target = "phone", qualifiedByName = "mapToPhone")
-//    @Mapping(source = "user", target = "info", qualifiedByName = "mapToInfo")
+    @Mapping(source = "user", target = "name", qualifiedByName = "mapToName")
+    @Mapping(source = "user", target = "surname", qualifiedByName = "mapToSurname")
+    @Mapping(source = "user", target = "phone", qualifiedByName = "mapToPhone")
+    @Mapping(source = "user", target = "info", qualifiedByName = "mapToInfo")
     public abstract DoctorDto toDoctorDto(Doctor doctor);
 
     public abstract Doctor toDoctor(DoctorDto doctorDto);
@@ -25,25 +26,26 @@ public abstract class DoctorMapper {
     public abstract Doctor toDoctorForAdd(DoctorRegistrationRequestDto requestDto);
 
 
-//    @Named("mapToName")
-//    public String mapToName(Doctor doctor) {
-//        return doctor.getUser().getName();
-//    }
-//
-//    @Named("mapToSurname")
-//    public String mapToSurname(Doctor doctor) {
-//        return doctor.getUser().getSurname();
-//    }
-//
-//    @Named("mapToPhone")
-//    public String mapToPhone(Doctor doctor) {
-//        return doctor.getUser().getPhone();
-//    }
-//
-//    @Named("mapToInfo")
-//    public String mapToInfo(Doctor doctor) {
-//        return doctor.getUser().getInfo();
-//    }
+    @Named(value = "mapToName")
+    public String mapToName(User user) {
+        return user.getName();
+    }
+
+    @Named(value = "mapToSurname")
+    public String mapToSurname(User user) {
+        return user.getSurname();
+    }
+
+    @Named(value = "mapToPhone")
+    public String mapToPhone(User user) {
+        return user.getPhone();
+    }
+
+    @Named(value = "mapToInfo")
+    public String mapToInfo(User user) {
+        return user.getInfo();
+    }
+
 
     @Named(value = "mapToStatus")
     public Integer mapToStatus(UserStatus status){

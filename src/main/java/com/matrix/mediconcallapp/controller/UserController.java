@@ -9,17 +9,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
 
-    @GetMapping("/user")
+    @GetMapping("/info")
     public UserDto getById(HttpServletRequest request) {
         return userService.getById(request);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public List<UserDto> getAllUser() {
         return userService.getAll();
     }

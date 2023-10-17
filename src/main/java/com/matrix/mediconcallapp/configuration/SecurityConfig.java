@@ -58,7 +58,7 @@ public class SecurityConfig {
                                 .requestMatchers("/reservation/**").hasAnyAuthority("ROLE_ADMIN")
                                 .requestMatchers("/doctor/**").hasAnyAuthority("ROLE_DOCTOR")
                                 .requestMatchers("/patient/**").hasAnyAuthority("ROLE_PATIENT")
-                                .requestMatchers("/user/user").permitAll()
+                                .requestMatchers("/users/info").permitAll()
                 ).exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint((request, response, authException) ->
                                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED)

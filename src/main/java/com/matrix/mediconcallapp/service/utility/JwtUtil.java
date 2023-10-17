@@ -9,6 +9,11 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.naming.AuthenticationException;
@@ -16,21 +21,20 @@ import java.security.Key;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
-@Component
+@Configuration
+@PropertySource("classpath:application.properties")
 public class JwtUtil {
     private final UserRepository userRepository;
 
-//    @Value("${application.security.jwt.secret-key}")
-    private final String secret_key = "QmFzZTY0IGVuY29kaW5nIHNjaGVtZXMgYXJlIGNvbW1vbmx5IHVzZWQgd2hlbiB0aGVyZSBpcyBhIG5lZWQgdG8gZW5jb2RlIGJpbmFyeSBkYXRhLCBlc3BlY2lhbGx5IHdoZW4gdGhhdCBkYXRhIG5lZWRzIHRvIGJlIHN0b3JlZCBhbmQgdHJhbnNmZXJyZWQgb3ZlciBtZWRpYSB0aGF0IGFyZSBkZXNpZ25lZCB0byBkZWFsIHdpdGggdGV4dC4gVGhpcyBlbmNvZGluZyBoZWxwcyB0byBlbnN1cmUgdGhhdCB0aGUgZGF0YSByZW1haW5zIGludGFjdCB3aXRob3V0IG1vZGlmaWNhdGlvbiBkdXJpbmcgdHJhbnNwb3J0LiBCYXNlNjQgaXMgdXNlZCBjb21tb25seSBpbiBhIG51bWJlciBvZiBhcHBsaWNhdGlvbnMgaW5jbHVkaW5nIGVtYWlsIHZpYSBNSU1FLCBhcyB3ZWxsIGFzIHN0b3JpbmcgY29tcGxleCBkYXRh";
-//    @Value("${application.security.jwt.expiration}")
-    private final long accessTokenValidity = 86400000;
-    private final JwtParser jwtParser;
+    @Value("${application.security.jwt.secret-key}")
+    private String secret_key;
+    @Value("${application.security.jwt.expiration}")
+    private long accessTokenValidity;
     private final String TOKEN_HEADER = "Authorization";
     private final String TOKEN_PREFIX = "Bearer ";
     private static Key key;
     public JwtUtil(UserRepository userRepository){
         this.userRepository = userRepository;
-        this.jwtParser = Jwts.parser().setSigningKey(secret_key);
     }
 
     public Key initializeKey(){
@@ -49,13 +53,10 @@ public class JwtUtil {
             roles.add(authority.getName());
         }
         Map<String, Object> claimsMap = new HashMap<>();
-
         claimsMap.put("authorities",roles);
         claimsMap.put("username", user.getUsername());
         claimsMap.put("user_id", user.getId());
 
-        //claimsMap gonderilecek claime. prosta databazadan cekmeliyem useri. cunki bidene username var.
-//        claims.put("studentName",student.getName());
         Date tokenCreateTime = new Date();
         Date tokenValidity = new Date(tokenCreateTime.getTime() + TimeUnit.MINUTES.toMillis(accessTokenValidity));
         final JwtBuilder jwtBuilder = Jwts.builder()
@@ -70,7 +71,8 @@ public class JwtUtil {
     }
 
     private Claims parseJwtClaims(String token) {
-        return jwtParser.parseClaimsJws(token).getBody();
+        System.out.println("secret key = " + secret_key);
+        return Jwts.parser().setSigningKey(secret_key).parseClaimsJws(token).getBody();
     }
 
     public Claims resolveClaims(HttpServletRequest req) {
@@ -119,19 +121,33 @@ public class JwtUtil {
     }
 
 
-//    public List<String> getRoles2(Claims claims) {
-//        Object authoritiesObj = claims.get("authorities");
-//        if (authoritiesObj instanceof List<?> authoritiesList) {
-//            List<String> roles = new ArrayList<>();
-//            for (Object authority : authoritiesList) {
-//                if (authority instanceof String) {
-//                    roles.add((String) authority);
-//                }
-//            }
-//            return roles;
-//        }
-//
-//        return Collections.emptyList();
-//    }
+    /*
+    public List<String> getRoles2(Claims claims) {
+        Object authoritiesObj = claims.get("authorities");
+        if (authoritiesObj instanceof List<?> authoritiesList) {
+            List<String> roles = new ArrayList<>();
+            for (Object authority : authoritiesList) {
+                if (authority instanceof String) {
+                    roles.add((String) authority);
+                }
+            }
+            return roles;
+        }
+
+        return Collections.emptyList();
+    }
+*/
+
+
+    public Collection<GrantedAuthority> extractAuthorities(Claims claims) {
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        if (claims.containsKey("authorities")) {
+            List<String> roles = (List<String>) claims.get("authorities");
+            for (String role : roles) {
+                authorities.add(new SimpleGrantedAuthority("ROLE_" + role));
+            }
+        }
+        return authorities;
+    }
 
 }
