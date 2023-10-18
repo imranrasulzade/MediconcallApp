@@ -1,15 +1,16 @@
 package com.matrix.mediconcallapp.model.dto.response;
 
-import com.matrix.mediconcallapp.model.UserStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 import java.util.Date;
 
 @Data
-public class UserDto {
-
-    private Integer id;
-
+public class AdminDto {
     private String username;
     private String name;
     private String surname;
@@ -20,5 +21,4 @@ public class UserDto {
     private String address;
     private String info;
     private String photoUrl;
-    private UserStatus status;
 }

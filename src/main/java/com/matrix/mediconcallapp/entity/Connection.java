@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Request {
+public class Connection {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

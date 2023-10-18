@@ -5,6 +5,7 @@ import com.matrix.mediconcallapp.entity.Doctor;
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.enums.AuthorityName;
 import com.matrix.mediconcallapp.exception.DoctorNotFoundException;
+import com.matrix.mediconcallapp.exception.UserAlreadyExistsException;
 import com.matrix.mediconcallapp.mapper.DoctorMapper;
 import com.matrix.mediconcallapp.mapper.UserMapper;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
@@ -14,7 +15,6 @@ import com.matrix.mediconcallapp.repository.UserRepository;
 import com.matrix.mediconcallapp.service.DoctorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,19 +50,24 @@ public class DoctorServiceImpl implements DoctorService {
     @Transactional
     @Override
     public DoctorDto add(DoctorRegistrationRequestDto requestDto) {
-        requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
-        Doctor doctor = doctorMapper.toDoctorForAdd(requestDto);
-        User user = userMapper.toUserForAddDoctor(requestDto);
-        Authority roles = new Authority(AuthorityName.DOCTOR.name());
-        Set<Authority> authorities = new HashSet<>();
-        authorities.add(roles);
-        user.setAuthorities(authorities);
+        if(userRepository.findByUsername(requestDto.getUsername()).isPresent() ||
+                userRepository.findByEmail(requestDto.getEmail()).isPresent()){
+            throw new UserAlreadyExistsException();
+        } else {
+            requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
+            Doctor doctor = doctorMapper.toDoctorForAdd(requestDto);
+            User user = userMapper.toUserForAddDoctor(requestDto);
+            Authority roles = new Authority(AuthorityName.DOCTOR.name());
+            Set<Authority> authorities = new HashSet<>();
+            authorities.add(roles);
+            user.setAuthorities(authorities);
 
-        doctor.setUser(userRepository.save(user));
-        doctorRepository.save(doctor);
+            doctor.setUser(userRepository.save(user));
+            doctorRepository.save(doctor);
 
-        return doctorRepository.findById(doctor.getId())
-                .map(doctorMapper::toDoctorDto)
-                .orElseThrow(DoctorNotFoundException::new);
+            return doctorRepository.findById(doctor.getId())
+                    .map(doctorMapper::toDoctorDto)
+                    .orElseThrow(DoctorNotFoundException::new);
+        }
     }
 }

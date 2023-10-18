@@ -54,12 +54,20 @@ public class SecurityConfig {
                                         "/configuration/ui",
                                         "/swagger-ui/**",
                                         "/swagger-ui.html").permitAll()
-                                .requestMatchers("/account/**").permitAll()
-                                .requestMatchers("/connection/**").permitAll()
+                                .requestMatchers("/account/login",
+                                        "account/register/doctor",
+                                        "account/register/patient",
+                                        "account/forgot-password",
+                                        "account/recovery-password").permitAll()
+                                .requestMatchers("/account/register/admin").hasAnyAuthority("ROLE_ADMIN")
+                                .requestMatchers("/connection/doctor",
+                                        "connection/accept").hasAnyAuthority("ROLE_DOCTOR")
+                                .requestMatchers("/connection/patient",
+                                        "connection/request").hasAnyAuthority("ROLE_PATIENT")
                                 .requestMatchers("/reservation/**").hasAnyAuthority("ROLE_ADMIN")
                                 .requestMatchers("/doctor/**").hasAnyAuthority("ROLE_DOCTOR")
                                 .requestMatchers("/patient/**").hasAnyAuthority("ROLE_PATIENT")
-                                .requestMatchers("/users/info").permitAll()
+                                .requestMatchers("/users/info").authenticated()
                 ).exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint((request, response, authException) ->
                                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED)

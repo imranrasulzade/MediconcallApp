@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -15,17 +16,18 @@ public class ConnectionController {
     private final ConnectionRequestService connectionRequestService;
 
     // pasiyent ucun hekime istek gondermek
-    @PostMapping
-    public ResponseEntity<Void> sendConnectionRequest(@RequestBody ConnectionRequestDto connectionRequestDto){
-        connectionRequestService.sendConnectionRequest(connectionRequestDto);
+    @PostMapping("/request")
+    public ResponseEntity<Void> sendConnectionRequest(HttpServletRequest request,
+                                                      @RequestBody ConnectionRequestDto connectionRequestDto){
+        connectionRequestService.sendConnection(request, connectionRequestDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     //hekimin pasiyentden gelen isteyi qebul etmesi
-    @PatchMapping
+    @PatchMapping("/accept")
     public ResponseEntity<Void> acceptConnectionRequest(HttpServletRequest request,
                                                         @RequestBody Integer patientId){
-        connectionRequestService.acceptConnectionRequest(request, patientId);
+        connectionRequestService.acceptConnection(request, patientId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

@@ -1,8 +1,10 @@
 package com.matrix.mediconcallapp.mapper;
 
 import com.matrix.mediconcallapp.entity.User;
+import com.matrix.mediconcallapp.model.dto.request.AdminRegistrationDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
 import com.matrix.mediconcallapp.model.dto.request.PatientRegistrationRequestDto;
+import com.matrix.mediconcallapp.model.dto.response.AdminDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
 import com.matrix.mediconcallapp.service.utility.MapPathUtility;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +28,11 @@ public abstract class UserMapper {
 
     @Mapping(source = "photo", target = "photoUrl", qualifiedByName = "mapPath")
     public abstract User toUserForAddPatient(PatientRegistrationRequestDto requestDto);
+
+    @Mapping(source = "photo", target = "photoUrl", qualifiedByName = "mapPath")
+    public abstract User toUserForAddAdmin(AdminRegistrationDto registrationDto);
+
+    public abstract AdminDto toAdminDto(User user);
 
 
     @Named(value = "mapPath")

@@ -48,10 +48,7 @@ public class DoctorRegistrationRequestDto {
     private String info;
 
     @Schema(hidden = true)
-    private final Integer isApproved = 0;
-
-    @Schema(hidden = true)
-    private final UserStatus status = UserStatus.ACTIVE;
+    private final UserStatus status = UserStatus.INACTIVE;
 
     private MultipartFile photo;
 

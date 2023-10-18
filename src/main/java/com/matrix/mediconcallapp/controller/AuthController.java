@@ -4,6 +4,7 @@ import com.matrix.mediconcallapp.model.dto.response.*;
 import com.matrix.mediconcallapp.model.dto.request.*;
 import com.matrix.mediconcallapp.service.AuthenticationService;
 import com.matrix.mediconcallapp.service.DoctorService;
+import com.matrix.mediconcallapp.service.UserService;
 import com.matrix.mediconcallapp.service.impl.PasswordResetTokenService;
 import com.matrix.mediconcallapp.service.PatientService;
 import lombok.RequiredArgsConstructor;
@@ -23,13 +24,14 @@ public class AuthController {
     private final PatientService patientService;
     private final PasswordResetTokenService tokenService;
     private final AuthenticationService authenticationService;
+    private final UserService userService;
 
     //Admin uchun registraciya - ancaq admin admini register ede biler
-//    @PostMapping(value = "/register/admin", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-//    public ResponseEntity<AdminDto> add(@RequestPart AdminDto adminDto){
-//        return ResponseEntity.status(HttpStatus.CREATED)
-//                .body(UserService.add(adminDto));
-//    }
+    @PostMapping(value = "/register/admin", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<AdminDto> add(@ModelAttribute AdminRegistrationDto adminDto){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(userService.addAdmin(adminDto));
+    }
 
 
     // hekim uchun registraciya

@@ -6,9 +6,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.net.http.HttpRequest;
 
 public interface ConnectionRequestService {
-    void sendConnectionRequest(ConnectionRequestDto connectionRequestDto);
+    void sendConnection(HttpServletRequest request, ConnectionRequestDto connectionRequestDto);
 
-    void acceptConnectionRequest(HttpServletRequest request, Integer patientId);
+    void acceptConnection(HttpServletRequest request, Integer patientId);
 
     void deleteConnectionByDoctor(HttpServletRequest request, Integer patientId);
 

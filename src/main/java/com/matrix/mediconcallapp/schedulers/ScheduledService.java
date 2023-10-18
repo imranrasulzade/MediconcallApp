@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class ScheduledService {
     private final PasswordResetTokenRepository tokenRepository;
-    @Scheduled(fixedRate =60 * 60 * 1000) // 60 deqiqe
+    @Scheduled(fixedRate =60 * 60 * 1000) // 60 minute
     public void cleanupExpiredTokens() {
         Date now = new Date();
         List<PasswordResetToken> expiredTokens = tokenRepository.findByExpiryDateBefore(now);

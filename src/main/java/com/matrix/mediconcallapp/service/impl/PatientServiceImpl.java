@@ -5,6 +5,7 @@ import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.entity.Authority;
 import com.matrix.mediconcallapp.enums.AuthorityName;
 import com.matrix.mediconcallapp.exception.PatientNotFoundException;
+import com.matrix.mediconcallapp.exception.UserAlreadyExistsException;
 import com.matrix.mediconcallapp.mapper.PatientMapper;
 import com.matrix.mediconcallapp.mapper.UserMapper;
 import com.matrix.mediconcallapp.model.dto.response.PatientDto;
@@ -32,21 +33,25 @@ public class PatientServiceImpl implements PatientService {
     @Transactional
     @Override
     public PatientDto add(PatientRegistrationRequestDto requestDto) {
-        requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
-        Patient patient = patientMapper.toPatientForAdd(requestDto);
-        User user = userMapper.toUserForAddPatient(requestDto);
-        //user.setRole(roleRepository.findById(3).orElseThrow(UserNotFoundException::new));
-        Authority roles = new Authority(AuthorityName.PATIENT.name());
-        Set<Authority> authorities = new HashSet<>();
-        authorities.add(roles);
-        user.setAuthorities(authorities);
+        if(userRepository.findByUsername(requestDto.getUsername()).isPresent() ||
+                userRepository.findByEmail(requestDto.getEmail()).isPresent()){
+            throw new UserAlreadyExistsException();
+        } else {
+            requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
+            Patient patient = patientMapper.toPatientForAdd(requestDto);
+            User user = userMapper.toUserForAddPatient(requestDto);
+            Authority roles = new Authority(AuthorityName.PATIENT.name());
+            Set<Authority> authorities = new HashSet<>();
+            authorities.add(roles);
+            user.setAuthorities(authorities);
 
-        patient.setUser(userRepository.save(user));
-        patientRepository.save(patient);
+            patient.setUser(userRepository.save(user));
+            patientRepository.save(patient);
 
-        return patientRepository.findById(patient.getId())
-                .map(patientMapper::toPatientDto)
-                .orElseThrow(PatientNotFoundException::new);
+            return patientRepository.findById(patient.getId())
+                    .map(patientMapper::toPatientDto)
+                    .orElseThrow(PatientNotFoundException::new);
+        }
     }
 
     @Override

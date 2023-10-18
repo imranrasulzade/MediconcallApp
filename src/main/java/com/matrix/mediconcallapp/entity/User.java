@@ -43,9 +43,6 @@ public class User {
     private String info;
     private String photoUrl;
 
-    @NotNull(message = "User isApproved cannot be null")
-    private Integer isApproved;
-
     @Enumerated(EnumType.STRING)
     @NotNull(message = " User status can not be null")
     private UserStatus status;

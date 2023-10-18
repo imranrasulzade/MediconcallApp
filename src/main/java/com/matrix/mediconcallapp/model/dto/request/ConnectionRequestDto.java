@@ -1,13 +1,18 @@
 package com.matrix.mediconcallapp.model.dto.request;
 
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
 public class ConnectionRequestDto {
-    private Integer id;
+    @Schema(hidden = true)
     private Integer patientId;
-
     private Integer doctorId;
-    private Integer isAccepted;
+
+    @Schema(hidden = true)
+    private Integer isAccepted = 0;
+
+    @Schema(hidden = true)
+    private Integer status = 1;
 }
