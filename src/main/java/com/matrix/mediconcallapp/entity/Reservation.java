@@ -1,5 +1,6 @@
 package com.matrix.mediconcallapp.entity;
 
+import com.matrix.mediconcallapp.enums.ReservationStatus;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -22,7 +23,9 @@ public class Reservation {
     private Patient patient;
 
     private LocalDateTime date;
-    private Integer isAccepted;
-    private Integer status;
+
+    @Enumerated(EnumType.STRING)
+    private ReservationStatus status;
+
 
 }

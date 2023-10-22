@@ -63,9 +63,10 @@ public class SecurityConfig {
                                         "contact/request").hasAnyAuthority("ROLE_PATIENT")
                                 .requestMatchers("/reservation/reservations").hasAnyAuthority("ROLE_ADMIN")
                                 .requestMatchers("/reservation/doctor").hasAnyAuthority("ROLE_DOCTOR")
-                                .requestMatchers("/reservation/patient").hasAnyAuthority("ROLE_PATIENT")
-                                .requestMatchers("/doctor/**",
-                                        "reservation/view/**").hasAnyAuthority("ROLE_PATIENT")
+                                .requestMatchers("/reservation/patient",
+                                        "reservation/times/**",
+                                        "reservation/request").hasAnyAuthority("ROLE_PATIENT")
+                                .requestMatchers("/doctor/**").hasAnyAuthority("ROLE_DOCTOR")
                                 .requestMatchers("/patient/**").hasAnyAuthority("ROLE_PATIENT")
                                 .requestMatchers("/users/info").authenticated()
                 ).exceptionHandling(exceptionHandling -> exceptionHandling
