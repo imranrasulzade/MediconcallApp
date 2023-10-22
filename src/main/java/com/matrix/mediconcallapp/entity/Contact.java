@@ -5,7 +5,7 @@ import lombok.Data;
 
 @Data
 @Entity
-public class Connection {
+public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -17,6 +17,6 @@ public class Connection {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
-    private Integer isAccepted;
     private Integer status;
+    private Integer deletedByUser;
 }

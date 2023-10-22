@@ -62,8 +62,12 @@ public class DoctorServiceImpl implements DoctorService {
             authorities.add(roles);
             user.setAuthorities(authorities);
 
-            doctor.setUser(userRepository.save(user));
-            doctorRepository.save(doctor);
+            //doctor.setUser(userRepository.save(user));
+            //doctorRepository.save(doctor);
+
+            doctor.setUser(user);
+            user.setDoctor(doctor);
+            userRepository.save(user);
 
             return doctorRepository.findById(doctor.getId())
                     .map(doctorMapper::toDoctorDto)

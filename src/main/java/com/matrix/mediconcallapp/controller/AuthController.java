@@ -26,13 +26,6 @@ public class AuthController {
     private final AuthenticationService authenticationService;
     private final UserService userService;
 
-    //Admin uchun registraciya - ancaq admin admini register ede biler
-    @PostMapping(value = "/register/admin", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<AdminDto> add(@ModelAttribute AdminRegistrationDto adminDto){
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(userService.addAdmin(adminDto));
-    }
-
 
     // hekim uchun registraciya
     @PostMapping(value = "/register/doctor", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

@@ -5,14 +5,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 @Data
-public class ConnectionRequestDto {
+public class ContactDto {
     @Schema(hidden = true)
     private Integer patientId;
     private Integer doctorId;
 
     @Schema(hidden = true)
-    private Integer isAccepted = 0;
-
-    @Schema(hidden = true)
-    private Integer status = 1;
+    private Integer status;
 }

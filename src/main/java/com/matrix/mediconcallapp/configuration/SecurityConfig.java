@@ -54,18 +54,18 @@ public class SecurityConfig {
                                         "/configuration/ui",
                                         "/swagger-ui/**",
                                         "/swagger-ui.html").permitAll()
-                                .requestMatchers("/account/login",
-                                        "account/register/doctor",
-                                        "account/register/patient",
-                                        "account/forgot-password",
-                                        "account/recovery-password").permitAll()
-                                .requestMatchers("/account/register/admin").hasAnyAuthority("ROLE_ADMIN")
-                                .requestMatchers("/connection/doctor",
-                                        "connection/accept").hasAnyAuthority("ROLE_DOCTOR")
-                                .requestMatchers("/connection/patient",
-                                        "connection/request").hasAnyAuthority("ROLE_PATIENT")
-                                .requestMatchers("/reservation/**").hasAnyAuthority("ROLE_ADMIN")
-                                .requestMatchers("/doctor/**").hasAnyAuthority("ROLE_DOCTOR")
+                                .requestMatchers("/account/**").permitAll()
+                                .requestMatchers("/contact/doctor",
+                                        "contact/doctor-view-contacts",
+                                        "contact/accept").hasAnyAuthority("ROLE_DOCTOR")
+                                .requestMatchers("/contact/patient",
+                                        "contact/patient-view-contacts",
+                                        "contact/request").hasAnyAuthority("ROLE_PATIENT")
+                                .requestMatchers("/reservation/reservations").hasAnyAuthority("ROLE_ADMIN")
+                                .requestMatchers("/reservation/doctor").hasAnyAuthority("ROLE_DOCTOR")
+                                .requestMatchers("/reservation/patient").hasAnyAuthority("ROLE_PATIENT")
+                                .requestMatchers("/doctor/**",
+                                        "reservation/view/**").hasAnyAuthority("ROLE_PATIENT")
                                 .requestMatchers("/patient/**").hasAnyAuthority("ROLE_PATIENT")
                                 .requestMatchers("/users/info").authenticated()
                 ).exceptionHandling(exceptionHandling -> exceptionHandling

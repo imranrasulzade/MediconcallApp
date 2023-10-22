@@ -15,12 +15,12 @@ public class Rating {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rater_user_id")
-    private User raterUser;
+    @JoinColumn(name = "rater_patient_id")
+    private Patient raterPatient;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "rated_user_id")
-    private User ratedUser;
+    @JoinColumn(name = "rated_doctor_id")
+    private Doctor ratedDoctor;
 
     private Integer ratingValue;
     private String comment;
