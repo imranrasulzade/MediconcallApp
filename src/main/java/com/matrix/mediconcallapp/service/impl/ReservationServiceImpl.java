@@ -87,7 +87,8 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public List<ReservationDto> getByPatient(HttpServletRequest request) throws ReservationNotFoundException{
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
-        return reservationRepository.findByPatientId(userId)
+        Integer patientId = patientRepository.findPatientByUserId(userId).getId();
+        return reservationRepository.findByPatientId(patientId)
                 .stream().map(reservationMapper::toReservationDto).toList();
     }
 
@@ -107,6 +108,26 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setPatient(patient);
         reservationRepository.save(reservation);
     }
+
+    @Override
+    public List<ReservationDto> getPendingStatus(HttpServletRequest request) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
+        return reservationRepository.findByStatusAndDoctor_Id(ReservationStatus.PENDING, doctorId)
+                .stream().map(reservationMapper::toReservationDto).toList();
+    }
+
+    @Transactional
+    @Override
+    public ReservationDto updateStatusToConfirm(Integer id){
+        Reservation reservation = reservationRepository.findById(id)
+                .orElseThrow(ReservationNotFoundException::new);
+        reservation.setStatus(ReservationStatus.CONFIRMED);
+        reservationRepository.save(reservation);
+        return reservationMapper.toReservationDto(reservation);
+    }
+
+
 
 
     public void checkReservation(Integer id, ReservationRequestDto requestDto){

@@ -18,7 +18,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
     List<Reservation> findByDoctorId(@Param(value = "id") Integer id);
 
 
-    @Query(value = "select * from reservation r where r.patient_id=(select id from patient where user_id=:id)", nativeQuery = true)
+    @Query(value = "select * from reservation r where r.patient_id=:id)", nativeQuery = true)
     List<Reservation> findByPatientId(@Param(value = "id") Integer id);
 
 
@@ -28,6 +28,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
                                              @Param(value = "patientId") Integer patientId);
 
     List<Reservation> findByStatusOrDateBefore(ReservationStatus status, LocalDateTime dateTime);
+
+    List<Reservation> findByStatusAndDoctor_Id(ReservationStatus status, Integer id);
 }
 
 

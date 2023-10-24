@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reservation")
+@RequestMapping("/reservations")
 @RequiredArgsConstructor
 public class ReservationController {
     private final ReservationService reservationService;
 
     //butun rezervasiyalar admin uchun
-    @GetMapping("/reservations")
+    @GetMapping
     public List<ReservationDto> getReservations(){
         return reservationService.getAllReservations();
     }
@@ -50,6 +50,18 @@ public class ReservationController {
                                     @RequestBody ReservationRequestDto requestDto){
         reservationService.add(request, requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    //hekimin pending statusda olan reservasiyalari cekmeyi
+    @GetMapping("/view-request")
+    public List<ReservationDto> getPendingStatus(HttpServletRequest request){
+        return reservationService.getPendingStatus(request);
+    }
+
+    //hekimin reservasiyani qebul etmesi
+    @GetMapping("/status")
+    public ReservationDto updateStatusToConfirm(@RequestBody Integer id){
+        return reservationService.updateStatusToConfirm(id);
     }
 
 

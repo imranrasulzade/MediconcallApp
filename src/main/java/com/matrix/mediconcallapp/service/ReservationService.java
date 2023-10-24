@@ -14,4 +14,8 @@ public interface ReservationService {
     List<ReservationDto> getByPatient(HttpServletRequest request);
 
     void add(HttpServletRequest request, ReservationRequestDto requestDto);
+
+    List<ReservationDto> getPendingStatus(HttpServletRequest request);
+
+    ReservationDto updateStatusToConfirm(Integer id);
 }

@@ -62,7 +62,9 @@ public class SecurityConfig {
                                         "contact/patient-view-contacts",
                                         "contact/request").hasAnyAuthority("ROLE_PATIENT")
                                 .requestMatchers("/reservation/reservations").hasAnyAuthority("ROLE_ADMIN")
-                                .requestMatchers("/reservation/doctor").hasAnyAuthority("ROLE_DOCTOR")
+                                .requestMatchers("/reservation/doctor",
+                                        "/reservation/view-request",
+                                        "reservation/accept").hasAnyAuthority("ROLE_DOCTOR")
                                 .requestMatchers("/reservation/patient",
                                         "reservation/times/**",
                                         "reservation/request").hasAnyAuthority("ROLE_PATIENT")
