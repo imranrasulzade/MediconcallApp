@@ -55,7 +55,6 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
                 log.info("authentication : {} ", authentication);
             }
-
         }catch (Exception e){
             errorDetails.put("message", "Authentication Error");
             errorDetails.put("details",e.getMessage());
@@ -63,11 +62,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
             mapper.writeValue(response.getWriter(), errorDetails);
-
         }
         filterChain.doFilter(request, response);
-
     }
-
-
 }

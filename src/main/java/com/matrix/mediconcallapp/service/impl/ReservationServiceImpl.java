@@ -5,8 +5,8 @@ import com.matrix.mediconcallapp.entity.Patient;
 import com.matrix.mediconcallapp.entity.Reservation;
 import com.matrix.mediconcallapp.enums.ReservationStatus;
 import com.matrix.mediconcallapp.exception.DoctorNotFoundException;
-import com.matrix.mediconcallapp.exception.PatientNotFoundException;
 import com.matrix.mediconcallapp.exception.ReservationNotFoundException;
+import com.matrix.mediconcallapp.exception.ReservationAlreadyExistsException;
 import com.matrix.mediconcallapp.mapper.ReservationMapper;
 import com.matrix.mediconcallapp.model.dto.request.ReservationRequestDto;
 import com.matrix.mediconcallapp.model.dto.response.ReservationDto;
@@ -23,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -99,10 +100,24 @@ public class ReservationServiceImpl implements ReservationService {
         patient.setId(patientId);
         Doctor doctor = doctorRepository.findById(requestDto.getDoctorId()).orElseThrow(DoctorNotFoundException::new);
         requestDto.setStatus(ReservationStatus.PENDING);
+        //check reservation
+        checkReservation(doctor.getId(), requestDto);
         Reservation reservation = reservationMapper.toReservation(requestDto);
         reservation.setDoctor(doctor);
         reservation.setPatient(patient);
         reservationRepository.save(reservation);
+    }
+
+
+    public void checkReservation(Integer id, ReservationRequestDto requestDto){
+        List<Reservation> checkList = reservationRepository.findByDoctorId(id);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        for(Reservation check: checkList){
+            String strDate = check.getDate().format(formatter);
+            if(requestDto.getDate().equals(strDate)){
+                throw new ReservationAlreadyExistsException();
+            }
+        }
     }
 
 }
