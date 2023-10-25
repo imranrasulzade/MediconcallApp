@@ -4,6 +4,7 @@ import com.matrix.mediconcallapp.entity.Doctor;
 import com.matrix.mediconcallapp.entity.Patient;
 import com.matrix.mediconcallapp.entity.Reservation;
 import com.matrix.mediconcallapp.enums.ReservationStatus;
+import com.matrix.mediconcallapp.exception.DateTimeRangeException;
 import com.matrix.mediconcallapp.exception.DoctorNotFoundException;
 import com.matrix.mediconcallapp.exception.ReservationNotFoundException;
 import com.matrix.mediconcallapp.exception.ReservationAlreadyExistsException;
@@ -24,7 +25,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -142,6 +145,21 @@ public class ReservationServiceImpl implements ReservationService {
             if(requestDto.getDate().equals(strDate)){
                 throw new ReservationAlreadyExistsException();
             }
+        }
+    }
+
+    public static void checkDateTimeValidity(String strDateTime) throws ReservationNotFoundException {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime inputDateTime = LocalDateTime.parse(strDateTime, formatter);
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime oneWeekLater = now.plusWeeks(1);
+        if (inputDateTime.isBefore(now.plusDays(1)) || inputDateTime.isAfter(oneWeekLater)) {
+            throw new ReservationNotFoundException();
+        }
+
+        int hour = inputDateTime.getHour();
+        if (hour < 9 || (hour == 13) || hour >= 18) {
+            throw new DateTimeRangeException();
         }
     }
 

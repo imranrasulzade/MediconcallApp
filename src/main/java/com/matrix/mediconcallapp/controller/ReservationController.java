@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class ReservationController {
     private final ReservationService reservationService;
 
     //butun rezervasiyalar admin uchun
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     @GetMapping
     public List<ReservationDto> getReservations(){
         return reservationService.getAllReservations();
@@ -61,7 +63,7 @@ public class ReservationController {
     }
 
     //hekimin reservasiyanin status deyismesi
-    @GetMapping("/status")
+    @PutMapping("/status")
     public void changeStatus(HttpServletRequest request,
                                        @RequestBody ReservationStatusDto reservationStatusDto){
         reservationService.changeStatus(request, reservationStatusDto);
