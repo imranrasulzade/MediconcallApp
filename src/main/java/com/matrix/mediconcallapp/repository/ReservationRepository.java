@@ -18,7 +18,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
     List<Reservation> findByDoctorId(@Param(value = "id") Integer id);
 
 
-    @Query(value = "select * from reservation r where r.patient_id=:id)", nativeQuery = true)
+    @Query(value = "select * from reservation r where r.patient_id=:id", nativeQuery = true)
     List<Reservation> findByPatientId(@Param(value = "id") Integer id);
 
 

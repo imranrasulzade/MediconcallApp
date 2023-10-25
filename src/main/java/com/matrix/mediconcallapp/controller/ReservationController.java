@@ -1,6 +1,8 @@
 package com.matrix.mediconcallapp.controller;
 
+import com.matrix.mediconcallapp.enums.ReservationStatus;
 import com.matrix.mediconcallapp.model.dto.request.ReservationRequestDto;
+import com.matrix.mediconcallapp.model.dto.request.ReservationStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.ReservationDto;
 import com.matrix.mediconcallapp.model.dto.response.TimeDto;
 import com.matrix.mediconcallapp.service.ReservationService;
@@ -58,10 +60,11 @@ public class ReservationController {
         return reservationService.getPendingStatus(request);
     }
 
-    //hekimin reservasiyani qebul etmesi
+    //hekimin reservasiyanin status deyismesi
     @GetMapping("/status")
-    public ReservationDto updateStatusToConfirm(@RequestBody Integer id){
-        return reservationService.updateStatusToConfirm(id);
+    public void changeStatus(HttpServletRequest request,
+                                       @RequestBody ReservationStatusDto reservationStatusDto){
+        reservationService.changeStatus(request, reservationStatusDto);
     }
 
 

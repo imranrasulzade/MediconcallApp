@@ -61,13 +61,14 @@ public class SecurityConfig {
                                 .requestMatchers("/contact/patient",
                                         "contact/patient-view-contacts",
                                         "contact/request").hasAnyAuthority("ROLE_PATIENT")
-                                .requestMatchers("/reservation/reservations").hasAnyAuthority("ROLE_ADMIN")
-                                .requestMatchers("/reservation/doctor",
-                                        "/reservation/view-request",
-                                        "reservation/accept").hasAnyAuthority("ROLE_DOCTOR")
-                                .requestMatchers("/reservation/patient",
-                                        "reservation/times/**",
-                                        "reservation/request").hasAnyAuthority("ROLE_PATIENT")
+                                .requestMatchers("/reservations/reservations").hasAnyAuthority("ROLE_ADMIN")
+                                .requestMatchers("/reservations/doctor",
+                                        "/reservations/view-request",
+                                        "reservations/accept",
+                                        "reservations/status").hasAnyAuthority("ROLE_DOCTOR")
+                                .requestMatchers("/reservations/patient",
+                                        "reservations/times/**",
+                                        "reservations/request").hasAnyAuthority("ROLE_PATIENT")
                                 .requestMatchers("/doctor/**").hasAnyAuthority("ROLE_DOCTOR")
                                 .requestMatchers("/patient/**").hasAnyAuthority("ROLE_PATIENT")
                                 .requestMatchers("/users/info").authenticated()

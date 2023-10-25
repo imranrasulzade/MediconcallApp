@@ -9,6 +9,7 @@ import com.matrix.mediconcallapp.exception.ReservationNotFoundException;
 import com.matrix.mediconcallapp.exception.ReservationAlreadyExistsException;
 import com.matrix.mediconcallapp.mapper.ReservationMapper;
 import com.matrix.mediconcallapp.model.dto.request.ReservationRequestDto;
+import com.matrix.mediconcallapp.model.dto.request.ReservationStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.ReservationDto;
 import com.matrix.mediconcallapp.model.dto.response.TimeDto;
 import com.matrix.mediconcallapp.repository.ContactRepository;
@@ -117,20 +118,23 @@ public class ReservationServiceImpl implements ReservationService {
                 .stream().map(reservationMapper::toReservationDto).toList();
     }
 
-    @Transactional
     @Override
-    public ReservationDto updateStatusToConfirm(Integer id){
-        Reservation reservation = reservationRepository.findById(id)
+    public void changeStatus(HttpServletRequest request, ReservationStatusDto reservationStatusDto) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
+        Reservation reservation = reservationRepository.findById(reservationStatusDto.getId())
                 .orElseThrow(ReservationNotFoundException::new);
-        reservation.setStatus(ReservationStatus.CONFIRMED);
+        if(reservation.getDoctor().getId().equals(doctorId)){
+            reservation.setStatus(reservationStatusDto.getStatus());
+        }else{
+            throw new ReservationNotFoundException();
+        }
         reservationRepository.save(reservation);
-        return reservationMapper.toReservationDto(reservation);
     }
 
 
 
-
-    public void checkReservation(Integer id, ReservationRequestDto requestDto){
+    private void checkReservation(Integer id, ReservationRequestDto requestDto){
         List<Reservation> checkList = reservationRepository.findByDoctorId(id);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         for(Reservation check: checkList){

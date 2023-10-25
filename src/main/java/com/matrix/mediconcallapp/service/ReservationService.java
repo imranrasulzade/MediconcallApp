@@ -1,6 +1,7 @@
 package com.matrix.mediconcallapp.service;
 
 import com.matrix.mediconcallapp.model.dto.request.ReservationRequestDto;
+import com.matrix.mediconcallapp.model.dto.request.ReservationStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.ReservationDto;
 import com.matrix.mediconcallapp.model.dto.response.TimeDto;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,5 +18,5 @@ public interface ReservationService {
 
     List<ReservationDto> getPendingStatus(HttpServletRequest request);
 
-    ReservationDto updateStatusToConfirm(Integer id);
+    void changeStatus(HttpServletRequest request, ReservationStatusDto reservationStatusDto);
 }
