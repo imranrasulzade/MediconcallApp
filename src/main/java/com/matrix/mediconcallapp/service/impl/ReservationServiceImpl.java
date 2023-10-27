@@ -27,7 +27,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +47,7 @@ public class ReservationServiceImpl implements ReservationService {
 
         boolean condition = contactRepository.findByDoctorAndPatient(doctorId, patientId).isPresent();
         if(condition){
-            List<Reservation> reservations = reservationRepository.findByDoctorAndPatient(doctorId, patientId);
+            List<Reservation> reservations = reservationRepository.findByDoctorId(doctorId).get();
             List<TimeDto> checkedList = new ArrayList<>();
             if(!reservations.isEmpty()){
                 List<TimeDto> timeDtoList = TimeUtility.getAllTimes();
@@ -81,18 +80,20 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<ReservationDto> getReservationsOfDoctor(HttpServletRequest request) throws ReservationNotFoundException {
+    public List<ReservationDto> getReservationsOfDoctor(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
         return reservationRepository.findByDoctorId(doctorId)
+                .orElseThrow(ReservationNotFoundException::new)
                 .stream().map(reservationMapper::toReservationDto).toList();
     }
 
     @Override
-    public List<ReservationDto> getByPatient(HttpServletRequest request) throws ReservationNotFoundException{
+    public List<ReservationDto> getByPatient(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
         return reservationRepository.findByPatientId(patientId)
+                .orElseThrow(ReservationNotFoundException::new)
                 .stream().map(reservationMapper::toReservationDto).toList();
     }
 
@@ -106,6 +107,7 @@ public class ReservationServiceImpl implements ReservationService {
         Doctor doctor = doctorRepository.findById(requestDto.getDoctorId()).orElseThrow(DoctorNotFoundException::new);
         requestDto.setStatus(ReservationStatus.PENDING);
         //check reservation
+        checkDateTimeValidity(requestDto.getDate());
         checkReservation(doctor.getId(), requestDto);
         Reservation reservation = reservationMapper.toReservation(requestDto);
         reservation.setDoctor(doctor);
@@ -114,10 +116,11 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public List<ReservationDto> getPendingStatus(HttpServletRequest request) {
+    public List<ReservationDto> getByStatus(HttpServletRequest request, ReservationStatus status) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        return reservationRepository.findByStatusAndDoctor_Id(ReservationStatus.PENDING, doctorId)
+        return reservationRepository.findByStatusAndDoctorId(status, doctorId)
+                .orElseThrow(ReservationNotFoundException::new)
                 .stream().map(reservationMapper::toReservationDto).toList();
     }
 
@@ -138,7 +141,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 
     private void checkReservation(Integer id, ReservationRequestDto requestDto){
-        List<Reservation> checkList = reservationRepository.findByDoctorId(id);
+        List<Reservation> checkList = reservationRepository.findByDoctorId(id).get();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         for(Reservation check: checkList){
             String strDate = check.getDate().format(formatter);
@@ -148,13 +151,13 @@ public class ReservationServiceImpl implements ReservationService {
         }
     }
 
-    public static void checkDateTimeValidity(String strDateTime) throws ReservationNotFoundException {
+    private void checkDateTimeValidity(String strDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime inputDateTime = LocalDateTime.parse(strDateTime, formatter);
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime oneWeekLater = now.plusWeeks(1);
         if (inputDateTime.isBefore(now.plusDays(1)) || inputDateTime.isAfter(oneWeekLater)) {
-            throw new ReservationNotFoundException();
+            throw new DateTimeRangeException();
         }
 
         int hour = inputDateTime.getHour();

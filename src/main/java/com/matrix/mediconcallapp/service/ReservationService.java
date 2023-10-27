@@ -1,5 +1,7 @@
 package com.matrix.mediconcallapp.service;
 
+import com.matrix.mediconcallapp.enums.ReservationStatus;
+import com.matrix.mediconcallapp.exception.DateTimeRangeException;
 import com.matrix.mediconcallapp.model.dto.request.ReservationRequestDto;
 import com.matrix.mediconcallapp.model.dto.request.ReservationStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.ReservationDto;
@@ -16,7 +18,7 @@ public interface ReservationService {
 
     void add(HttpServletRequest request, ReservationRequestDto requestDto);
 
-    List<ReservationDto> getPendingStatus(HttpServletRequest request);
+    List<ReservationDto> getByStatus(HttpServletRequest request, ReservationStatus status);
 
     void changeStatus(HttpServletRequest request, ReservationStatusDto reservationStatusDto);
 }

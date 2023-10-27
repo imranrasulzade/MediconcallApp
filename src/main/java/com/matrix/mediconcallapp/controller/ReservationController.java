@@ -23,7 +23,7 @@ public class ReservationController {
 
     //butun rezervasiyalar admin uchun
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping
+    @GetMapping("view-all")
     public List<ReservationDto> getReservations(){
         return reservationService.getAllReservations();
     }
@@ -58,8 +58,9 @@ public class ReservationController {
 
     //hekimin pending statusda olan reservasiyalari cekmeyi
     @GetMapping("/view-request")
-    public List<ReservationDto> getPendingStatus(HttpServletRequest request){
-        return reservationService.getPendingStatus(request);
+    public List<ReservationDto> getByStatus(HttpServletRequest request,
+                                            @RequestParam ReservationStatus status){
+        return reservationService.getByStatus(request, status);
     }
 
     //hekimin reservasiyanin status deyismesi

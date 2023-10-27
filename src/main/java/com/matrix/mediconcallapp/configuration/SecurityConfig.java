@@ -1,5 +1,6 @@
 package com.matrix.mediconcallapp.configuration;
 
+import com.matrix.mediconcallapp.enums.ROLE;
 import com.matrix.mediconcallapp.filter.JwtAuthorizationFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -57,20 +58,20 @@ public class SecurityConfig {
                                 .requestMatchers("/account/**").permitAll()
                                 .requestMatchers("/contact/doctor",
                                         "contact/doctor-view-contacts",
-                                        "contact/accept").hasAnyAuthority("ROLE_DOCTOR")
+                                        "contact/accept").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
                                 .requestMatchers("/contact/patient",
                                         "contact/patient-view-contacts",
-                                        "contact/request").hasAnyAuthority("ROLE_PATIENT")
-                                .requestMatchers("/reservations/reservations").hasAnyAuthority("ROLE_ADMIN")
+                                        "contact/request").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
+                                .requestMatchers("/reservations/view-all").hasAnyAuthority(ROLE.ROLE_ADMIN.name())
                                 .requestMatchers("/reservations/doctor",
                                         "/reservations/view-request",
                                         "reservations/accept",
-                                        "reservations/status").hasAnyAuthority("ROLE_DOCTOR")
+                                        "reservations/status").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
                                 .requestMatchers("/reservations/patient",
                                         "reservations/times/**",
-                                        "reservations/request").hasAnyAuthority("ROLE_PATIENT")
-                                .requestMatchers("/doctor/**").hasAnyAuthority("ROLE_DOCTOR")
-                                .requestMatchers("/patient/**").hasAnyAuthority("ROLE_PATIENT")
+                                        "reservations/request").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
+                                .requestMatchers("/doctor/**").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
+                                .requestMatchers("/patient/**").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
                                 .requestMatchers("/users/info").authenticated()
                 ).exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint((request, response, authException) ->

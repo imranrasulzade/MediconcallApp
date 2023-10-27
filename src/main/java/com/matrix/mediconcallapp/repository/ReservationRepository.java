@@ -9,27 +9,17 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
+    Optional<List<Reservation>> findByDoctorId(Integer id);
 
-
-    @Query(value = "select * from reservation r where r.doctor_id=:id", nativeQuery = true)
-    List<Reservation> findByDoctorId(@Param(value = "id") Integer id);
-
-
-    @Query(value = "select * from reservation r where r.patient_id=:id", nativeQuery = true)
-    List<Reservation> findByPatientId(@Param(value = "id") Integer id);
-
-
-    //Isteyi qebul eden pasiyentin hekimin cedvellerine baxmasi
-    @Query(value = "SELECT * FROM reservation WHERE doctor_id=:doctorId AND patient_id=:patientId", nativeQuery = true)
-    List<Reservation> findByDoctorAndPatient(@Param(value = "doctorId") Integer doctorId,
-                                             @Param(value = "patientId") Integer patientId);
+    Optional<List<Reservation>> findByPatientId(Integer id);
 
     List<Reservation> findByStatusOrDateBefore(ReservationStatus status, LocalDateTime dateTime);
 
-    List<Reservation> findByStatusAndDoctor_Id(ReservationStatus status, Integer id);
+    Optional<List<Reservation>> findByStatusAndDoctorId(ReservationStatus status, Integer id);
 }
 
 

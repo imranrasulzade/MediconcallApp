@@ -22,8 +22,8 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(DateTimeRangeException.class)
-    public ResponseEntity<String> handleNotFoundException(ConflictException ex){
-        return ResponseEntity.status(HttpStatus.).body(ex.getMessage());
+    public ResponseEntity<String> handleDateTimeRangeException(ConflictException ex){
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
 

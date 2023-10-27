@@ -43,17 +43,17 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
                 filterChain.doFilter(request, response);
                 return;
             }
-            log.info("token: {} ", accessToken);
+            //log.info("token: {} ", accessToken);
             Claims claims = jwtUtil.resolveClaims(request);
 
             if(claims != null & jwtUtil.validateClaims(claims)){
                 String user = claims.getSubject();
                 Collection<GrantedAuthority> authorities = jwtUtil.extractAuthorities(claims);
-                log.info("user : {} ", user);
+                //log.info("user : {} ", user);
                 Authentication authentication =
                         new UsernamePasswordAuthenticationToken(user,"",authorities);
                 SecurityContextHolder.getContext().setAuthentication(authentication);
-                log.info("authentication : {} ", authentication);
+                //log.info("authentication : {} ", authentication);
             }
         }catch (Exception e){
             errorDetails.put("message", "Authentication Error");
