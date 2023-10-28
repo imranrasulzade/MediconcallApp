@@ -6,16 +6,13 @@ import com.matrix.mediconcallapp.enums.AuthorityName;
 import com.matrix.mediconcallapp.exception.UserAlreadyExistsException;
 import com.matrix.mediconcallapp.exception.UserNotFoundException;
 import com.matrix.mediconcallapp.mapper.UserMapper;
-import com.matrix.mediconcallapp.model.dto.request.AdminRegistrationDto;
 import com.matrix.mediconcallapp.model.dto.response.AdminDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
 import com.matrix.mediconcallapp.repository.UserRepository;
 import com.matrix.mediconcallapp.service.UserService;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -57,22 +54,6 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(UserNotFoundException::new);
     }
 
-    @Override
-    public AdminDto addAdmin(AdminRegistrationDto registrationDto) {
-        if(userRepository.findByUsername(registrationDto.getUsername()).isPresent() ||
-                userRepository.findByEmail(registrationDto.getEmail()).isPresent()){
-            throw new UserAlreadyExistsException();
-        } else{
-            registrationDto.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
-            User user = userMapper.toUserForAddAdmin(registrationDto);
-            Authority roles = new Authority(AuthorityName.ADMIN.name());
-            Set<Authority> authorities = new HashSet<>();
-            authorities.add(roles);
-            user.setAuthorities(authorities);
-            userRepository.save(user);
-            return userMapper.toAdminDto(user);
-        }
-    }
 
 
 }

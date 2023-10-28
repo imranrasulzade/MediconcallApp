@@ -64,10 +64,17 @@ public class ReservationController {
     }
 
     //hekimin reservasiyanin status deyismesi
-    @PutMapping("/status")
+    @PatchMapping("/status")
     public void changeStatus(HttpServletRequest request,
                                        @RequestBody ReservationStatusDto reservationStatusDto){
         reservationService.changeStatus(request, reservationStatusDto);
+    }
+
+    //pasiyentin rezervasiyani legv etmesi
+    @PatchMapping("/cancel")
+    public void cancel(HttpServletRequest request,
+                             @RequestBody Integer id){
+        reservationService.cancel(request, id);
     }
 
 

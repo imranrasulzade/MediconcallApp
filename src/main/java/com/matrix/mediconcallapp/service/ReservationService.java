@@ -21,4 +21,6 @@ public interface ReservationService {
     List<ReservationDto> getByStatus(HttpServletRequest request, ReservationStatus status);
 
     void changeStatus(HttpServletRequest request, ReservationStatusDto reservationStatusDto);
+
+    void cancel(HttpServletRequest request, Integer id);
 }

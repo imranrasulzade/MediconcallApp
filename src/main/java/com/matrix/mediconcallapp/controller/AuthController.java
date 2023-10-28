@@ -52,9 +52,8 @@ public class AuthController {
 
     // token istifade ederek shifreni yenilemek
     @PatchMapping("/recovery-password")
-    public ResponseEntity<Boolean> resetPassword(@RequestParam String token, //retry new password elave edecem
-                                                 @RequestParam String newPassword) {
-        return tokenService.resetPassword(token, newPassword);
+    public ResponseEntity<Boolean> resetPassword(@RequestBody RecoveryPassword recoveryPassword) {
+        return tokenService.resetPassword(recoveryPassword);
     }
 
     @ResponseBody

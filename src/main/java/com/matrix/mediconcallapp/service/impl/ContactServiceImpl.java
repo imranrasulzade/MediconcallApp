@@ -31,7 +31,7 @@ public class ContactServiceImpl implements ContactService {
     public List<ContactResponseDto> getAllForPatient(HttpServletRequest request){
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
-        return contactRepository.findByPatient(patientId)
+        return contactRepository.findByPatientIdAndStatus(patientId, ContactStatus.ACCEPTED.getValue())
                 .stream()
                 .map(contactMapper::toContactResponseDto)
                 .toList();
@@ -54,10 +54,10 @@ public class ContactServiceImpl implements ContactService {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
         boolean condition = contactRepository
-                .findByDoctorAndPatient(contactDto.getDoctorId(), patientId).isPresent();
+                .findByDoctorIdAndPatientId(contactDto.getDoctorId(), patientId).isPresent();
         Contact contact;
         if(condition){
-            contact = contactRepository.findByDoctorAndPatient(contactDto.getDoctorId(), patientId)
+            contact = contactRepository.findByDoctorIdAndPatientId(contactDto.getDoctorId(), patientId)
                     .orElseThrow(ContactNotFoundException::new);
             contact.setStatus(ContactStatus.PENDING.getValue());
             contact.setDeletedByUser(null);
@@ -74,17 +74,21 @@ public class ContactServiceImpl implements ContactService {
     public void accept(HttpServletRequest request, Integer patientId){
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        Contact contact = contactRepository.findByDoctorAndPatient(doctorId, patientId).
+        Contact contact = contactRepository.findByDoctorIdAndPatientId(doctorId, patientId).
                 orElseThrow(ContactNotFoundException::new);
-        contact.setStatus(ContactStatus.ACCEPTED.getValue());
-        contactRepository.save(contact);
+        if(contact.getStatus().equals(ContactStatus.REMOVED.getValue())){
+            throw new ContactNotFoundException();
+        }else {
+            contact.setStatus(ContactStatus.ACCEPTED.getValue());
+            contactRepository.save(contact);
+        }
     }
 
     @Override
     public void deleteByDoctor(HttpServletRequest request, Integer patientId){
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        Contact contact = contactRepository.findByDoctorAndPatient(doctorId, patientId)
+        Contact contact = contactRepository.findByDoctorIdAndPatientId(doctorId, patientId)
                         .orElseThrow(ContactNotFoundException::new);
         contact.setStatus(ContactStatus.REMOVED.getValue());
         contact.setDeletedByUser(userId);
@@ -96,7 +100,7 @@ public class ContactServiceImpl implements ContactService {
     public void deleteByPatient(HttpServletRequest request, Integer doctorId){
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
-        Contact contact = contactRepository.findByDoctorAndPatient(doctorId, patientId)
+        Contact contact = contactRepository.findByDoctorIdAndPatientId(doctorId, patientId)
                 .orElseThrow(ContactNotFoundException::new);
         contact.setStatus(ContactStatus.REMOVED.getValue());
         contact.setDeletedByUser(userId);

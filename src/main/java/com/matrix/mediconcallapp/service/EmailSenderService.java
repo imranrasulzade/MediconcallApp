@@ -1,4 +1,4 @@
-package com.matrix.mediconcallapp.service.impl;
+package com.matrix.mediconcallapp.service;
 
 import com.matrix.mediconcallapp.model.Email;
 import jakarta.mail.MessagingException;

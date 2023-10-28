@@ -42,7 +42,7 @@ public class ContactController {
     //hekimin pasiyentden gelen isteyi qebul etmesi
     @PatchMapping("/accept")
     public ResponseEntity<Void> accept(HttpServletRequest request,
-                                                        @RequestBody Integer patientId){
+                                        @RequestBody Integer patientId){
         contactService.accept(request, patientId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

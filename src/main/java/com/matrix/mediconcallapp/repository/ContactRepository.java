@@ -12,16 +12,17 @@ import java.util.Optional;
 @Repository
 public interface ContactRepository extends JpaRepository<Contact, Integer> {
 
-    @Query(value = "SELECT * FROM contact WHERE doctor_id=:doctorId AND patient_id=:patientId", nativeQuery = true)
-    Optional<Contact> findByDoctorAndPatient(@Param(value = "doctorId") Integer doctorId,
-                                             @Param(value = "patientId") Integer patientId);
+    Optional<Contact> findByDoctorIdAndPatientId(Integer doctorId, Integer patientId);
 
-    @Query(value = "SELECT * FROM contact WHERE patient_id=:id AND status = 1", nativeQuery = true)
-    List<Contact> findByPatient(@Param(value = "id") Integer id);
+    List<Contact> findByPatientIdAndStatus(Integer id, Integer status);
 
     @Query(value = "SELECT * FROM contact WHERE doctor_id=:id AND status <> -1", nativeQuery = true)
     List<Contact> findByDoctor(@Param(value = "id") Integer id);
 
+
+    @Query(value = "SELECT * FROM contact WHERE doctor_id=:doctorId AND patient_id=:patientId AND status=1", nativeQuery = true)
+    Optional<Contact> findAcceptedContact(@Param(value = "doctorId") Integer doctorId,
+                                             @Param(value = "patientId") Integer patientId);
 
 
 }

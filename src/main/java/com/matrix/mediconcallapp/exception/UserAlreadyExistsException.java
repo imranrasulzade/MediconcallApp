@@ -1,6 +1,8 @@
 package com.matrix.mediconcallapp.exception;
 
-public class UserAlreadyExistsException extends ConflictException{
+import com.matrix.mediconcallapp.exception.parent.ConflictException;
+
+public class UserAlreadyExistsException extends ConflictException {
     public UserAlreadyExistsException(){
         super("User already exists ");
     }

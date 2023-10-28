@@ -2,10 +2,12 @@ package com.matrix.mediconcallapp.service.impl;
 
 import com.matrix.mediconcallapp.entity.PasswordResetToken;
 import com.matrix.mediconcallapp.entity.User;
+import com.matrix.mediconcallapp.exception.PasswordMismatchException;
 import com.matrix.mediconcallapp.model.Email;
+import com.matrix.mediconcallapp.model.dto.request.RecoveryPassword;
 import com.matrix.mediconcallapp.repository.PasswordResetTokenRepository;
+import com.matrix.mediconcallapp.service.EmailSenderService;
 import com.matrix.mediconcallapp.service.UserService;
-import com.matrix.mediconcallapp.service.impl.EmailSenderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -40,7 +42,6 @@ public class PasswordResetTokenService {
         Date expiryDate = calendar.getTime();
         createToken(user, token, expiryDate);
 
-        //tokenin vaxtini yoxlamaq ucun bir link elave edecem
         Email receiverEmail = new Email();
         receiverEmail.setReceiver(email);
         receiverEmail.setText(token);
@@ -56,24 +57,27 @@ public class PasswordResetTokenService {
         return ResponseEntity.ok(true);
     }
 
-    public PasswordResetToken createToken(User user, String token, Date expiryDate) {
+    public void createToken(User user, String token, Date expiryDate) {
         PasswordResetToken passwordResetToken = new PasswordResetToken();
         passwordResetToken.setUser(user);
         passwordResetToken.setToken(token);
         passwordResetToken.setExpiryDate(expiryDate);
-        return tokenRepository.save(passwordResetToken);
+        tokenRepository.save(passwordResetToken);
     }
 
-    public ResponseEntity<Boolean> resetPassword(@RequestParam String token, @RequestParam String newPassword) {
-        PasswordResetToken passwordResetToken = tokenRepository.findByToken(token);
-        if (passwordResetToken == null || !isTokenValid(passwordResetToken)) {
-            return ResponseEntity.badRequest().body(false);
-        }
-        User user = passwordResetToken.getUser();
-        userService.changePassword(user, passwordEncoder.encode(newPassword));
-        deleteToken(passwordResetToken);
+    public ResponseEntity<Boolean> resetPassword(RecoveryPassword recoveryPassword) {
+        if(recoveryPassword.getNewPassword().equals(recoveryPassword.getRetryPassword())){
+            PasswordResetToken passwordResetToken = tokenRepository.findByToken(recoveryPassword.getToken());
+            if (passwordResetToken == null || !isTokenValid(passwordResetToken)) {
+                return ResponseEntity.badRequest().body(false);
+            }
+            User user = passwordResetToken.getUser();
+            userService.changePassword(user, passwordEncoder.encode(recoveryPassword.getNewPassword()));
+            deleteToken(passwordResetToken);
 
-        return ResponseEntity.ok(true);
+            return ResponseEntity.ok(true);
+        }else
+            throw new PasswordMismatchException();
     }
 
 

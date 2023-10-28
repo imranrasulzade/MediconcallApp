@@ -22,7 +22,7 @@ import java.util.List;
 public class ScheduledService {
     private final PasswordResetTokenRepository tokenRepository;
     private final ReservationRepository reservationRepository;
-    @Scheduled(fixedRate =60 * 60 * 1000) // 60 minute
+    @Scheduled(fixedRate =10 * 60 * 1000) // 10 minute
     public void cleanupExpiredTokens() {
         Date now = new Date();
         List<PasswordResetToken> expiredTokens = tokenRepository.findByExpiryDateBefore(now);

@@ -1,6 +1,8 @@
 package com.matrix.mediconcallapp.exception;
 
-public class DateTimeRangeException extends ConflictException{
+import com.matrix.mediconcallapp.exception.parent.BadRequestException;
+
+public class DateTimeRangeException extends BadRequestException {
     public DateTimeRangeException(){
         super("invalid DateTime range");
     }

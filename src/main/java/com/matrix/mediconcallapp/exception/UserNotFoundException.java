@@ -1,6 +1,8 @@
 package com.matrix.mediconcallapp.exception;
 
-public class UserNotFoundException extends NotFoundException{
+import com.matrix.mediconcallapp.exception.parent.NotFoundException;
+
+public class UserNotFoundException extends NotFoundException {
 
     public UserNotFoundException(){
         super("User");

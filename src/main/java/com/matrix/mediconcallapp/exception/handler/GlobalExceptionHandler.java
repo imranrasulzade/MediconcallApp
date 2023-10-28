@@ -1,8 +1,8 @@
 package com.matrix.mediconcallapp.exception.handler;
 
-import com.matrix.mediconcallapp.exception.ConflictException;
-import com.matrix.mediconcallapp.exception.DateTimeRangeException;
-import com.matrix.mediconcallapp.exception.NotFoundException;
+import com.matrix.mediconcallapp.exception.parent.BadRequestException;
+import com.matrix.mediconcallapp.exception.parent.ConflictException;
+import com.matrix.mediconcallapp.exception.parent.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -17,13 +17,13 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(ConflictException.class)
-    public ResponseEntity<String> handleNotFoundException(ConflictException ex){
+    public ResponseEntity<String> handleConflictException(ConflictException ex){
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
 
-    @ExceptionHandler(DateTimeRangeException.class)
-    public ResponseEntity<String> handleDateTimeRangeException(ConflictException ex){
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<String> handleBadRequestException(BadRequestException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
 

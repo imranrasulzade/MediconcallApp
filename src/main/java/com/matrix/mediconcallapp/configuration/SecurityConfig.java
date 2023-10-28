@@ -69,7 +69,8 @@ public class SecurityConfig {
                                         "reservations/status").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
                                 .requestMatchers("/reservations/patient",
                                         "reservations/times/**",
-                                        "reservations/request").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
+                                        "reservations/request",
+                                        "reservations/cancel").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
                                 .requestMatchers("/doctor/**").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
                                 .requestMatchers("/patient/**").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
                                 .requestMatchers("/users/info").authenticated()

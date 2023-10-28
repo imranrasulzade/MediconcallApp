@@ -1,8 +1,6 @@
 package com.matrix.mediconcallapp.service;
 
 import com.matrix.mediconcallapp.entity.User;
-import com.matrix.mediconcallapp.model.dto.request.AdminRegistrationDto;
-import com.matrix.mediconcallapp.model.dto.response.AdminDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -16,6 +14,5 @@ public interface UserService {
 
     User findByEmail(String email);
 
-    AdminDto addAdmin(AdminRegistrationDto registrationDto);
 
 }

@@ -1,7 +1,9 @@
 package com.matrix.mediconcallapp.exception;
 
-public class UserIsNotActiveException extends RuntimeException {
+import com.matrix.mediconcallapp.exception.parent.IsNotActiveException;
+
+public class UserIsNotActiveException extends IsNotActiveException {
     public UserIsNotActiveException(String ex){
-        super("User is not active");
+        super("User");
     }
 }

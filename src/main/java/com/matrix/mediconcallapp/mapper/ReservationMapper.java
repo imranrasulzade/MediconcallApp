@@ -35,7 +35,7 @@ public abstract class ReservationMapper {
 
     @Named(value = "mapDateString")
     public String mapDateString(LocalDateTime dateTime){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         return dateTime.format(formatter);
     }
 
