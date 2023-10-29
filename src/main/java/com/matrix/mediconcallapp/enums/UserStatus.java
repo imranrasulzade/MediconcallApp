@@ -1,4 +1,4 @@
-package com.matrix.mediconcallapp.model;
+package com.matrix.mediconcallapp.enums;
 
 public enum UserStatus {
     ACTIVE, // 1

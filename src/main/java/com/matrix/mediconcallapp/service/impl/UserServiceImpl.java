@@ -3,9 +3,11 @@ package com.matrix.mediconcallapp.service.impl;
 import com.matrix.mediconcallapp.entity.Authority;
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.enums.AuthorityName;
+import com.matrix.mediconcallapp.enums.UserStatus;
 import com.matrix.mediconcallapp.exception.UserAlreadyExistsException;
 import com.matrix.mediconcallapp.exception.UserNotFoundException;
 import com.matrix.mediconcallapp.mapper.UserMapper;
+import com.matrix.mediconcallapp.model.dto.request.UserStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.AdminDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
 import com.matrix.mediconcallapp.repository.UserRepository;
@@ -19,6 +21,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -54,6 +57,20 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(UserNotFoundException::new);
     }
 
+    @Override
+    public void updateStatus(UserStatusDto userStatusDto) {
+        User user =  userRepository.findById(userStatusDto.getId())
+                .orElseThrow(UserNotFoundException::new);
+        user.setStatus(userStatusDto.getUserStatus());
+        userRepository.save(user);
+    }
+
+    @Override
+    public List<UserDto> getUserByStatus(UserStatus userStatus) {
+         return userRepository.findByStatus(userStatus)
+                 .orElseThrow(UserNotFoundException::new)
+                 .stream().map(userMapper::toUserDto).toList();
+    }
 
 
 }

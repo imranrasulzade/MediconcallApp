@@ -2,7 +2,7 @@ package com.matrix.mediconcallapp.mapper;
 
 import com.matrix.mediconcallapp.entity.Patient;
 import com.matrix.mediconcallapp.entity.User;
-import com.matrix.mediconcallapp.model.UserStatus;
+import com.matrix.mediconcallapp.enums.UserStatus;
 import com.matrix.mediconcallapp.model.dto.response.PatientDto;
 import com.matrix.mediconcallapp.model.dto.request.PatientRegistrationRequestDto;
 import com.matrix.mediconcallapp.service.utility.MapPathUtility;

@@ -45,9 +45,6 @@ public class PatientServiceImpl implements PatientService {
             authorities.add(roles);
             user.setAuthorities(authorities);
 
-//            patient.setUser(userRepository.save(user));
-//            patientRepository.save(patient);
-
             patient.setUser(user);
             user.setPatient(patient);
             userRepository.save(user);

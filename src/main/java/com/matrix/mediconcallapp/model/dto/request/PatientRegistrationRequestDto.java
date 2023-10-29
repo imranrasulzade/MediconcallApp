@@ -1,7 +1,7 @@
 package com.matrix.mediconcallapp.model.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.matrix.mediconcallapp.model.UserStatus;
+import com.matrix.mediconcallapp.enums.UserStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
 import lombok.Data;

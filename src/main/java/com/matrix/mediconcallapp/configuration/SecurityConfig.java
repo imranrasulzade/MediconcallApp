@@ -62,7 +62,7 @@ public class SecurityConfig {
                                 .requestMatchers("/contact/patient",
                                         "contact/patient-view-contacts",
                                         "contact/request").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
-                                .requestMatchers("/reservations/view-all").hasAnyAuthority(ROLE.ROLE_ADMIN.name())
+                                .requestMatchers("/admin/**").hasAnyAuthority(ROLE.ROLE_ADMIN.name())
                                 .requestMatchers("/reservations/doctor",
                                         "/reservations/view-request",
                                         "reservations/accept",

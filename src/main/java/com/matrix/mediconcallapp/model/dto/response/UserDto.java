@@ -1,6 +1,6 @@
 package com.matrix.mediconcallapp.model.dto.response;
 
-import com.matrix.mediconcallapp.model.UserStatus;
+import com.matrix.mediconcallapp.enums.UserStatus;
 import lombok.Data;
 
 import java.util.Date;

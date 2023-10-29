@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
 import java.util.*;
 
 @Component
@@ -60,8 +61,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
             errorDetails.put("details",e.getMessage());
             response.setStatus(HttpStatus.FORBIDDEN.value());
             response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-
-            mapper.writeValue(response.getWriter(), errorDetails);
+            mapper.writeValue(response.getWriter(), errorDetails); //exception atir konsola
         }
         filterChain.doFilter(request, response);
     }

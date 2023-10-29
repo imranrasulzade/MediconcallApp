@@ -1,6 +1,8 @@
 package com.matrix.mediconcallapp.service;
 
 import com.matrix.mediconcallapp.entity.User;
+import com.matrix.mediconcallapp.enums.UserStatus;
+import com.matrix.mediconcallapp.model.dto.request.UserStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
 import jakarta.servlet.http.HttpServletRequest;
 
@@ -13,6 +15,10 @@ public interface UserService {
     void changePassword(User user, String newPassword);
 
     User findByEmail(String email);
+
+    void updateStatus(UserStatusDto statusDto);
+
+    List<UserDto> getUserByStatus(UserStatus userStatus);
 
 
 }
