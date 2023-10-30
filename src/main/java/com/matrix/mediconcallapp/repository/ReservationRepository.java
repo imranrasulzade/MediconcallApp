@@ -20,6 +20,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
     List<Reservation> findByStatusOrDateBefore(ReservationStatus status, LocalDateTime dateTime);
 
     Optional<List<Reservation>> findByStatusAndDoctorId(ReservationStatus status, Integer id);
+
+    Optional<List<Reservation>> findByDoctorIdAndPatientIdAndStatus(Integer doctorId, Integer patientId, ReservationStatus status);
 }
 
 

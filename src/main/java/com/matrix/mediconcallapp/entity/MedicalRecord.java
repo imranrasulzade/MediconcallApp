@@ -3,7 +3,7 @@ package com.matrix.mediconcallapp.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -24,6 +24,6 @@ public class MedicalRecord {
     private String diagnosis;
     private String treatment;
     private String documentPath;
-    private Date timestamp;
+    private LocalDateTime timestamp;
     private Integer status;
 }
