@@ -2,7 +2,7 @@ package com.matrix.mediconcallapp.service.impl;
 
 import com.matrix.mediconcallapp.entity.MedicalRecord;
 import com.matrix.mediconcallapp.enums.ReservationStatus;
-import com.matrix.mediconcallapp.exception.MedicalRecordException;
+import com.matrix.mediconcallapp.exception.MedicalRecordNotFoundException;
 import com.matrix.mediconcallapp.exception.PatientNotFoundException;
 import com.matrix.mediconcallapp.exception.ReservationNotFoundException;
 import com.matrix.mediconcallapp.mapper.MedicalRecordMapper;
@@ -57,7 +57,22 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
         return medicalRecordRepository.findByDoctorId(doctorId)
-                .orElseThrow(MedicalRecordException::new).stream()
+                .orElseThrow(MedicalRecordNotFoundException::new).stream()
                 .map(medicalRecordMapper::toMedicalRecordResp).toList();
+    }
+
+    @Override
+    public List<MedicalRecordResp> getRecordsByPatient(HttpServletRequest request, Integer id) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
+        boolean condition = patientRepository.findById(id).isPresent();
+        if(condition){
+            return medicalRecordRepository.findByDoctorIdAndPatientId(doctorId, id)
+                    .orElseThrow(MedicalRecordNotFoundException::new).stream()
+                    .map(medicalRecordMapper::toMedicalRecordResp).toList();
+
+        }else {
+            throw new PatientNotFoundException();
+        }
     }
 }

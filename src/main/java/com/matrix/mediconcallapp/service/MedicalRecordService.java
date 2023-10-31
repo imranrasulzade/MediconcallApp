@@ -1,6 +1,5 @@
 package com.matrix.mediconcallapp.service;
 
-import com.matrix.mediconcallapp.entity.MedicalRecord;
 import com.matrix.mediconcallapp.model.dto.request.MedicalRecordDtoReq;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;
 import jakarta.servlet.http.HttpServletRequest;
@@ -13,5 +12,7 @@ public interface MedicalRecordService {
 
     void addMedicalRecord(HttpServletRequest request, MedicalRecordDtoReq medicalRecordDtoReq);
 
-    List<MedicalRecordResp> getRecords(HttpServletRequest reques);
+    List<MedicalRecordResp> getRecords(HttpServletRequest request);
+
+    List<MedicalRecordResp> getRecordsByPatient(HttpServletRequest request, Integer id);
 }

@@ -12,4 +12,6 @@ public interface MedicalRecordRepository extends JpaRepository<MedicalRecord, In
 
     Optional<List<MedicalRecord>> findByDoctorId(Integer id);
 
+    Optional<List<MedicalRecord>> findByDoctorIdAndPatientId(Integer doctorId, Integer patientId);
+
 }

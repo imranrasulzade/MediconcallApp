@@ -2,8 +2,8 @@ package com.matrix.mediconcallapp.exception;
 
 import com.matrix.mediconcallapp.exception.parent.NotFoundException;
 
-public class MedicalRecordException extends NotFoundException {
-    public MedicalRecordException(){
+public class MedicalRecordNotFoundException extends NotFoundException {
+    public MedicalRecordNotFoundException(){
         super("Record not found");
     }
 }

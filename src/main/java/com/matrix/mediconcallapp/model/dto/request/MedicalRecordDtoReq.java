@@ -20,6 +20,8 @@ public class MedicalRecordDtoReq {
 
     private String diagnosis;
     private String treatment;
+
+    @NotNull(message = "document can not be null")
     private MultipartFile document;
 
     @Schema(hidden = true)

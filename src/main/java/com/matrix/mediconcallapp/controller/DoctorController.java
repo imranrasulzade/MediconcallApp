@@ -36,6 +36,7 @@ public class DoctorController {
     }
 
 
+    //hekimin yeni record elave etmsei
     @PostMapping(value = "new-medical-record", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> addMedicalRecord(HttpServletRequest request,
                                                  @ModelAttribute MedicalRecordDtoReq medicalRecordDtoReq){
@@ -43,10 +44,17 @@ public class DoctorController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("view-medical-record")
-
+    //hekimin yazdigi butun recordlara baxmsi
+    @GetMapping("records")
     public ResponseEntity<List<MedicalRecordResp>> getRecords(HttpServletRequest request){
         return ResponseEntity.ok(medicalRecordService.getRecords(request));
+    }
+
+    //hekimin secdiyi pasiyente yazdigi recordlara baxmasi
+    @GetMapping("patient-record")
+    public ResponseEntity<List<MedicalRecordResp>> getRecordsByPatient(HttpServletRequest request,
+                                                                 @RequestParam Integer id){
+        return ResponseEntity.ok(medicalRecordService.getRecordsByPatient(request, id));
     }
 
 
