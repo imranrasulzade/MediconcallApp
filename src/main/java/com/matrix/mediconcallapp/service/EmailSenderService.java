@@ -1,11 +1,10 @@
 package com.matrix.mediconcallapp.service;
 
-import com.matrix.mediconcallapp.model.Email;
+import com.matrix.mediconcallapp.model.dto.request.Email;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;

@@ -1,9 +1,10 @@
 package com.matrix.mediconcallapp.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -22,8 +23,9 @@ public class Rating {
     @JoinColumn(name = "rated_doctor_id")
     private Doctor ratedDoctor;
 
+    @Max(5)
     private Integer ratingValue;
     private String comment;
-    private Date timestamp;
+    private LocalDateTime timestamp;
     private Integer status;
 }

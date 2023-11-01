@@ -5,7 +5,7 @@ import com.matrix.mediconcallapp.entity.Reservation;
 import com.matrix.mediconcallapp.enums.ReservationStatus;
 import com.matrix.mediconcallapp.exception.*;
 import com.matrix.mediconcallapp.mapper.MedicalRecordMapper;
-import com.matrix.mediconcallapp.model.dto.request.MedicalRecordDtoReq;
+import com.matrix.mediconcallapp.model.dto.request.MedicalRecordReqDto;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;
 import com.matrix.mediconcallapp.repository.DoctorRepository;
 import com.matrix.mediconcallapp.repository.MedicalRecordRepository;
@@ -32,20 +32,20 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
 
 
     @Override
-    public void addMedicalRecord(HttpServletRequest request, MedicalRecordDtoReq medicalRecordDtoReq) {
+    public void addMedicalRecord(HttpServletRequest request, MedicalRecordReqDto medicalRecordReqDto) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        Integer patientId = patientRepository.findById(medicalRecordDtoReq.getPatientId())
+        Integer patientId = patientRepository.findById(medicalRecordReqDto.getPatientId())
                 .orElseThrow(PatientNotFoundException::new).getId();
         List<Reservation> reservations = reservationRepository
                 .findByDoctorIdAndPatientIdAndStatus(doctorId, patientId, ReservationStatus.CONFIRMED)
                 .orElseThrow(UserNotFoundException::new);
         int condition = reservations.size();
         if(condition > 0){
-            medicalRecordDtoReq.setDoctorId(doctorId);
-            medicalRecordDtoReq.setPatientId(patientId);
-            medicalRecordDtoReq.setTimestamp(LocalDateTime.now());
-            MedicalRecord medicalRecord = medicalRecordMapper.toMedicalRecord(medicalRecordDtoReq);
+            medicalRecordReqDto.setDoctorId(doctorId);
+            medicalRecordReqDto.setPatientId(patientId);
+            medicalRecordReqDto.setTimestamp(LocalDateTime.now());
+            MedicalRecord medicalRecord = medicalRecordMapper.toMedicalRecord(medicalRecordReqDto);
             medicalRecordRepository.save(medicalRecord);
         }else {
             throw new ReservationNotFoundException();

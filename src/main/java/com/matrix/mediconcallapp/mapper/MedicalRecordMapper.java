@@ -3,7 +3,7 @@ package com.matrix.mediconcallapp.mapper;
 import com.matrix.mediconcallapp.entity.Doctor;
 import com.matrix.mediconcallapp.entity.MedicalRecord;
 import com.matrix.mediconcallapp.entity.Patient;
-import com.matrix.mediconcallapp.model.dto.request.MedicalRecordDtoReq;
+import com.matrix.mediconcallapp.model.dto.request.MedicalRecordReqDto;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;
 import com.matrix.mediconcallapp.service.utility.MapPathUtility;
 import org.mapstruct.Mapper;
@@ -20,7 +20,7 @@ public abstract class MedicalRecordMapper {
     @Mapping(source = "document", target = "documentPath", qualifiedByName = "mapToDocument")
     @Mapping(source = "doctorId", target = "doctor", qualifiedByName = "mapToDoctor")
     @Mapping(source = "patientId", target = "patient", qualifiedByName = "mapToPatient")
-    public abstract MedicalRecord toMedicalRecord(MedicalRecordDtoReq medicalRecordDtoReq);
+    public abstract MedicalRecord toMedicalRecord(MedicalRecordReqDto medicalRecordReqDto);
 
 
     @Mapping(source = "doctor", target = "doctorId", qualifiedByName = "mapToDoctorId")

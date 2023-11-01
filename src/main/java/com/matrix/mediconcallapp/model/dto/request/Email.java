@@ -1,4 +1,4 @@
-package com.matrix.mediconcallapp.model;
+package com.matrix.mediconcallapp.model.dto.request;
 
 import lombok.Data;
 

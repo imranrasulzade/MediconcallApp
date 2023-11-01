@@ -1,6 +1,6 @@
 package com.matrix.mediconcallapp.controller;
 
-import com.matrix.mediconcallapp.model.dto.request.MedicalRecordDtoReq;
+import com.matrix.mediconcallapp.model.dto.request.MedicalRecordReqDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;
 import com.matrix.mediconcallapp.service.DoctorService;
@@ -39,8 +39,8 @@ public class DoctorController {
     //hekimin yeni record elave etmsei
     @PostMapping(value = "new-medical-record", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> addMedicalRecord(HttpServletRequest request,
-                                                 @ModelAttribute MedicalRecordDtoReq medicalRecordDtoReq){
-        medicalRecordService.addMedicalRecord(request, medicalRecordDtoReq);
+                                                 @ModelAttribute MedicalRecordReqDto medicalRecordReqDto){
+        medicalRecordService.addMedicalRecord(request, medicalRecordReqDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 

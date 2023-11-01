@@ -3,7 +3,7 @@ package com.matrix.mediconcallapp.service.impl;
 import com.matrix.mediconcallapp.entity.PasswordResetToken;
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.exception.PasswordMismatchException;
-import com.matrix.mediconcallapp.model.Email;
+import com.matrix.mediconcallapp.model.dto.request.Email;
 import com.matrix.mediconcallapp.model.dto.request.RecoveryPassword;
 import com.matrix.mediconcallapp.repository.PasswordResetTokenRepository;
 import com.matrix.mediconcallapp.service.EmailSenderService;

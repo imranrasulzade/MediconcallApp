@@ -1,4 +1,4 @@
-package com.matrix.mediconcallapp.Annotation;
+package com.matrix.mediconcallapp.customValidation;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
