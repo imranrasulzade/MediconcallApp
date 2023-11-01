@@ -12,7 +12,14 @@ public interface MedicalRecordService {
 
     void addMedicalRecord(HttpServletRequest request, MedicalRecordDtoReq medicalRecordDtoReq);
 
-    List<MedicalRecordResp> getRecords(HttpServletRequest request);
+    List<MedicalRecordResp> getRecordsByDoctor(HttpServletRequest request);
 
-    List<MedicalRecordResp> getRecordsByPatient(HttpServletRequest request, Integer id);
+    List<MedicalRecordResp> getRecordsByDoctorForPatient(HttpServletRequest request, Integer patientId);
+
+    List<MedicalRecordResp> getRecordsByPatient(HttpServletRequest request);
+
+    List<MedicalRecordResp> getRecordsByPatientForDoctor(HttpServletRequest request, Integer doctorId);
+
+    void deleteRecord(HttpServletRequest request, Integer id);
+
 }

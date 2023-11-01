@@ -1,10 +1,9 @@
 package com.matrix.mediconcallapp.service.impl;
 
 import com.matrix.mediconcallapp.entity.MedicalRecord;
+import com.matrix.mediconcallapp.entity.Reservation;
 import com.matrix.mediconcallapp.enums.ReservationStatus;
-import com.matrix.mediconcallapp.exception.MedicalRecordNotFoundException;
-import com.matrix.mediconcallapp.exception.PatientNotFoundException;
-import com.matrix.mediconcallapp.exception.ReservationNotFoundException;
+import com.matrix.mediconcallapp.exception.*;
 import com.matrix.mediconcallapp.mapper.MedicalRecordMapper;
 import com.matrix.mediconcallapp.model.dto.request.MedicalRecordDtoReq;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;
@@ -38,10 +37,11 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
         Integer patientId = patientRepository.findById(medicalRecordDtoReq.getPatientId())
                 .orElseThrow(PatientNotFoundException::new).getId();
-        boolean condition = reservationRepository
+        List<Reservation> reservations = reservationRepository
                 .findByDoctorIdAndPatientIdAndStatus(doctorId, patientId, ReservationStatus.CONFIRMED)
-                .stream().toList().isEmpty();
-        if(!condition){
+                .orElseThrow(UserNotFoundException::new);
+        int condition = reservations.size();
+        if(condition > 0){
             medicalRecordDtoReq.setDoctorId(doctorId);
             medicalRecordDtoReq.setPatientId(patientId);
             medicalRecordDtoReq.setTimestamp(LocalDateTime.now());
@@ -53,21 +53,21 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     }
 
     @Override
-    public List<MedicalRecordResp> getRecords(HttpServletRequest request) {
+    public List<MedicalRecordResp> getRecordsByDoctor(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        return medicalRecordRepository.findByDoctorId(doctorId)
+        return medicalRecordRepository.findByDoctorIdAndStatus(doctorId, 1)
                 .orElseThrow(MedicalRecordNotFoundException::new).stream()
                 .map(medicalRecordMapper::toMedicalRecordResp).toList();
     }
 
     @Override
-    public List<MedicalRecordResp> getRecordsByPatient(HttpServletRequest request, Integer id) {
+    public List<MedicalRecordResp> getRecordsByDoctorForPatient(HttpServletRequest request, Integer patientId) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        boolean condition = patientRepository.findById(id).isPresent();
+        boolean condition = patientRepository.findById(patientId).isPresent();
         if(condition){
-            return medicalRecordRepository.findByDoctorIdAndPatientId(doctorId, id)
+            return medicalRecordRepository.findByDoctorIdAndPatientIdAndStatus(doctorId, patientId, 1)
                     .orElseThrow(MedicalRecordNotFoundException::new).stream()
                     .map(medicalRecordMapper::toMedicalRecordResp).toList();
 
@@ -75,4 +75,43 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
             throw new PatientNotFoundException();
         }
     }
+
+    @Override
+    public List<MedicalRecordResp> getRecordsByPatient(HttpServletRequest request) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Integer patientId = patientRepository.findPatientByUserId(userId).getId();
+        return medicalRecordRepository.findByPatientIdAndStatus(patientId, 1)
+                .orElseThrow(MedicalRecordNotFoundException::new).stream()
+                .map(medicalRecordMapper::toMedicalRecordResp).toList();
+    }
+
+    @Override
+    public List<MedicalRecordResp> getRecordsByPatientForDoctor(HttpServletRequest request, Integer doctorId) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Integer patientId = patientRepository.findPatientByUserId(userId).getId();
+        boolean condition = doctorRepository.findById(doctorId).isPresent();
+        if(condition){
+            return medicalRecordRepository.findByDoctorIdAndPatientIdAndStatus(doctorId, patientId, 1)
+                    .orElseThrow(MedicalRecordNotFoundException::new).stream()
+                    .map(medicalRecordMapper::toMedicalRecordResp).toList();
+
+        }else {
+            throw new DoctorNotFoundException();
+        }
+    }
+
+    @Override
+    public void deleteRecord(HttpServletRequest request, Integer id) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
+        MedicalRecord medicalRecord = medicalRecordRepository.findById(id)
+                .orElseThrow(MedicalRecordNotFoundException::new);
+        if(medicalRecord.getDoctor().getId().equals(doctorId)){
+            medicalRecord.setStatus(-1);
+            medicalRecordRepository.save(medicalRecord);
+        } else {
+            throw new MedicalRecordNotFoundException();
+        }
+    }
+
 }

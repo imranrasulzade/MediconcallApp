@@ -12,11 +12,13 @@ public class RecoveryPassword {
 
     @NotNull(message = "new password can not be null")
     @Size(min = 8)
+    @Size(max = 30)
     @Pattern(regexp = "[A-Za-z0-9]+")
     String newPassword;
 
     @NotNull(message = "retry password can not be null")
     @Size(min = 8)
+    @Size(max = 30)
     @Pattern(regexp = "[A-Za-z0-9]+")
     String retryPassword;
 }

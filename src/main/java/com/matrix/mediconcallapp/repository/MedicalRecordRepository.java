@@ -10,8 +10,12 @@ import java.util.Optional;
 @Repository
 public interface MedicalRecordRepository extends JpaRepository<MedicalRecord, Integer> {
 
-    Optional<List<MedicalRecord>> findByDoctorId(Integer id);
+    Optional<List<MedicalRecord>> findByDoctorIdAndStatus(Integer id, Integer status);
 
-    Optional<List<MedicalRecord>> findByDoctorIdAndPatientId(Integer doctorId, Integer patientId);
+    Optional<List<MedicalRecord>> findByPatientIdAndStatus(Integer id, Integer status);
+
+    Optional<List<MedicalRecord>> findByDoctorIdAndPatientIdAndStatus(Integer doctorId, Integer patientId, Integer status);
+
+
 
 }

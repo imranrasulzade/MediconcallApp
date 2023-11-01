@@ -22,14 +22,14 @@ public class DoctorController {
     private final MedicalRecordService medicalRecordService;
 
 
-    //id-ye gore hekimin datalari
+    //id-ye gore hekimin datalari -BAXILMALIDI YERINE
     @GetMapping("/{id}")
     public DoctorDto getDoctorById(@PathVariable Integer id){
         return doctorService.getById(id);
     }
 
 
-    //butun hekimlerin siyahisi
+    //butun hekimlerin siyahisi - BURDAN CIXMALIDI
     @GetMapping
     public List<DoctorDto> getAll(){
         return doctorService.getAll();
@@ -46,15 +46,23 @@ public class DoctorController {
 
     //hekimin yazdigi butun recordlara baxmsi
     @GetMapping("records")
-    public ResponseEntity<List<MedicalRecordResp>> getRecords(HttpServletRequest request){
-        return ResponseEntity.ok(medicalRecordService.getRecords(request));
+    public ResponseEntity<List<MedicalRecordResp>> getRecordsByDoctor(HttpServletRequest request){
+        return ResponseEntity.ok(medicalRecordService.getRecordsByDoctor(request));
     }
 
     //hekimin secdiyi pasiyente yazdigi recordlara baxmasi
     @GetMapping("patient-record")
-    public ResponseEntity<List<MedicalRecordResp>> getRecordsByPatient(HttpServletRequest request,
+    public ResponseEntity<List<MedicalRecordResp>> getRecordsByDoctorForPatient(HttpServletRequest request,
                                                                  @RequestParam Integer id){
-        return ResponseEntity.ok(medicalRecordService.getRecordsByPatient(request, id));
+        return ResponseEntity.ok(medicalRecordService.getRecordsByDoctorForPatient(request, id));
+    }
+
+    //hekimin recordu silmeyi- status -1 olur.
+    @DeleteMapping("delete-record")
+    public ResponseEntity<Void> deleteRecord(HttpServletRequest request,
+                                             @RequestParam Integer id){
+        medicalRecordService.deleteRecord(request, id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 
