@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class DoctorDto {
-    private Integer id;
+    private Integer doctorId;
+    private Integer userId;
     private String name;
     private String surname;
     private String academicTitle;
@@ -12,6 +13,7 @@ public class DoctorDto {
     private String placeOfWork;
     private String phone;
     private String qualification;
+    private Double avgRating;
     private String info;
     private Integer status;
 }

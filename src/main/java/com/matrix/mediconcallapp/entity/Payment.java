@@ -19,5 +19,7 @@ public class Payment {
     @JoinColumn(name = "receiver_id")
     private Doctor doctor;
     private Integer amount;
+    private String senderCard;
+    private String receiverCard;
     private Integer status;
 }

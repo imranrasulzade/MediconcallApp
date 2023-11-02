@@ -11,14 +11,18 @@ import com.matrix.mediconcallapp.mapper.UserMapper;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
 import com.matrix.mediconcallapp.repository.DoctorRepository;
+import com.matrix.mediconcallapp.repository.RatingRepository;
 import com.matrix.mediconcallapp.repository.UserRepository;
 import com.matrix.mediconcallapp.service.DoctorService;
+import com.matrix.mediconcallapp.service.utility.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,19 +36,41 @@ public class DoctorServiceImpl implements DoctorService {
     private final DoctorMapper doctorMapper;
     private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final RatingRepository ratingRepository;
+    private final JwtUtil jwtUtil;
     @Override
     public DoctorDto getById(Integer id) {
-        return doctorRepository.findById(id)
+        DoctorDto doctorDto = doctorRepository.findById(id)
                 .map(doctorMapper::toDoctorDto)
                 .orElseThrow(DoctorNotFoundException::new);
+        doctorDto.setAvgRating(ratingRepository.findAverageRatingByDoctorId(id).orElse(0d));
+        return doctorDto;
+    }
+
+    @Override
+    public DoctorDto getByIdFromHeader(HttpServletRequest request) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Integer id = doctorRepository.findDoctorByUserId(userId).getId();
+        DoctorDto doctorDto = doctorRepository.findById(id)
+                .map(doctorMapper::toDoctorDto)
+                .orElseThrow(DoctorNotFoundException::new);
+        doctorDto.setAvgRating(ratingRepository.findAverageRatingByDoctorId(id).orElse(0d));
+        return doctorDto;
     }
 
     @Override
     public List<DoctorDto> getAll() {
-        return doctorRepository.findAll()
-                .stream()
-                .map(doctorMapper::toDoctorDto)
-                .toList();
+        List<Doctor> doctors = doctorRepository.findAll();
+        List<DoctorDto> doctorDtos = new ArrayList<>();
+
+        for (Doctor doctor : doctors) {
+            DoctorDto doctorDto = doctorMapper.toDoctorDto(doctor);
+            Double avgRating = ratingRepository.findAverageRatingByDoctorId(doctor.getId()).orElse(0d);
+            doctorDto.setAvgRating(avgRating);
+            doctorDtos.add(doctorDto);
+        }
+
+        return doctorDtos;
     }
 
     @Transactional

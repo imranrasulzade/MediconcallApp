@@ -37,10 +37,9 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
         Integer patientId = patientRepository.findById(medicalRecordReqDto.getPatientId())
                 .orElseThrow(PatientNotFoundException::new).getId();
-        List<Reservation> reservations = reservationRepository
-                .findByDoctorIdAndPatientIdAndStatus(doctorId, patientId, ReservationStatus.CONFIRMED)
-                .orElseThrow(UserNotFoundException::new);
-        int condition = reservations.size();
+        Integer condition = reservationRepository
+                .countByDoctorIdAndPatientIdAndStatus(doctorId, patientId, ReservationStatus.CONFIRMED)
+                .orElse(0);
         if(condition > 0){
             medicalRecordReqDto.setDoctorId(doctorId);
             medicalRecordReqDto.setPatientId(patientId);

@@ -5,8 +5,11 @@ import com.matrix.mediconcallapp.entity.MedicalRecord;
 import com.matrix.mediconcallapp.entity.Rating;
 import com.matrix.mediconcallapp.exception.DoctorNotFoundException;
 import com.matrix.mediconcallapp.exception.MedicalRecordNotFoundException;
+import com.matrix.mediconcallapp.exception.RatingAlreadyExistsException;
+import com.matrix.mediconcallapp.exception.RatingNotFoundException;
 import com.matrix.mediconcallapp.mapper.RatingMapper;
 import com.matrix.mediconcallapp.model.dto.request.RatingReqDto;
+import com.matrix.mediconcallapp.model.dto.response.RatingRespDto;
 import com.matrix.mediconcallapp.repository.DoctorRepository;
 import com.matrix.mediconcallapp.repository.MedicalRecordRepository;
 import com.matrix.mediconcallapp.repository.PatientRepository;
@@ -20,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -41,14 +45,34 @@ public class RatingServiceImpl implements RatingService {
         List<MedicalRecord> medicalRecords = medicalRecordRepository
                 .findByDoctorIdAndPatientIdAndStatus(doctor.getId(), patientId, 1)
                 .orElseThrow(MedicalRecordNotFoundException::new);
-        ratingReqDto.setPatientId(patientId);
-        ratingReqDto.setTimestamp(LocalDateTime.now());
         int condition = medicalRecords.size();
+        Integer checker = ratingRepository
+                .countByRaterPatientIdAndRatedDoctorId(patientId, doctor.getId()).orElse(0);
+        System.out.println(checker);
         if(condition > 0){
-            Rating rating = ratingMapper.toRating(ratingReqDto);
-            ratingRepository.save(rating);
+            if(checker == 0){
+                ratingReqDto.setPatientId(patientId);
+                ratingReqDto.setTimestamp(LocalDateTime.now());
+                Rating rating = ratingMapper.toRating(ratingReqDto);
+                ratingRepository.save(rating);
+            } else {
+                throw new RatingAlreadyExistsException();
+            }
         }else {
             throw new MedicalRecordNotFoundException();
         }
+
+
     }
+
+    @Override
+    public List<RatingRespDto> getRating(HttpServletRequest request) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
+        return ratingRepository.findByRatedDoctorId(doctorId)
+                .orElseThrow(RatingNotFoundException::new)
+                .stream().map(ratingMapper::toRatingRespDto).toList();
+    }
+
+
 }

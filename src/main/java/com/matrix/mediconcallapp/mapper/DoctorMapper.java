@@ -5,14 +5,21 @@ import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.enums.UserStatus;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
+import com.matrix.mediconcallapp.repository.RatingRepository;
+import lombok.RequiredArgsConstructor;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
 
 @Mapper(componentModel = "spring")
-public abstract class DoctorMapper {
 
+public abstract class DoctorMapper {
+    private RatingRepository ratingRepository;
+
+
+    @Mapping(source = "user", target = "userId", qualifiedByName = "mapToUserId")
+    @Mapping(source = "id", target = "doctorId")
     @Mapping(source = "user", target = "name", qualifiedByName = "mapToName")
     @Mapping(source = "user", target = "surname", qualifiedByName = "mapToSurname")
     @Mapping(source = "user", target = "phone", qualifiedByName = "mapToPhone")
@@ -44,6 +51,11 @@ public abstract class DoctorMapper {
     @Named(value = "mapToInfo")
     public String mapToInfo(User user) {
         return user.getInfo();
+    }
+
+    @Named(value = "mapToUserId")
+    public Integer mapToUserId(User user) {
+        return user.getId();
     }
 
 

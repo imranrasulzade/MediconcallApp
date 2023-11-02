@@ -1,10 +1,13 @@
 package com.matrix.mediconcallapp.controller;
 
+import com.matrix.mediconcallapp.entity.Rating;
 import com.matrix.mediconcallapp.model.dto.request.MedicalRecordReqDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;
+import com.matrix.mediconcallapp.model.dto.response.RatingRespDto;
 import com.matrix.mediconcallapp.service.DoctorService;
 import com.matrix.mediconcallapp.service.MedicalRecordService;
+import com.matrix.mediconcallapp.service.RatingService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,20 +23,15 @@ import java.util.List;
 public class DoctorController {
     private final DoctorService doctorService;
     private final MedicalRecordService medicalRecordService;
+    private final RatingService ratingService;
 
 
-    //id-ye gore hekimin datalari -BAXILMALIDI YERINE
-    @GetMapping("/{id}")
-    public DoctorDto getDoctorById(@PathVariable Integer id){
-        return doctorService.getById(id);
+    //headerden gelen userIdye gore oz datalarina baxmasi
+    @GetMapping("/info")
+    public DoctorDto getDoctorById(HttpServletRequest request){
+        return doctorService.getByIdFromHeader(request);
     }
 
-
-    //butun hekimlerin siyahisi - BURDAN CIXMALIDI
-    @GetMapping
-    public List<DoctorDto> getAll(){
-        return doctorService.getAll();
-    }
 
 
     //hekimin yeni record elave etmsei
@@ -63,6 +61,13 @@ public class DoctorController {
                                              @RequestParam Integer id){
         medicalRecordService.deleteRecord(request, id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
+
+
+    //Ratinglere baxmasi
+    @GetMapping("rating")
+    public ResponseEntity<List<RatingRespDto>> getRating(HttpServletRequest request){
+        return ResponseEntity.ok(ratingService.getRating(request));
     }
 
 

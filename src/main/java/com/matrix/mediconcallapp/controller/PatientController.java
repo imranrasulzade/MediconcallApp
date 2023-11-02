@@ -41,7 +41,7 @@ public class PatientController {
         return ResponseEntity.ok(medicalRecordService.getRecordsByPatientForDoctor(request, id));
     }
 
-    @PostMapping("/rating")
+    @PostMapping("/rate")
     public ResponseEntity<Void> addRating(HttpServletRequest request,
                                           @Valid @RequestBody RatingReqDto reqDto){
         ratingService.addRating(request, reqDto);

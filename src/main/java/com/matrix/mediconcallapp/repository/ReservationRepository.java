@@ -21,7 +21,7 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
 
     Optional<List<Reservation>> findByStatusAndDoctorId(ReservationStatus status, Integer id);
 
-    Optional<List<Reservation>> findByDoctorIdAndPatientIdAndStatus(Integer doctorId, Integer patientId, ReservationStatus status);
+    Optional<Integer> countByDoctorIdAndPatientIdAndStatus(Integer doctorId, Integer patientId, ReservationStatus status);
 }
 
 
