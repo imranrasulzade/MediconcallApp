@@ -5,18 +5,15 @@ import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.enums.UserStatus;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
-import com.matrix.mediconcallapp.repository.RatingRepository;
-import lombok.RequiredArgsConstructor;
+import com.matrix.mediconcallapp.model.dto.response.DoctorProfileDto;
+import com.matrix.mediconcallapp.model.dto.response.SimpleDoctorProfileDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
 
 @Mapper(componentModel = "spring")
-
 public abstract class DoctorMapper {
-    private RatingRepository ratingRepository;
-
 
     @Mapping(source = "user", target = "userId", qualifiedByName = "mapToUserId")
     @Mapping(source = "id", target = "doctorId")
@@ -26,11 +23,38 @@ public abstract class DoctorMapper {
     @Mapping(source = "user", target = "info", qualifiedByName = "mapToInfo")
     public abstract DoctorDto toDoctorDto(Doctor doctor);
 
-    public abstract Doctor toDoctor(DoctorDto doctorDto);
-
 
     @Mapping(source = "status", target = "status", qualifiedByName = "mapToStatus")
     public abstract Doctor toDoctorForAdd(DoctorRegistrationRequestDto requestDto);
+
+    @Mapping(source = "user.name", target = "name")
+    @Mapping(source = "user.surname", target = "surname")
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "id", target = "doctorId")
+    @Mapping(source = "user.username", target = "username")
+    @Mapping(source = "user.email", target = "email")
+    @Mapping(source = "user.phone", target = "phone")
+    @Mapping(source = "user.birthday", target = "birthday", qualifiedByName = "mapToDateFormat")
+    @Mapping(source = "user.address", target = "address")
+    @Mapping(source = "user.gender", target = "gender")
+    @Mapping(source = "user.info", target = "info")
+    @Mapping(source = "user.photoUrl", target = "photoUrl")
+    public abstract DoctorProfileDto toDoctorProfileDto(Doctor doctor);
+
+
+    @Mapping(source = "user.name", target = "name")
+    @Mapping(source = "user.surname", target = "surname")
+    @Mapping(source = "user.id", target = "userId")
+    @Mapping(source = "id", target = "doctorId")
+    @Mapping(source = "user.username", target = "username")
+    @Mapping(source = "user.info", target = "info")
+    @Mapping(source = "user.photoUrl", target = "photoUrl")
+    public abstract SimpleDoctorProfileDto toSimpleDoctorProfileDto(Doctor doctor);
+
+
+
+
+
 
 
     @Named(value = "mapToName")

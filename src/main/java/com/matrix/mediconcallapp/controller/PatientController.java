@@ -1,8 +1,10 @@
 package com.matrix.mediconcallapp.controller;
 
 import com.matrix.mediconcallapp.model.dto.request.RatingReqDto;
+import com.matrix.mediconcallapp.model.dto.response.DoctorForListProfileDto;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;
 import com.matrix.mediconcallapp.model.dto.response.PatientDto;
+import com.matrix.mediconcallapp.service.DoctorService;
 import com.matrix.mediconcallapp.service.MedicalRecordService;
 import com.matrix.mediconcallapp.service.PatientService;
 import com.matrix.mediconcallapp.service.RatingService;
@@ -20,6 +22,7 @@ import java.util.List;
 @RequestMapping("/patient")
 public class PatientController {
     private final PatientService patientService;
+    private final DoctorService doctorService;
     private final MedicalRecordService medicalRecordService;
     private final RatingService ratingService;
 
@@ -46,5 +49,16 @@ public class PatientController {
                                           @Valid @RequestBody RatingReqDto reqDto){
         ratingService.addRating(request, reqDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping("/search-doctors")
+    public ResponseEntity<List<DoctorForListProfileDto>> getDoctorByName(@RequestParam String name){
+        return ResponseEntity.ok(doctorService.getDoctorByName(name));
+    }
+
+    @GetMapping("/doctor")
+    public ResponseEntity<?> getDoctorByIdForPatient(HttpServletRequest request,
+                                                     @RequestParam Integer id){
+        return doctorService.getDoctorByIdForPatient(request, id);
     }
 }

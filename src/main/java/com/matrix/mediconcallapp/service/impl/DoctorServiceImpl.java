@@ -10,14 +10,16 @@ import com.matrix.mediconcallapp.mapper.DoctorMapper;
 import com.matrix.mediconcallapp.mapper.UserMapper;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
-import com.matrix.mediconcallapp.repository.DoctorRepository;
-import com.matrix.mediconcallapp.repository.RatingRepository;
-import com.matrix.mediconcallapp.repository.UserRepository;
+import com.matrix.mediconcallapp.model.dto.response.DoctorForListProfileDto;
+import com.matrix.mediconcallapp.model.dto.response.DoctorProfileDto;
+import com.matrix.mediconcallapp.model.dto.response.SimpleDoctorProfileDto;
+import com.matrix.mediconcallapp.repository.*;
 import com.matrix.mediconcallapp.service.DoctorService;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +39,8 @@ public class DoctorServiceImpl implements DoctorService {
     private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder;
     private final RatingRepository ratingRepository;
+    private final PatientRepository patientRepository;
+    private final ContactRepository contactRepository;
     private final JwtUtil jwtUtil;
     @Override
     public DoctorDto getById(Integer id) {
@@ -95,6 +99,34 @@ public class DoctorServiceImpl implements DoctorService {
             return doctorRepository.findById(doctor.getId())
                     .map(doctorMapper::toDoctorDto)
                     .orElseThrow(DoctorNotFoundException::new);
+        }
+    }
+
+    @Override
+    public List<DoctorForListProfileDto> getDoctorByName(String name) {
+        return userRepository.findDoctorsByNameLike(name)
+                .orElseThrow(DoctorNotFoundException::new).stream()
+                .map(userMapper::toDoctorForListProfileDto)
+                .toList();
+    }
+
+    @Override
+    public ResponseEntity<?> getDoctorByIdForPatient(HttpServletRequest request, Integer doctorId) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Integer patientId = patientRepository.findPatientByUserId(userId).getId();
+        Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(DoctorNotFoundException::new);
+        Integer contactCondition = contactRepository
+                .countByDoctorIdAndPatientIdAndStatus(doctorId, patientId, 1)
+                .orElse(0);
+        Double avgRating = ratingRepository.findAverageRatingByDoctorId(doctorId).orElse(0d);
+        if(contactCondition > 0){
+            DoctorProfileDto doctorProfileDto = doctorMapper.toDoctorProfileDto(doctor);
+            doctorProfileDto.setAvgRating(avgRating);
+            return ResponseEntity.ok(doctorProfileDto);
+        }else {
+            SimpleDoctorProfileDto simpleDoctorProfileDto = doctorMapper.toSimpleDoctorProfileDto(doctor);
+            simpleDoctorProfileDto.setAvgRating(avgRating);
+            return ResponseEntity.ok(simpleDoctorProfileDto);
         }
     }
 }

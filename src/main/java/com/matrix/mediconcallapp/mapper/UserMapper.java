@@ -3,6 +3,7 @@ package com.matrix.mediconcallapp.mapper;
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
 import com.matrix.mediconcallapp.model.dto.request.PatientRegistrationRequestDto;
+import com.matrix.mediconcallapp.model.dto.response.DoctorForListProfileDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
 import com.matrix.mediconcallapp.service.utility.MapPathUtility;
 import lombok.extern.slf4j.Slf4j;
@@ -27,6 +28,12 @@ public abstract class UserMapper {
     @Mapping(source = "photo", target = "photoUrl", qualifiedByName = "mapPath")
     public abstract User toUserForAddPatient(PatientRegistrationRequestDto requestDto);
 
+    @Mapping(source = "doctor.academicTitle", target = "academicTitle")
+    @Mapping(source = "doctor.specialty", target = "specialty")
+    @Mapping(source = "doctor.placeOfWork", target = "placeOfWork")
+    @Mapping(source = "id", target = "userId")
+    @Mapping(source = "doctor.id", target = "doctorId")
+    public abstract DoctorForListProfileDto toDoctorForListProfileDto(User user);
 
 
     @Named(value = "mapPath")

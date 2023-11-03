@@ -24,5 +24,7 @@ public interface ContactRepository extends JpaRepository<Contact, Integer> {
     Optional<Contact> findAcceptedContact(@Param(value = "doctorId") Integer doctorId,
                                              @Param(value = "patientId") Integer patientId);
 
+    Optional<Integer> countByDoctorIdAndPatientIdAndStatus(Integer doctorId, Integer patientId, Integer status);
+
 
 }
