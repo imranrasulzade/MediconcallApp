@@ -3,6 +3,8 @@ package com.matrix.mediconcallapp.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 
 @Data
 @Entity
@@ -21,5 +23,6 @@ public class Payment {
     private Integer amount;
     private String senderCard;
     private String receiverCard;
+    private LocalDateTime timestamp;
     private Integer status;
 }

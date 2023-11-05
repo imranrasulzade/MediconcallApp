@@ -73,6 +73,9 @@ public class SecurityConfig {
                                         "reservations/cancel").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
                                 .requestMatchers("/doctors/**").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
                                 .requestMatchers("/patient/**").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
+                                .requestMatchers("/payment/pay",
+                                        "payment/patient/**").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
+                                .requestMatchers("/payment/doctor/**").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
                                 .requestMatchers("/users/**").authenticated()
                 ).exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint((request, response, authException) ->

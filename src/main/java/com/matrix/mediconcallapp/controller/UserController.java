@@ -40,9 +40,5 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/download")
-    public ResponseEntity<Resource> downloadDocument(@RequestParam String documentPath){
-        return ResponseEntity.ok(userService.downloadDocument(documentPath));
-    }
 
 }

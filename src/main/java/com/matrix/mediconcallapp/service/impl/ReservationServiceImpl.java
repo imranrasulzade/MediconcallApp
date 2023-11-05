@@ -108,7 +108,6 @@ public class ReservationServiceImpl implements ReservationService {
         Doctor doctor = doctorRepository.findById(requestDto.getDoctorId())
                 .orElseThrow(DoctorNotFoundException::new);
         requestDto.setStatus(ReservationStatus.PENDING);
-        //check reservation
         checkDateTimeValidity(requestDto.getDate());
         checkReservation(doctor.getId(), requestDto);
         Reservation reservation = reservationMapper.toReservation(requestDto);

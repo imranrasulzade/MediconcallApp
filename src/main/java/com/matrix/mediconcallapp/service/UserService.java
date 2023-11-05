@@ -27,7 +27,5 @@ public interface UserService {
 
     void changePassword(HttpServletRequest request, ChangePasswordDto changePasswordDto);
 
-    Resource downloadDocument(String documentPath);
-
 
 }

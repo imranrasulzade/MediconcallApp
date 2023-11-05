@@ -99,21 +99,5 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    public Resource downloadDocument(String documentPath) {
-        try {
-            Resource resource = new UrlResource("file:" + documentPath);
-
-            if (resource.exists() && resource.isReadable()) {
-                return resource;
-            } else {
-                throw new NotFoundException("File");
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
-
 
 }
