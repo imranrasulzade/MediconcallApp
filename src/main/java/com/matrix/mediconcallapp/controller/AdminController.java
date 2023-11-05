@@ -27,14 +27,14 @@ public class AdminController {
 
     //id-ye gore hekimin datalari
     @GetMapping("/doctor/{id}")
-    public DoctorDto getDoctorById(@PathVariable Integer id){
-        return doctorService.getById(id);
+    public ResponseEntity<DoctorDto> getDoctorById(@PathVariable Integer id){
+        return ResponseEntity.ok(doctorService.getById(id));
     }
 
     //butun hekimlerin siyahisi
     @GetMapping("doctors")
-    public List<DoctorDto> getAll(){
-        return doctorService.getAll();
+    public ResponseEntity<List<DoctorDto>> getAll(){
+        return ResponseEntity.ok(doctorService.getAll());
     }
 
     @GetMapping("reservations")
@@ -51,6 +51,12 @@ public class AdminController {
     public ResponseEntity<Void> updateStatus(@Valid @RequestBody UserStatusDto userStatusDto){
         userService.updateStatus(userStatusDto);
         return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
+    //butun userlerin siyahisi
+    @GetMapping
+    public ResponseEntity<List<UserDto>> getAllUser() {
+        return ResponseEntity.ok(userService.getAll());
     }
 
 }

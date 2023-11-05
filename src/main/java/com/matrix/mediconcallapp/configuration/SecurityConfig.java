@@ -73,7 +73,7 @@ public class SecurityConfig {
                                         "reservations/cancel").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
                                 .requestMatchers("/doctors/**").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
                                 .requestMatchers("/patient/**").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
-                                .requestMatchers("/users/info").authenticated()
+                                .requestMatchers("/users/**").authenticated()
                 ).exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint((request, response, authException) ->
                                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED)

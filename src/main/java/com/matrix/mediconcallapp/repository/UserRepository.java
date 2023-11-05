@@ -20,4 +20,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     @Query("SELECT u FROM User u WHERE u.name LIKE :searchText% AND u.doctor IS NOT NULL")
     Optional<List<User>> findDoctorsByNameLike(String searchText);
+
+    Optional<Integer> countById(Integer id);
 }

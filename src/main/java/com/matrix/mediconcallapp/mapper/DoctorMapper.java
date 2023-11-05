@@ -3,6 +3,7 @@ package com.matrix.mediconcallapp.mapper;
 import com.matrix.mediconcallapp.entity.Doctor;
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.enums.UserStatus;
+import com.matrix.mediconcallapp.model.dto.request.DoctorEditReqDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorProfileDto;
@@ -10,6 +11,9 @@ import com.matrix.mediconcallapp.model.dto.response.SimpleDoctorProfileDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 @Mapper(componentModel = "spring")
@@ -50,6 +54,25 @@ public abstract class DoctorMapper {
     @Mapping(source = "user.info", target = "info")
     @Mapping(source = "user.photoUrl", target = "photoUrl")
     public abstract SimpleDoctorProfileDto toSimpleDoctorProfileDto(Doctor doctor);
+
+
+    @Mapping(source = "userId", target = "user", qualifiedByName = "mapToUser")
+    public abstract Doctor toDoctor(DoctorEditReqDto editReqDto);
+
+    @Named(value = "mapToUser")
+    public User mapToUser(Integer id){
+        User user = new User();
+        user.setId(id);
+        return user;
+    }
+
+
+
+    @Named(value = "mapToDateFormat")
+    public String mapToDateFormat(Date date){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(date);
+    }
 
 
 

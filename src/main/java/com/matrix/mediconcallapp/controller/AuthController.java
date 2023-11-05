@@ -45,14 +45,14 @@ public class AuthController {
 
     // unudulan shifre uchun yenileme isteyi gondermek
     @PostMapping("/forgot-password")
-    public ResponseEntity<Boolean> requestPasswordReset(@RequestParam String email){
+    public ResponseEntity<String> requestPasswordReset(@RequestParam String email){
         return tokenService.requestPasswordReset(email);
     }
 
 
     // token istifade ederek shifreni yenilemek
     @PatchMapping("/recovery-password")
-    public ResponseEntity<Boolean> resetPassword(@RequestBody RecoveryPassword recoveryPassword) {
+    public ResponseEntity<String> resetPassword(@RequestBody RecoveryPassword recoveryPassword) {
         return tokenService.resetPassword(recoveryPassword);
     }
 

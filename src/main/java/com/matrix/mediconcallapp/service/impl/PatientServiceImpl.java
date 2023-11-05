@@ -8,11 +8,14 @@ import com.matrix.mediconcallapp.exception.PatientNotFoundException;
 import com.matrix.mediconcallapp.exception.UserAlreadyExistsException;
 import com.matrix.mediconcallapp.mapper.PatientMapper;
 import com.matrix.mediconcallapp.mapper.UserMapper;
+import com.matrix.mediconcallapp.model.dto.request.PatientEditReqDto;
 import com.matrix.mediconcallapp.model.dto.response.PatientDto;
 import com.matrix.mediconcallapp.model.dto.request.PatientRegistrationRequestDto;
 import com.matrix.mediconcallapp.repository.PatientRepository;
 import com.matrix.mediconcallapp.repository.UserRepository;
 import com.matrix.mediconcallapp.service.PatientService;
+import com.matrix.mediconcallapp.service.utility.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,7 @@ public class PatientServiceImpl implements PatientService {
     private final UserRepository userRepository;
     private final PatientRepository patientRepository;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
     @Transactional
     @Override
@@ -56,9 +60,28 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public PatientDto get(Integer id) {
-        return patientRepository.findById(id)
+    public PatientDto get(HttpServletRequest request) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Integer patientId = patientRepository.findPatientByUserId(userId).getId();
+        return patientRepository.findById(patientId)
                 .map(patientMapper::toPatientDto)
                 .orElseThrow(PatientNotFoundException::new);
+    }
+
+    @Override
+    public PatientDto getById(Integer patientId) {
+        return patientRepository.findById(patientId)
+                .map(patientMapper::toPatientDto)
+                .orElseThrow(PatientNotFoundException::new);
+    }
+
+    @Override
+    public void update(HttpServletRequest request, PatientEditReqDto editReqDto) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Patient patient = patientRepository.findByUserId(userId)
+                .orElseThrow(PatientNotFoundException::new);
+        editReqDto.setId(patient.getId());
+        editReqDto.setUserId(userId);
+        patientRepository.save(patientMapper.toPatient(editReqDto));
     }
 }

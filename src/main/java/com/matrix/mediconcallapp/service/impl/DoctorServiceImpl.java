@@ -2,12 +2,15 @@ package com.matrix.mediconcallapp.service.impl;
 
 import com.matrix.mediconcallapp.entity.Authority;
 import com.matrix.mediconcallapp.entity.Doctor;
+import com.matrix.mediconcallapp.entity.Patient;
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.enums.AuthorityName;
 import com.matrix.mediconcallapp.exception.DoctorNotFoundException;
+import com.matrix.mediconcallapp.exception.PatientNotFoundException;
 import com.matrix.mediconcallapp.exception.UserAlreadyExistsException;
 import com.matrix.mediconcallapp.mapper.DoctorMapper;
 import com.matrix.mediconcallapp.mapper.UserMapper;
+import com.matrix.mediconcallapp.model.dto.request.DoctorEditReqDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorForListProfileDto;
@@ -24,6 +27,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.print.Doc;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -128,5 +132,15 @@ public class DoctorServiceImpl implements DoctorService {
             simpleDoctorProfileDto.setAvgRating(avgRating);
             return ResponseEntity.ok(simpleDoctorProfileDto);
         }
+    }
+
+    @Override
+    public void update(HttpServletRequest request, DoctorEditReqDto editReqDto) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Doctor doctor = doctorRepository.findByUserId(userId)
+                .orElseThrow(DoctorNotFoundException::new);
+        editReqDto.setId(doctor.getId());
+        editReqDto.setUserId(userId);
+        doctorRepository.save(doctorMapper.toDoctor(editReqDto));
     }
 }

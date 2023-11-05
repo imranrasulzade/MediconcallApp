@@ -3,6 +3,7 @@ package com.matrix.mediconcallapp.mapper;
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
 import com.matrix.mediconcallapp.model.dto.request.PatientRegistrationRequestDto;
+import com.matrix.mediconcallapp.model.dto.request.UserEditReqDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorForListProfileDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
 import com.matrix.mediconcallapp.service.utility.MapPathUtility;
@@ -12,6 +13,9 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @Slf4j
 @Mapper(componentModel = "spring")
 public abstract class UserMapper {
@@ -20,7 +24,11 @@ public abstract class UserMapper {
 //    @Value("${application.files.directory}")
     private static String UPLOAD_DIR = "C:\\Users\\imran\\Documents";
 
+    @Mapping(source = "birthday", target = "birthday", qualifiedByName = "mapToDate")
     public abstract UserDto toUserDto(User user);
+
+    @Mapping(source = "photo", target = "photoUrl", qualifiedByName = "mapPath")
+    public abstract User toUser(UserEditReqDto userEditReqDto);
 
     @Mapping(source = "photo", target = "photoUrl", qualifiedByName = "mapPath")
     public abstract User toUserForAddDoctor(DoctorRegistrationRequestDto requestDto);
@@ -41,4 +49,9 @@ public abstract class UserMapper {
         return MapPathUtility.mapPath(photo, UPLOAD_DIR);
     }
 
+    @Named(value = "mapToDate")
+    public String mapToDate(Date date){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(date);
+    }
 }

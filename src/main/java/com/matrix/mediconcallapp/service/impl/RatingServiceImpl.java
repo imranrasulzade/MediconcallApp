@@ -48,7 +48,6 @@ public class RatingServiceImpl implements RatingService {
         int condition = medicalRecords.size();
         Integer checker = ratingRepository
                 .countByRaterPatientIdAndRatedDoctorId(patientId, doctor.getId()).orElse(0);
-        System.out.println(checker);
         if(condition > 0){
             if(checker == 0){
                 ratingReqDto.setPatientId(patientId);
@@ -70,6 +69,15 @@ public class RatingServiceImpl implements RatingService {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
         return ratingRepository.findByRatedDoctorId(doctorId)
+                .orElseThrow(RatingNotFoundException::new)
+                .stream().map(ratingMapper::toRatingRespDto).toList();
+    }
+
+    @Override
+    public List<RatingRespDto> getRatingByDoctorId(Integer id) {
+        Doctor doctor = doctorRepository.findById(id)
+                .orElseThrow(DoctorNotFoundException::new);
+        return ratingRepository.findByRatedDoctorId(doctor.getId())
                 .orElseThrow(RatingNotFoundException::new)
                 .stream().map(ratingMapper::toRatingRespDto).toList();
     }

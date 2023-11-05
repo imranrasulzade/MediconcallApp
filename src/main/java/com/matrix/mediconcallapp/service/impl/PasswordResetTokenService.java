@@ -31,10 +31,10 @@ public class PasswordResetTokenService {
     private final PasswordResetTokenRepository tokenRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
-    public ResponseEntity<Boolean> requestPasswordReset(@RequestParam String email) {
+    public ResponseEntity<String> requestPasswordReset(@RequestParam String email) {
         User user = userService.findByEmail(email);
         if (user == null) {
-            return ResponseEntity.badRequest().body(false);
+            return ResponseEntity.badRequest().body("User not found with this email!");
         }
         String token = generateRandomToken();
         Calendar calendar = Calendar.getInstance();
@@ -51,10 +51,10 @@ public class PasswordResetTokenService {
             log.info("token sent with email for recovery password to {}", email);
         }catch (Exception e){
             log.error("Error due to: {}", e.getMessage());
-            ResponseEntity.badRequest().body(false);
+            ResponseEntity.badRequest().body("Email couldn't sent. Try again.");
         }
 
-        return ResponseEntity.ok(true);
+        return ResponseEntity.ok("Ok. Verify token was sent to your email");
     }
 
     public void createToken(User user, String token, Date expiryDate) {
@@ -65,17 +65,17 @@ public class PasswordResetTokenService {
         tokenRepository.save(passwordResetToken);
     }
 
-    public ResponseEntity<Boolean> resetPassword(RecoveryPassword recoveryPassword) {
+    public ResponseEntity<String> resetPassword(RecoveryPassword recoveryPassword) {
         if(recoveryPassword.getNewPassword().equals(recoveryPassword.getRetryPassword())){
             PasswordResetToken passwordResetToken = tokenRepository.findByToken(recoveryPassword.getToken());
             if (passwordResetToken == null || !isTokenValid(passwordResetToken)) {
-                return ResponseEntity.badRequest().body(false);
+                return ResponseEntity.badRequest().body("Ops! Something went wrong!");
             }
             User user = passwordResetToken.getUser();
             userService.changePassword(user, passwordEncoder.encode(recoveryPassword.getNewPassword()));
             deleteToken(passwordResetToken);
 
-            return ResponseEntity.ok(true);
+            return ResponseEntity.ok("Password reset successfully!");
         }else
             throw new PasswordMismatchException();
     }

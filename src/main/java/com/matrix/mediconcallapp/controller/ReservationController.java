@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,30 +20,24 @@ import java.util.List;
 public class ReservationController {
     private final ReservationService reservationService;
 
-    //butun rezervasiyalar admin uchun
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    @GetMapping("view-all")
-    public List<ReservationDto> getReservations(){
-        return reservationService.getAllReservations();
-    }
 
     //Hekimin oz rezervasiyalarina baxmasi
     @GetMapping("/doctor")
-    public List<ReservationDto> getReservationsOfDoctor(HttpServletRequest request){
-        return reservationService.getReservationsOfDoctor(request);
+    public ResponseEntity<List<ReservationDto>> getReservationsOfDoctor(HttpServletRequest request){
+        return ResponseEntity.ok(reservationService.getReservationsOfDoctor(request));
     }
 
     //hekimin qebul etdiyi pasiyentin hekimin butun vaxtlarina baxmasi
     @GetMapping("times/{doctorId}")
-    public List<TimeDto> getAllTimes(HttpServletRequest request,
+    public ResponseEntity<List<TimeDto>> getAllTimes(HttpServletRequest request,
                                      @PathVariable Integer doctorId){
-        return reservationService.getAllTimes(request, doctorId);
+        return ResponseEntity.ok(reservationService.getAllTimes(request, doctorId));
     }
 
     //Pasiyentin oz reservasiyalarina baxmasi
     @GetMapping("/patient")
-    public List<ReservationDto> getByPatient(HttpServletRequest request){
-        return reservationService.getByPatient(request);
+    public ResponseEntity<List<ReservationDto>> getByPatient(HttpServletRequest request){
+        return ResponseEntity.ok(reservationService.getByPatient(request));
     }
 
 
@@ -58,23 +51,25 @@ public class ReservationController {
 
     //hekimin pending statusda olan reservasiyalari cekmeyi
     @GetMapping("/view-request")
-    public List<ReservationDto> getByStatus(HttpServletRequest request,
+    public ResponseEntity<List<ReservationDto>> getByStatus(HttpServletRequest request,
                                             @RequestParam ReservationStatus status){
-        return reservationService.getByStatus(request, status);
+        return ResponseEntity.ok(reservationService.getByStatus(request, status));
     }
 
     //hekimin reservasiyanin status deyismesi
     @PatchMapping("/status")
-    public void changeStatus(HttpServletRequest request,
+    public ResponseEntity<Void> changeStatus(HttpServletRequest request,
                                        @RequestBody ReservationStatusDto reservationStatusDto){
         reservationService.changeStatus(request, reservationStatusDto);
+        return ResponseEntity.ok().build();
     }
 
-    //pasiyentin rezervasiyani legv etmesi
+    //pasiyentin rezervasiyani legv etmesi pasiyent terefden
     @PatchMapping("/cancel")
-    public void cancel(HttpServletRequest request,
+    public ResponseEntity<Void> cancel(HttpServletRequest request,
                              @RequestBody Integer id){
         reservationService.cancel(request, id);
+        return ResponseEntity.ok().build();
     }
 
 

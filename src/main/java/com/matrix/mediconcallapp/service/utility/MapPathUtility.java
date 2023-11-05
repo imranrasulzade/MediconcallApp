@@ -29,7 +29,7 @@ public class MapPathUtility {
             file.transferTo(tempFile);
             tempFile.renameTo(targetPath.toFile());
             return targetPath.toString();
-        } catch (IOException e) {
+        } catch (Exception e) {
             log.error("error due to " + e.getMessage());
             throw new FileIOException();
         }

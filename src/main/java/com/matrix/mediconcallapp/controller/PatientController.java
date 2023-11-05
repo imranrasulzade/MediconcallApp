@@ -1,9 +1,11 @@
 package com.matrix.mediconcallapp.controller;
 
+import com.matrix.mediconcallapp.model.dto.request.PatientEditReqDto;
 import com.matrix.mediconcallapp.model.dto.request.RatingReqDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorForListProfileDto;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;
 import com.matrix.mediconcallapp.model.dto.response.PatientDto;
+import com.matrix.mediconcallapp.model.dto.response.RatingRespDto;
 import com.matrix.mediconcallapp.service.DoctorService;
 import com.matrix.mediconcallapp.service.MedicalRecordService;
 import com.matrix.mediconcallapp.service.PatientService;
@@ -12,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,9 +29,9 @@ public class PatientController {
     private final MedicalRecordService medicalRecordService;
     private final RatingService ratingService;
 
-    @GetMapping("/{id}")
-    public PatientDto get(@PathVariable Integer id){
-        return patientService.get(id);
+    @GetMapping("/info")
+    public ResponseEntity<PatientDto> get(HttpServletRequest request){
+        return ResponseEntity.ok(patientService.get(request));
     }
 
 
@@ -60,5 +63,18 @@ public class PatientController {
     public ResponseEntity<?> getDoctorByIdForPatient(HttpServletRequest request,
                                                      @RequestParam Integer id){
         return doctorService.getDoctorByIdForPatient(request, id);
+    }
+
+
+    @PutMapping(value = "/edit", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<Void> update(HttpServletRequest request,
+                                       @ModelAttribute PatientEditReqDto editReqDto){
+        patientService.update(request, editReqDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("comments/{id}")
+    public ResponseEntity<List<RatingRespDto>> getRatingByDoctorId(@PathVariable Integer id){
+        return ResponseEntity.ok(ratingService.getRatingByDoctorId(id));
     }
 }

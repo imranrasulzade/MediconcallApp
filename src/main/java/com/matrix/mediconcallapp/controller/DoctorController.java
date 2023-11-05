@@ -1,12 +1,14 @@
 package com.matrix.mediconcallapp.controller;
 
-import com.matrix.mediconcallapp.entity.Rating;
+import com.matrix.mediconcallapp.model.dto.request.DoctorEditReqDto;
 import com.matrix.mediconcallapp.model.dto.request.MedicalRecordReqDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;
+import com.matrix.mediconcallapp.model.dto.response.PatientDto;
 import com.matrix.mediconcallapp.model.dto.response.RatingRespDto;
 import com.matrix.mediconcallapp.service.DoctorService;
 import com.matrix.mediconcallapp.service.MedicalRecordService;
+import com.matrix.mediconcallapp.service.PatientService;
 import com.matrix.mediconcallapp.service.RatingService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -24,12 +26,13 @@ public class DoctorController {
     private final DoctorService doctorService;
     private final MedicalRecordService medicalRecordService;
     private final RatingService ratingService;
+    private final PatientService patientService;
 
 
     //headerden gelen userIdye gore oz datalarina baxmasi
     @GetMapping("/info")
-    public DoctorDto getDoctorById(HttpServletRequest request){
-        return doctorService.getByIdFromHeader(request);
+    public ResponseEntity<DoctorDto> getDoctorById(HttpServletRequest request){
+        return ResponseEntity.ok(doctorService.getByIdFromHeader(request));
     }
 
 
@@ -68,6 +71,19 @@ public class DoctorController {
     @GetMapping("rating")
     public ResponseEntity<List<RatingRespDto>> getRating(HttpServletRequest request){
         return ResponseEntity.ok(ratingService.getRating(request));
+    }
+
+    //pasiyentin melumatlarina baxmasi
+    @GetMapping("/patient/{id}")
+    public ResponseEntity<PatientDto> getById(@PathVariable Integer id){
+        return ResponseEntity.ok(patientService.getById(id));
+    }
+
+    @PutMapping("/edit")
+    public ResponseEntity<Void> update(HttpServletRequest request,
+                                       @RequestBody DoctorEditReqDto editReqDto){
+        doctorService.update(request, editReqDto);
+        return ResponseEntity.ok().build();
     }
 
 

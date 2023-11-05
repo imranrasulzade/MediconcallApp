@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface PatientRepository extends JpaRepository<Patient, Integer> {
     PatientProjection findPatientByUserId(Integer id);
 
+    Optional<Patient> findByUserId(Integer id);
+
 }

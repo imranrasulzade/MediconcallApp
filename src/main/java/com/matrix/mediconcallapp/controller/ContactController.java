@@ -26,8 +26,8 @@ public class ContactController {
 
     //hekim uchun
     @GetMapping("/doctor-view-contacts")
-    public List<ContactResponseDto> getAllForDoctor(HttpServletRequest request){
-        return contactService.getAllForDoctor(request);
+    public ResponseEntity<List<ContactResponseDto>> getAllForDoctor(HttpServletRequest request){
+        return ResponseEntity.ok(contactService.getAllForDoctor(request));
     }
 
 

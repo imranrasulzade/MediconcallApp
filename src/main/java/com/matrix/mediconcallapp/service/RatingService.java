@@ -12,4 +12,5 @@ public interface RatingService {
     void addRating(HttpServletRequest request, RatingReqDto ratingReqDto);
 
     List<RatingRespDto> getRating(HttpServletRequest request);
+    List<RatingRespDto> getRatingByDoctorId(Integer id);
 }
