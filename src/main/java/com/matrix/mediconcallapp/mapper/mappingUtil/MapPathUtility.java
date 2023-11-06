@@ -1,4 +1,4 @@
-package com.matrix.mediconcallapp.service.utility;
+package com.matrix.mediconcallapp.mapper.mappingUtil;
 
 import com.matrix.mediconcallapp.exception.FileIOException;
 import lombok.extern.slf4j.Slf4j;

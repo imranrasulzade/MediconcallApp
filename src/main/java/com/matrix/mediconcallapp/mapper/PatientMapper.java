@@ -3,24 +3,25 @@ package com.matrix.mediconcallapp.mapper;
 import com.matrix.mediconcallapp.entity.Patient;
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.enums.UserStatus;
+import com.matrix.mediconcallapp.mapper.mappingUtil.MapPathUtility;
 import com.matrix.mediconcallapp.model.dto.request.PatientEditReqDto;
 import com.matrix.mediconcallapp.model.dto.response.PatientDto;
 import com.matrix.mediconcallapp.model.dto.request.PatientRegistrationRequestDto;
-import com.matrix.mediconcallapp.service.utility.MapPathUtility;
 import lombok.RequiredArgsConstructor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 @RequiredArgsConstructor
 @Mapper(componentModel = "spring")
 @Slf4j
 public abstract class PatientMapper {
-//    @Value("${application.files.directory}")
-    private static String UPLOAD_DIR = "C:\\Users\\imran\\Documents";
+    @Value("${application.files.directory}")
+    private String UPLOAD_DIR;
 
     @Mapping(source = "document", target = "documentPath", qualifiedByName = "mapToDocumentPath")
     @Mapping(source = "status", target = "status", qualifiedByName = "mapToStatus")
@@ -47,7 +48,7 @@ public abstract class PatientMapper {
 
     @Named(value = "mapToDocumentPath")
     public String mapToDocumentPath(MultipartFile document){
-        return MapPathUtility.mapPath(document, UPLOAD_DIR);
+        return MapPathUtility.mapPath(document, this.UPLOAD_DIR);
     }
 
 

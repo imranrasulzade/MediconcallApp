@@ -3,18 +3,20 @@ package com.matrix.mediconcallapp.mapper;
 import com.matrix.mediconcallapp.entity.Doctor;
 import com.matrix.mediconcallapp.entity.MedicalRecord;
 import com.matrix.mediconcallapp.entity.Patient;
+import com.matrix.mediconcallapp.mapper.mappingUtil.MapPathUtility;
 import com.matrix.mediconcallapp.model.dto.request.MedicalRecordReqDto;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;
-import com.matrix.mediconcallapp.service.utility.MapPathUtility;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
 
 @Mapper(componentModel = "spring")
 public abstract class MedicalRecordMapper {
 
-    private static String UPLOAD_DIR = "C:\\Users\\imran\\Documents";
+    @Value("${application.files.directory}")
+    private String UPLOAD_DIR;
 
 
     @Mapping(source = "document", target = "documentPath", qualifiedByName = "mapToDocument")
@@ -53,7 +55,7 @@ public abstract class MedicalRecordMapper {
 
     @Named(value = "mapToDocument")
     public String mapToDocument(MultipartFile file){
-           return MapPathUtility.mapPath(file, UPLOAD_DIR);
+           return MapPathUtility.mapPath(file, this.UPLOAD_DIR);
     }
 
 }

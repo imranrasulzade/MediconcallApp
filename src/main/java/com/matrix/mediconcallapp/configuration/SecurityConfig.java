@@ -12,9 +12,11 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 
 @Configuration
@@ -30,6 +32,7 @@ public class SecurityConfig {
     private final CustomUserDetailsService userDetailsService;
 
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
+    private final LogoutHandler logoutHandler;
 
     @Bean
     public AuthenticationManager authenticationManager(HttpSecurity http, BCryptPasswordEncoder passwordEncoder)
@@ -85,7 +88,12 @@ public class SecurityConfig {
                                 response.setStatus(HttpServletResponse.SC_FORBIDDEN)
                         )
                 )
-                .httpBasic(Customizer.withDefaults());
+                .httpBasic(Customizer.withDefaults()).logout(lg -> lg
+                        .logoutUrl("/api/v1/auth/logout")
+                        .addLogoutHandler(logoutHandler)
+                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()
+                        )
+                );
                 return http.build();
 
     }
