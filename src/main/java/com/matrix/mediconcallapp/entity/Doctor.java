@@ -2,6 +2,7 @@ package com.matrix.mediconcallapp.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.ToString;
 
@@ -20,6 +21,8 @@ public class Doctor {
     private String academicTitle;
     private String qualification;
     private String placeOfWork;
+
+    @Size(max = 16)
     private String bankAccount;
     @NotNull(message = "status can not be null")
     private Integer status;

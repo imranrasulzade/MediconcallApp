@@ -11,6 +11,9 @@ import com.matrix.mediconcallapp.service.MedicalRecordService;
 import com.matrix.mediconcallapp.service.PatientService;
 import com.matrix.mediconcallapp.service.RatingService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -40,7 +43,7 @@ public class DoctorController {
     //hekimin yeni record elave etmsei
     @PostMapping(value = "new-medical-record", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> addMedicalRecord(HttpServletRequest request,
-                                                 @ModelAttribute MedicalRecordReqDto medicalRecordReqDto){
+                                                 @ModelAttribute @Valid MedicalRecordReqDto medicalRecordReqDto){
         medicalRecordService.addMedicalRecord(request, medicalRecordReqDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -54,14 +57,15 @@ public class DoctorController {
     //hekimin secdiyi pasiyente yazdigi recordlara baxmasi
     @GetMapping("patient-record")
     public ResponseEntity<List<MedicalRecordResp>> getRecordsByDoctorForPatient(HttpServletRequest request,
-                                                                 @RequestParam Integer id){
+                                                                 @RequestParam @NotBlank @Pattern(regexp = "^[0-9]+$")
+                                                                 Integer id){
         return ResponseEntity.ok(medicalRecordService.getRecordsByDoctorForPatient(request, id));
     }
 
     //hekimin recordu silmeyi- status -1 olur.
     @DeleteMapping("delete-record")
     public ResponseEntity<Void> deleteRecord(HttpServletRequest request,
-                                             @RequestParam Integer id){
+                                             @RequestParam @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
         medicalRecordService.deleteRecord(request, id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -75,13 +79,13 @@ public class DoctorController {
 
     //pasiyentin melumatlarina baxmasi
     @GetMapping("/patient/{id}")
-    public ResponseEntity<PatientDto> getById(@PathVariable Integer id){
+    public ResponseEntity<PatientDto> getById(@PathVariable @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
         return ResponseEntity.ok(patientService.getById(id));
     }
 
     @PutMapping("/edit")
     public ResponseEntity<Void> update(HttpServletRequest request,
-                                       @RequestBody DoctorEditReqDto editReqDto){
+                                       @RequestBody @Valid DoctorEditReqDto editReqDto){
         doctorService.update(request, editReqDto);
         return ResponseEntity.ok().build();
     }

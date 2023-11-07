@@ -14,8 +14,8 @@ import org.mapstruct.Named;
 @Mapper(componentModel = "spring")
 public abstract class ContactMapper {
 
-    @Mapping(source = "patientId", target = "patient", qualifiedByName = "mapToPatientId")
-    @Mapping(source = "doctorId", target = "doctor", qualifiedByName = "mapToDoctorId")
+    @Mapping(source = "patientId", target = "patient", qualifiedByName = "mapToPatient")
+    @Mapping(source = "doctorId", target = "doctor", qualifiedByName = "mapToDoctor")
     public abstract Contact toContact(ContactDto contactDto);
 
 
@@ -25,15 +25,15 @@ public abstract class ContactMapper {
     @Mapping(source = "doctor.user.name", target = "doctorName")
     public abstract ContactResponseDto toContactResponseDto(Contact contact);
 
-    @Named("mapToPatientId")
-    public Patient mapToPatientId(Integer patientId){
+    @Named("mapToPatient")
+    public Patient mapToPatient(Integer patientId){
         Patient patient = new Patient();
         patient.setId(patientId);
     return patient;
     }
 
-    @Named("mapToDoctorId")
-    public Doctor mapToDoctorId(Integer doctorId){
+    @Named("mapToDoctor")
+    public Doctor mapToDoctor(Integer doctorId){
         Doctor doctor = new Doctor();
         doctor.setId(doctorId);
         return doctor;

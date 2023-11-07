@@ -4,6 +4,9 @@ import com.matrix.mediconcallapp.model.dto.request.ContactDto;
 import com.matrix.mediconcallapp.model.dto.response.ContactResponseDto;
 import com.matrix.mediconcallapp.service.ContactService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +37,7 @@ public class ContactController {
     // pasiyent ucun hekime istek gondermek
     @PostMapping("/request")
     public ResponseEntity<Void> connect(HttpServletRequest request,
-                                        @RequestBody ContactDto contactDto){
+                                        @RequestBody @Valid ContactDto contactDto){
         contactService.send(request, contactDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -42,7 +45,7 @@ public class ContactController {
     //hekimin pasiyentden gelen isteyi qebul etmesi
     @PatchMapping("/accept")
     public ResponseEntity<Void> accept(HttpServletRequest request,
-                                        @RequestBody Integer patientId){
+                                        @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer patientId){
         contactService.accept(request, patientId);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
@@ -50,7 +53,7 @@ public class ContactController {
     //Hekimin connectionu silmeyi
     @DeleteMapping("/doctor")
     public ResponseEntity<Void> deleteByDoctor(HttpServletRequest request,
-                                                         @RequestBody Integer patientId){
+                                               @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer patientId){
         contactService.deleteByDoctor(request, patientId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -58,7 +61,7 @@ public class ContactController {
     //pasiyentin connectionu silmeyi
     @DeleteMapping("/patient")
     public ResponseEntity<Void> deleteByPatient(HttpServletRequest request,
-                                                          @RequestBody Integer doctorId){
+                                                @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer doctorId){
         contactService.deleteByPatient(request, doctorId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

@@ -3,6 +3,7 @@ package com.matrix.mediconcallapp.mapper;
 import com.matrix.mediconcallapp.entity.Doctor;
 import com.matrix.mediconcallapp.entity.Patient;
 import com.matrix.mediconcallapp.entity.Rating;
+import com.matrix.mediconcallapp.mapper.mappingUtil.MapDateUtility;
 import com.matrix.mediconcallapp.model.dto.request.RatingReqDto;
 import com.matrix.mediconcallapp.model.dto.response.RatingRespDto;
 import org.mapstruct.Mapper;
@@ -10,7 +11,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Mapper(componentModel = "spring")
 public abstract class RatingMapper {
@@ -21,13 +21,12 @@ public abstract class RatingMapper {
 
 
 
-    @Mapping(source = "raterPatient", target = "raterPatientId", qualifiedByName = "mapToPatientId")
+    @Mapping(source = "raterPatient.id", target = "raterPatientId")
     @Mapping(source = "raterPatient", target = "patientFullName", qualifiedByName = "mapToPatientFullName")
-    @Mapping(source = "ratedDoctor", target = "ratedDoctorId", qualifiedByName = "mapToDoctorId")
+    @Mapping(source = "ratedDoctor.id", target = "ratedDoctorId")
     @Mapping(source = "ratedDoctor", target = "doctorFullName", qualifiedByName = "mapToDoctorFullName")
     @Mapping(source = "timestamp", target = "timestamp", qualifiedByName = "mapToTimestamp")
     public abstract RatingRespDto toRatingRespDto(Rating rating);
-
 
 
     @Named(value = "mapToPatient")
@@ -66,8 +65,7 @@ public abstract class RatingMapper {
 
     @Named(value = "mapToTimestamp")
     public String mapToTimestamp(LocalDateTime dateTime){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return dateTime.format(formatter);
+        return MapDateUtility.mapToDateString(dateTime);
     }
 
 

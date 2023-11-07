@@ -2,9 +2,7 @@ package com.matrix.mediconcallapp.model.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -16,11 +14,14 @@ public class RatingReqDto {
 
     @Schema(hidden = true)
     private Integer patientId;
+
+    @NotBlank
+    @Pattern(regexp = "^[0-9]+$")
     private Integer doctorId;
 
     @Min(0)
     @Max(5)
-    @NotNull(message = "rating value can not be null!")
+    @NotBlank(message = "rating value can not b empty or null!")
     private Integer ratingValue;
 
     private String comment;

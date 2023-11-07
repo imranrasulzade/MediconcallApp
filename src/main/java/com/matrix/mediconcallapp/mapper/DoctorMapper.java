@@ -19,12 +19,12 @@ import java.util.Date;
 @Mapper(componentModel = "spring")
 public abstract class DoctorMapper {
 
-    @Mapping(source = "user", target = "userId", qualifiedByName = "mapToUserId")
+    @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "id", target = "doctorId")
-    @Mapping(source = "user", target = "name", qualifiedByName = "mapToName")
-    @Mapping(source = "user", target = "surname", qualifiedByName = "mapToSurname")
-    @Mapping(source = "user", target = "phone", qualifiedByName = "mapToPhone")
-    @Mapping(source = "user", target = "info", qualifiedByName = "mapToInfo")
+    @Mapping(source = "user.name", target = "name")
+    @Mapping(source = "user.surname", target = "surname")
+    @Mapping(source = "user.phone", target = "phone")
+    @Mapping(source = "user.info", target = "info")
     public abstract DoctorDto toDoctorDto(Doctor doctor);
 
 
@@ -66,45 +66,11 @@ public abstract class DoctorMapper {
         return user;
     }
 
-
-
     @Named(value = "mapToDateFormat")
     public String mapToDateFormat(Date date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(date);
     }
-
-
-
-
-
-
-
-    @Named(value = "mapToName")
-    public String mapToName(User user) {
-        return user.getName();
-    }
-
-    @Named(value = "mapToSurname")
-    public String mapToSurname(User user) {
-        return user.getSurname();
-    }
-
-    @Named(value = "mapToPhone")
-    public String mapToPhone(User user) {
-        return user.getPhone();
-    }
-
-    @Named(value = "mapToInfo")
-    public String mapToInfo(User user) {
-        return user.getInfo();
-    }
-
-    @Named(value = "mapToUserId")
-    public Integer mapToUserId(User user) {
-        return user.getId();
-    }
-
 
     @Named(value = "mapToStatus")
     public Integer mapToStatus(UserStatus status){

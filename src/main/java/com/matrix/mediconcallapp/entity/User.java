@@ -34,7 +34,6 @@ public class User {
     private String email;
     private String phone;
 
-    @NotBlank(message = "User birthday cannot be null")
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;

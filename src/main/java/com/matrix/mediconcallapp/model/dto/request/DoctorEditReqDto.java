@@ -12,6 +12,8 @@ public class DoctorEditReqDto {
 
     @Schema(hidden = true)
     private Integer userId;
+
+
     private String academicTitle;
 
     @NotNull

@@ -27,7 +27,7 @@ public class AdminController {
 
     //id-ye gore hekimin datalari
     @GetMapping("/doctor/{id}")
-    public ResponseEntity<DoctorDto> getDoctorById(@PathVariable Integer id){
+    public ResponseEntity<DoctorDto> getDoctorById(@PathVariable @Valid Integer id){
         return ResponseEntity.ok(doctorService.getById(id));
     }
 

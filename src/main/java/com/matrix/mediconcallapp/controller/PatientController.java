@@ -12,6 +12,9 @@ import com.matrix.mediconcallapp.service.PatientService;
 import com.matrix.mediconcallapp.service.RatingService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -43,19 +46,22 @@ public class PatientController {
 
     @GetMapping("/doctor-record")
     public ResponseEntity<List<MedicalRecordResp>> getRecordsByPatientForDoctor(HttpServletRequest request,
-                                                                                @RequestParam Integer id){
+                                                                                @RequestParam @NotBlank @Pattern(regexp = "^[0-9]+$")
+                                                                                Integer id){
         return ResponseEntity.ok(medicalRecordService.getRecordsByPatientForDoctor(request, id));
     }
 
     @PostMapping("/rate")
     public ResponseEntity<Void> addRating(HttpServletRequest request,
-                                          @Valid @RequestBody RatingReqDto reqDto){
+                                          @RequestBody @Valid RatingReqDto reqDto){
         ratingService.addRating(request, reqDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/search-doctors")
-    public ResponseEntity<List<DoctorForListProfileDto>> getDoctorByName(@RequestParam String name){
+    public ResponseEntity<List<DoctorForListProfileDto>> getDoctorByName(@RequestParam @Size(max = 15)
+                                                                             @NotBlank(message = "Name cannot be empty or null")
+                                                                             @Pattern(regexp = "^[A-Za-z]+$") String name){
         return ResponseEntity.ok(doctorService.getDoctorByName(name));
     }
 

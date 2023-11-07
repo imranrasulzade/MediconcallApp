@@ -14,36 +14,45 @@ import java.util.Date;
 @Data
 public class DoctorRegistrationRequestDto {
     @NotBlank(message = "Username cannot be empty or null")
-    @Size(max = 25)
+    @Size(max = 50)
+    @Pattern(regexp = "[A-Za-z0-9_.]+$")
     private String username;
 
+    @NotBlank(message = "Username cannot be empty or null")
     @Size(min = 8)
-    @Pattern(regexp = "[A-Za-z0-9]+")
+    @Pattern(regexp = "[A-Za-z0-9_.]+")
     private String password;
 
+    @Size(max = 15)
     @NotBlank(message = "Name cannot be empty or null")
     @Pattern(regexp = "^[A-Za-z]+$")
     private String name;
 
+    @Size(max = 25)
     @NotBlank(message = "Surname cannot be empty or null")
     @Pattern(regexp = "^[A-Za-z]+$")
     private String surname;
 
     @Email
+    @NotBlank(message = "Username cannot be empty or null")
+    @Size(max = 40)
     private String email;
 
+    @NotBlank(message = "phone can not be empty or null")
     @Pattern(regexp = "^[0-9]+$")
-    @Size(max = 12)
+    @Size(min = 12, max = 15)
     private String phone;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past
+    @PastOrPresent(message = "birthday can not future date")
     private Date birthday;
 
-    @Min(0)
-    @Max(1)
+    @Min(value = 0, message = "gender value only 0 or 1")
+    @Max(value = 1, message = "gender value only 0 or 1")
     private Integer gender;
+
+    @Size(max = 40)
     private String address;
     private String info;
 
@@ -53,11 +62,19 @@ public class DoctorRegistrationRequestDto {
     @NotNull
     private MultipartFile photo;
 
+    @Size(max = 45)
     private String specialty;
+
+    @Size(max = 25)
     private String academicTitle;
+
+    @Size(max = 45)
     private String qualification;
+
+    @Size(max = 45)
     private String placeOfWork;
 
     @NotNull
+    @Size(min = 16, max = 16)
     private String bankAccount;
 }
