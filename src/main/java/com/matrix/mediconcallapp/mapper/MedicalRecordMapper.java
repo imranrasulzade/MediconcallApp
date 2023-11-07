@@ -25,14 +25,12 @@ public abstract class MedicalRecordMapper {
     public abstract MedicalRecord toMedicalRecord(MedicalRecordReqDto medicalRecordReqDto);
 
 
-    @Mapping(source = "doctor", target = "doctorId", qualifiedByName = "mapToDoctorId")
-    @Mapping(source = "patient", target = "patientId", qualifiedByName = "mapToPatientId")
+    @Mapping(source = "doctor.id", target = "doctorId")
+    @Mapping(source = "patient.id", target = "patientId")
+    @Mapping(source = "patient.user.name", target = "patientName")
+    @Mapping(source = "doctor.user.name", target = "doctorName")
     public abstract MedicalRecordResp toMedicalRecordResp(MedicalRecord medicalRecord);
 
-    @Named(value = "mapToDoctorId")
-    public Integer mapToDoctorId(Doctor doctor){
-        return doctor.getId();
-    }
 
     @Named(value = "mapToDoctor")
     public Doctor mapToDoctor(Integer doctorId){
@@ -48,10 +46,6 @@ public abstract class MedicalRecordMapper {
         return patient;
     }
 
-    @Named(value = "mapToPatientId")
-    public Integer mapToPatientId(Patient patient){
-        return patient.getId();
-    }
 
     @Named(value = "mapToDocument")
     public String mapToDocument(MultipartFile file){

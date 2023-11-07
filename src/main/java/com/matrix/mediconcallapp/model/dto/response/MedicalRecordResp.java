@@ -10,7 +10,9 @@ import java.time.LocalDateTime;
 @Data
 public class MedicalRecordResp {
     private Integer patientId;
+    private String patientName;
     private Integer doctorId;
+    private String doctorName;
     private String diagnosis;
     private String treatment;
     private String documentPath;

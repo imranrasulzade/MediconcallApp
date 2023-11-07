@@ -19,8 +19,10 @@ public abstract class ContactMapper {
     public abstract Contact toContact(ContactDto contactDto);
 
 
-    @Mapping(source = "patient", target = "patientId", qualifiedByName = "mapToPatientFromContact")
-    @Mapping(source = "doctor", target = "doctorId", qualifiedByName = "mapToDoctorFromContact")
+    @Mapping(source = "patient.id", target = "patientId")
+    @Mapping(source = "doctor.id", target = "doctorId")
+    @Mapping(source = "patient.user.name", target = "patientName")
+    @Mapping(source = "doctor.user.name", target = "doctorName")
     public abstract ContactResponseDto toContactResponseDto(Contact contact);
 
     @Named("mapToPatientId")
@@ -37,13 +39,4 @@ public abstract class ContactMapper {
         return doctor;
     }
 
-    @Named("mapToPatientFromContact")
-    public Integer mapToPatientFromContact(Patient patient){
-        return patient.getId();
-    }
-
-    @Named("mapToDoctorFromContact")
-    public Integer mapToDoctorFromContact(Doctor doctor){
-        return doctor.getId();
-}
 }

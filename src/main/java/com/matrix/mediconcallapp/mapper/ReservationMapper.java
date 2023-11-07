@@ -3,6 +3,7 @@ package com.matrix.mediconcallapp.mapper;
 import com.matrix.mediconcallapp.entity.Doctor;
 import com.matrix.mediconcallapp.entity.Patient;
 import com.matrix.mediconcallapp.entity.Reservation;
+import com.matrix.mediconcallapp.mapper.mappingUtil.MapDateUtility;
 import com.matrix.mediconcallapp.model.dto.request.ReservationRequestDto;
 import com.matrix.mediconcallapp.model.dto.response.ReservationDto;
 import org.mapstruct.Mapper;
@@ -16,7 +17,9 @@ import java.time.format.DateTimeFormatter;
 public abstract class ReservationMapper {
 
     @Mapping(source = "doctor", target = "doctorFullName", qualifiedByName = "mapToDoctorFullName")
+    @Mapping(source = "doctor.id", target = "doctorId")
     @Mapping(source = "patient", target = "patientFullName", qualifiedByName = "mapToPatientFullName")
+    @Mapping(source = "patient.id", target = "patientId")
     @Mapping(source = "date", target = "date", qualifiedByName = "mapDateString")
     public abstract ReservationDto toReservationDto(Reservation reservation);
 
@@ -35,14 +38,12 @@ public abstract class ReservationMapper {
 
     @Named(value = "mapDateString")
     public String mapDateString(LocalDateTime dateTime){
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return dateTime.format(formatter);
+        return MapDateUtility.mapToDateString(dateTime);
     }
 
     @Named(value = "mapToLocalDateTime")
     public LocalDateTime mapToLocalDateTime(String date) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return LocalDateTime.parse(date, formatter);
+        return MapDateUtility.mapToLocalDateTime(date);
     }
 
 

@@ -56,9 +56,13 @@ public class ReservationServiceImpl implements ReservationService {
                         if(reservation.getDate().getDayOfMonth() == t.getDay() &&
                                 reservation.getDate().getHour() == t.getHour()){
                             t.setStatus(1);
+                            t.setDoctorId(reservation.getDoctor().getId());
+                            t.setDoctorName(reservation.getDoctor().getUser().getName());
                             break;
                         }else {
                             t.setStatus(0);
+                            t.setDoctorId(reservation.getDoctor().getId());
+                            t.setDoctorName(reservation.getDoctor().getUser().getName());
                         }
                     }
                     checkedList.add(t);
@@ -70,10 +74,7 @@ public class ReservationServiceImpl implements ReservationService {
         }else{
             throw new ContactNotFoundException();
         }
-
-
     }
-
     @Override
     public List<ReservationDto> getAllReservations() throws ReservationNotFoundException {
         return reservationRepository.findAll()

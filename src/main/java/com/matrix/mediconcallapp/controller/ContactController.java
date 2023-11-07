@@ -34,7 +34,7 @@ public class ContactController {
     // pasiyent ucun hekime istek gondermek
     @PostMapping("/request")
     public ResponseEntity<Void> connect(HttpServletRequest request,
-                                                      @RequestBody ContactDto contactDto){
+                                        @RequestBody ContactDto contactDto){
         contactService.send(request, contactDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
