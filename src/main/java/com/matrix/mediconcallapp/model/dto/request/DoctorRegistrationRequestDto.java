@@ -19,7 +19,7 @@ public class DoctorRegistrationRequestDto {
     private String username;
 
     @NotBlank(message = "Username cannot be empty or null")
-    @Size(min = 8)
+    @Size(min = 3)
     @Pattern(regexp = "[A-Za-z0-9_.]+")
     private String password;
 
@@ -34,7 +34,7 @@ public class DoctorRegistrationRequestDto {
     private String surname;
 
     @Email
-    @NotBlank(message = "Username cannot be empty or null")
+    @NotBlank(message = "email cannot be empty or null")
     @Size(max = 40)
     private String email;
 
@@ -50,6 +50,7 @@ public class DoctorRegistrationRequestDto {
 
     @Min(value = 0, message = "gender value only 0 or 1")
     @Max(value = 1, message = "gender value only 0 or 1")
+    @NotBlank(message = "gender can not be empty or null")
     private Integer gender;
 
     @Size(max = 40)
@@ -62,6 +63,7 @@ public class DoctorRegistrationRequestDto {
     @NotNull
     private MultipartFile photo;
 
+    @NotNull
     @Size(max = 45)
     private String specialty;
 
@@ -76,5 +78,6 @@ public class DoctorRegistrationRequestDto {
 
     @NotNull
     @Size(min = 16, max = 16)
+    @Pattern(regexp = "^[0-9]+$")
     private String bankAccount;
 }

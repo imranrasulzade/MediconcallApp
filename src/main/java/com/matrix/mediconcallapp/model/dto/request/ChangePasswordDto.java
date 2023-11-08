@@ -7,20 +7,17 @@ import lombok.Data;
 
 @Data
 public class ChangePasswordDto {
-    @Size(min = 8)
-    @Size(max = 30)
+    @Size(min = 3, max = 30)
     @NotNull(message = "current password can not be null")
-    String currentPassword;
+    private String currentPassword;
 
     @NotNull(message = "new password can not be null")
-    @Size(min = 8)
-    @Size(max = 30)
+    @Size(min = 3, max = 30)
     @Pattern(regexp = "[A-Za-z0-9]+")
-    String newPassword;
+    private String newPassword;
 
     @NotNull(message = "retry password can not be null")
-    @Size(min = 8)
-    @Size(max = 30)
+    @Size(min = 3, max = 30)
     @Pattern(regexp = "[A-Za-z0-9]+")
-    String retryPassword;
+    private String retryPassword;
 }

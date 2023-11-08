@@ -17,7 +17,7 @@ public class LoginReq {
     private String username;
 
     @NotBlank(message = "Username cannot be empty or null")
-    @Size(min = 8)
+    @Size(min = 3)
     @Pattern(regexp = "[A-Za-z0-9_.]+")
     private String password;
 }

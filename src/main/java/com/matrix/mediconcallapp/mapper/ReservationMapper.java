@@ -11,7 +11,6 @@ import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 @Mapper(componentModel = "spring")
 public abstract class ReservationMapper {
@@ -23,7 +22,6 @@ public abstract class ReservationMapper {
     @Mapping(source = "date", target = "date", qualifiedByName = "mapDateString")
     public abstract ReservationDto toReservationDto(Reservation reservation);
 
-    @Mapping(source = "date", target = "date", qualifiedByName = "mapToLocalDateTime")
     public abstract Reservation toReservation(ReservationRequestDto requestDto);
 
     @Named(value = "mapToDoctorFullName")
@@ -41,10 +39,6 @@ public abstract class ReservationMapper {
         return MapDateUtility.mapToDateString(dateTime);
     }
 
-    @Named(value = "mapToLocalDateTime")
-    public LocalDateTime mapToLocalDateTime(String date) {
-        return MapDateUtility.mapToLocalDateTime(date);
-    }
 
 
 

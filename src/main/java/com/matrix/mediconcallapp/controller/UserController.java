@@ -5,6 +5,7 @@ import com.matrix.mediconcallapp.model.dto.request.UserEditReqDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
 import com.matrix.mediconcallapp.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -28,14 +29,14 @@ public class UserController {
 
     @PutMapping(value = "/edit", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> updateUser(HttpServletRequest request,
-                                           @ModelAttribute UserEditReqDto userEditReqDto){
+                                           @ModelAttribute @Valid UserEditReqDto userEditReqDto){
         userService.updateUser(request, userEditReqDto);
         return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/password")
     public ResponseEntity<Void> changePassword(HttpServletRequest request,
-                                               @RequestBody ChangePasswordDto changePasswordDto){
+                                               @RequestBody @Valid ChangePasswordDto changePasswordDto){
         userService.changePassword(request, changePasswordDto);
         return ResponseEntity.ok().build();
     }

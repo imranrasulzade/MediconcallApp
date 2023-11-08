@@ -18,46 +18,50 @@ public class UserEditReqDto {
     private Integer id;
 
     @NotBlank(message = "Username cannot be empty or null")
-    @Size(max = 25)
+    @Size(max = 50)
+    @Pattern(regexp = "[A-Za-z0-9_.]+$")
     private String username;
 
     @Schema(hidden = true)
     private String password;
 
+    @Size(max = 15)
     @NotBlank(message = "Name cannot be empty or null")
     @Pattern(regexp = "^[A-Za-z]+$")
     private String name;
 
+    @Size(max = 25)
     @NotBlank(message = "Surname cannot be empty or null")
     @Pattern(regexp = "^[A-Za-z]+$")
     private String surname;
 
     @Email
-    @NotNull
+    @NotBlank(message = "email cannot be empty or null")
+    @Size(max = 40)
     private String email;
 
+    @NotBlank(message = "phone can not be empty or null")
     @Pattern(regexp = "^[0-9]+$")
-    @Size(max = 12)
-    @NotNull
+    @Size(min = 12, max = 15)
     private String phone;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past
-    @NotNull
+    @PastOrPresent(message = "birthday can not future date")
     private Date birthday;
 
-    @Min(0)
-    @Max(1)
-    @NotNull
+    @Min(value = 0, message = "gender value only 0 or 1")
+    @Max(value = 1, message = "gender value only 0 or 1")
+    @NotBlank(message = "gender can not be empty or null")
     private Integer gender;
 
+    @Size(max = 40)
     private String address;
     private String info;
 
     @NotNull
     private MultipartFile photo;
 
-    @ValidUserStatus
+    @ValidUserStatus(message = "user status can be ACTIVE, INACTIVE or DELETED")
     private UserStatus status;
 }

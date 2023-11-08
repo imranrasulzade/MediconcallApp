@@ -8,15 +8,15 @@ import lombok.Data;
 @Data
 public class RecoveryPassword {
     @NotNull(message = "token can not be null")
-    String token;
+    private String token;
 
     @NotNull(message = "new password can not be null")
-    @Size(min = 8, max = 30)
+    @Size(min = 3, max = 30)
     @Pattern(regexp = "[A-Za-z0-9]+")
-    String newPassword;
+    private String newPassword;
 
     @NotNull(message = "retry password can not be null")
-    @Size(min = 8, max = 30)
+    @Size(min = 3, max = 30)
     @Pattern(regexp = "[A-Za-z0-9]+")
-    String retryPassword;
+    private String retryPassword;
 }

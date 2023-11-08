@@ -8,8 +8,8 @@ import lombok.Data;
 @Data
 public class UserStatusDto {
     @NotNull(message = "user id can not be null")
-    Integer id;
+    private Integer id;
 
-    @ValidUserStatus
-    UserStatus userStatus;
+    @ValidUserStatus(message = "user status can be ACTIVE, INACTIVE or DELETED")
+    private UserStatus userStatus;
 }

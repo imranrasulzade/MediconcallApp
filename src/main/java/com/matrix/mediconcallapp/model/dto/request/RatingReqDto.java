@@ -22,6 +22,7 @@ public class RatingReqDto {
     @Min(0)
     @Max(5)
     @NotBlank(message = "rating value can not b empty or null!")
+    @Pattern(regexp = "^[0-5]+$")
     private Integer ratingValue;
 
     private String comment;

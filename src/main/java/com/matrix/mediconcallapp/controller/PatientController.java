@@ -67,20 +67,20 @@ public class PatientController {
 
     @GetMapping("/doctor")
     public ResponseEntity<?> getDoctorByIdForPatient(HttpServletRequest request,
-                                                     @RequestParam Integer id){
+                                                     @RequestParam @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
         return doctorService.getDoctorByIdForPatient(request, id);
     }
 
 
     @PutMapping(value = "/edit", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> update(HttpServletRequest request,
-                                       @ModelAttribute PatientEditReqDto editReqDto){
+                                       @ModelAttribute @Valid PatientEditReqDto editReqDto){
         patientService.update(request, editReqDto);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("comments/{id}")
-    public ResponseEntity<List<RatingRespDto>> getRatingByDoctorId(@PathVariable Integer id){
+    public ResponseEntity<List<RatingRespDto>> getRatingByDoctorId(@PathVariable @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
         return ResponseEntity.ok(ratingService.getRatingByDoctorId(id));
     }
 }

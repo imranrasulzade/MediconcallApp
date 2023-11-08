@@ -7,6 +7,9 @@ import com.matrix.mediconcallapp.model.dto.response.ReservationDto;
 import com.matrix.mediconcallapp.model.dto.response.TimeDto;
 import com.matrix.mediconcallapp.service.ReservationService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +33,7 @@ public class ReservationController {
     //hekimin qebul etdiyi pasiyentin hekimin butun vaxtlarina baxmasi
     @GetMapping("times/{doctorId}")
     public ResponseEntity<List<TimeDto>> getAllTimes(HttpServletRequest request,
-                                     @PathVariable Integer doctorId){
+                                     @PathVariable @NotBlank @Pattern(regexp = "^[0-9]+$") Integer doctorId){
         return ResponseEntity.ok(reservationService.getAllTimes(request, doctorId));
     }
 
@@ -44,7 +47,7 @@ public class ReservationController {
     //pasiyentin reservasiya goturmeyi
     @PostMapping("/request")
     public ResponseEntity<Void> add(HttpServletRequest request,
-                                    @RequestBody ReservationRequestDto requestDto){
+                                    @RequestBody @Valid ReservationRequestDto requestDto){
         reservationService.add(request, requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
@@ -59,7 +62,7 @@ public class ReservationController {
     //hekimin reservasiyanin status deyismesi
     @PatchMapping("/status")
     public ResponseEntity<Void> changeStatus(HttpServletRequest request,
-                                       @RequestBody ReservationStatusDto reservationStatusDto){
+                                       @RequestBody @Valid ReservationStatusDto reservationStatusDto){
         reservationService.changeStatus(request, reservationStatusDto);
         return ResponseEntity.ok().build();
     }
@@ -67,7 +70,7 @@ public class ReservationController {
     //pasiyentin rezervasiyani legv etmesi pasiyent terefden
     @PatchMapping("/cancel")
     public ResponseEntity<Void> cancel(HttpServletRequest request,
-                             @RequestBody Integer id){
+                             @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
         reservationService.cancel(request, id);
         return ResponseEntity.ok().build();
     }
