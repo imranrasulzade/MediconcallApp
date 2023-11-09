@@ -3,7 +3,6 @@ package com.matrix.mediconcallapp.service;
 import com.matrix.mediconcallapp.model.dto.request.ContactDto;
 import com.matrix.mediconcallapp.model.dto.response.ContactResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 

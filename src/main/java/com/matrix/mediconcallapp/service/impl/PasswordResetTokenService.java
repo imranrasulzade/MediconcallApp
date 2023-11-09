@@ -63,6 +63,7 @@ public class PasswordResetTokenService {
         passwordResetToken.setToken(token);
         passwordResetToken.setExpiryDate(expiryDate);
         tokenRepository.save(passwordResetToken);
+        log.info("Token created for forgot password function");
     }
 
     public ResponseEntity<String> resetPassword(RecoveryPassword recoveryPassword) {
@@ -73,10 +74,12 @@ public class PasswordResetTokenService {
             }
             User user = passwordResetToken.getUser();
             userService.changePassword(user, passwordEncoder.encode(recoveryPassword.getNewPassword()));
+            log.info("password changed for userId: {}", user.getId());
             deleteToken(passwordResetToken);
 
             return ResponseEntity.ok("Password reset successfully!");
         }else
+            log.error("passwords entered do not match");
             throw new PasswordMismatchException();
     }
 

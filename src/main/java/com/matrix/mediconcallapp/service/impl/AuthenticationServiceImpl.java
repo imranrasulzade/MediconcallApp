@@ -37,13 +37,15 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + token);
             LoginRes loginRes = new LoginRes(username,token);
-
+            log.info("user: {} logged in",  user.getUsername());
             return ResponseEntity.status(HttpStatus.OK).headers(headers).body(loginRes);
 
         }catch (BadCredentialsException e){
+            log.error("Error due to {} ", e.getMessage());
             ErrorRes errorResponse = new ErrorRes(HttpStatus.BAD_REQUEST,"Invalid username or password");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }catch (Exception e){
+            log.error("Error due to {} ", e.getMessage());
             ErrorRes errorResponse = new ErrorRes(HttpStatus.BAD_REQUEST, e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }

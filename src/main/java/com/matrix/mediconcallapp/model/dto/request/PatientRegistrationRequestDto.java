@@ -41,7 +41,7 @@ public class PatientRegistrationRequestDto {
 
     @NotBlank(message = "phone can not be empty or null")
     @Pattern(regexp = "^[0-9]+$")
-    @Size(min = 12, max = 15)
+    @Size(min = 10, max = 12)
     private String phone;
 
     @JsonFormat(pattern = "yyyy-MM-dd")

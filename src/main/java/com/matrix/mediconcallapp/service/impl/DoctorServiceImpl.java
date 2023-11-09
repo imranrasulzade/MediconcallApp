@@ -96,7 +96,7 @@ public class DoctorServiceImpl implements DoctorService {
             doctor.setUser(user);
             user.setDoctor(doctor);
             userRepository.save(user);
-
+            log.info("user registered as a doctor role, username: {}", user.getUsername());
             return doctorRepository.findById(doctor.getId())
                     .map(doctorMapper::toDoctorDto)
                     .orElseThrow(DoctorNotFoundException::new);
@@ -139,5 +139,6 @@ public class DoctorServiceImpl implements DoctorService {
         editReqDto.setId(doctor.getId());
         editReqDto.setUserId(userId);
         doctorRepository.save(doctorMapper.toDoctor(editReqDto));
+        log.info("Doctor record updated by userId: {}", userId);
     }
 }

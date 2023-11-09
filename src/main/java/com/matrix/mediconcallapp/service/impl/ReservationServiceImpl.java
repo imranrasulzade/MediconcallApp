@@ -19,6 +19,7 @@ import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import com.matrix.mediconcallapp.service.utility.TimeUtility;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ReservationServiceImpl implements ReservationService {
@@ -78,6 +80,7 @@ public class ReservationServiceImpl implements ReservationService {
             }
             return checkedList;
         }else{
+            log.error("times could not be given because contact could not be found, userId: {}", userId);
             throw new ContactNotFoundException();
         }
     }
@@ -121,6 +124,7 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setDoctor(doctor);
         reservation.setPatient(patient);
         reservationRepository.save(reservation);
+        log.info("Reservation added by patientId: {} with doctorId: {}. userId: {}", patientId, doctor.getId(), userId);
     }
 
     @Override
@@ -144,6 +148,7 @@ public class ReservationServiceImpl implements ReservationService {
             throw new ReservationNotFoundException();
         }
         reservationRepository.save(reservation);
+        log.info("Reservation (reservationId: {}) status changed by userId: {}", reservation.getId(),  userId);
     }
 
     @Override
@@ -158,6 +163,7 @@ public class ReservationServiceImpl implements ReservationService {
             throw new ReservationNotFoundException();
         }
         reservationRepository.save(reservation);
+        log.info("Reservation (reservationId: {}) cancelled by userId: {}", reservation.getId(),  userId);
     }
 
 
@@ -182,13 +188,16 @@ public class ReservationServiceImpl implements ReservationService {
             LocalDateTime now = LocalDateTime.now();
             LocalDateTime oneWeekLater = now.plusWeeks(1);
             if (inputDateTime.isBefore(now.plusDays(1)) || inputDateTime.isAfter(oneWeekLater)) {
+                log.error("Error due to DateTimeRange");
                 throw new DateTimeRangeException();
             }
             int hour = inputDateTime.getHour();
             if (hour < 9 || (hour == 13) || hour >= 18) {
+                log.error("Error due to DateTimeRange");
                 throw new DateTimeRangeException();
             }
         }catch (DateTimeParseException e){
+            log.error("Error due to: {} ", e.getMessage());
             throw new InvalidDateTimeFormatException();
         }
     }

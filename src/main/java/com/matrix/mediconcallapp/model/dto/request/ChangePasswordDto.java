@@ -9,6 +9,7 @@ import lombok.Data;
 public class ChangePasswordDto {
     @Size(min = 3, max = 30)
     @NotNull(message = "current password can not be null")
+    @Pattern(regexp = "[A-Za-z0-9]+")
     private String currentPassword;
 
     @NotNull(message = "new password can not be null")

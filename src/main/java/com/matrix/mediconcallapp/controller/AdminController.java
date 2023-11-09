@@ -25,27 +25,30 @@ public class AdminController {
     private final UserService userService;
     private final DoctorService doctorService;
 
-    //id-ye gore hekimin datalari
+
     @GetMapping("/doctor/{id}")
     public ResponseEntity<DoctorDto> getDoctorById(@PathVariable @Valid Integer id){
         return ResponseEntity.ok(doctorService.getById(id));
     }
 
-    //butun hekimlerin siyahisi
+
     @GetMapping("doctors")
     public ResponseEntity<List<DoctorDto>> getAll(){
         return ResponseEntity.ok(doctorService.getAll());
     }
+
 
     @GetMapping("reservations")
     public ResponseEntity<List<ReservationDto>> getReservations(){
         return ResponseEntity.ok(reservationService.getAllReservations());
     }
 
+
     @GetMapping("view-status")
     public ResponseEntity<List<UserDto>> getUserByStatus(@RequestParam UserStatus userStatus){
         return ResponseEntity.ok(userService.getUserByStatus(userStatus));
     }
+
 
     @PatchMapping("status")
     public ResponseEntity<Void> updateStatus(@Valid @RequestBody UserStatusDto userStatusDto){
@@ -53,7 +56,7 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    //butun userlerin siyahisi
+
     @GetMapping
     public ResponseEntity<List<UserDto>> getAllUser() {
         return ResponseEntity.ok(userService.getAll());

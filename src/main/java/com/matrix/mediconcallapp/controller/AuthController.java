@@ -28,7 +28,7 @@ public class AuthController {
     private final AuthenticationService authenticationService;
 
 
-    // hekim uchun registraciya
+
     @PostMapping(value = "/register/doctor", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<DoctorDto> add(@ModelAttribute @Valid DoctorRegistrationRequestDto requestDto){
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -36,7 +36,7 @@ public class AuthController {
     }
 
 
-    // pasiyent ucun registraciya
+
     @PostMapping(value = "/register/patient", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<PatientDto> add(@ModelAttribute @Valid PatientRegistrationRequestDto requestDto){
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -44,18 +44,19 @@ public class AuthController {
     }
 
 
-    // unudulan shifre uchun yenileme isteyi gondermek
+
     @PostMapping("/forgot-password")
     public ResponseEntity<String> requestPasswordReset(@RequestParam @NotBlank @Email String email){
         return tokenService.requestPasswordReset(email);
     }
 
 
-    // token istifade ederek shifreni yenilemek
+
     @PatchMapping("/recovery-password")
     public ResponseEntity<String> resetPassword(@RequestBody @Valid RecoveryPassword recoveryPassword) {
         return tokenService.resetPassword(recoveryPassword);
     }
+
 
     @ResponseBody
     @PostMapping("login")

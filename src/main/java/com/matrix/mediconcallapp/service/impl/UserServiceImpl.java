@@ -2,6 +2,7 @@ package com.matrix.mediconcallapp.service.impl;
 
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.enums.UserStatus;
+import com.matrix.mediconcallapp.exception.child.PasswordWrongException;
 import com.matrix.mediconcallapp.exception.child.UserNotFoundException;
 import com.matrix.mediconcallapp.mapper.UserMapper;
 import com.matrix.mediconcallapp.model.dto.request.ChangePasswordDto;
@@ -60,6 +61,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(UserNotFoundException::new);
         user.setStatus(userStatusDto.getUserStatus());
         userRepository.save(user);
+        log.info("User (userId: {}) status updated by admin", user.getId());
     }
 
     @Override
@@ -77,6 +79,7 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(UserNotFoundException::new);
         userEditReqDto.setPassword(user.getPassword());
         userRepository.save(userMapper.toUser(userEditReqDto));
+        log.info("User record updated by userId: {}", userId);
     }
 
     @Override
@@ -85,10 +88,13 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(UserNotFoundException::new);
         if(changePasswordDto.getNewPassword().equals(changePasswordDto.getRetryPassword()) &&
-        user.getPassword().equals(passwordEncoder.encode(changePasswordDto.getNewPassword()))){
+         passwordEncoder.matches(changePasswordDto.getCurrentPassword(), user.getPassword())){
             user.setPassword(passwordEncoder.encode(changePasswordDto.getNewPassword()));
             userRepository.save(user);
             log.info("Password changed by user_id = {}", userId);
+        }else {
+            log.error("failed to change password");
+            throw new PasswordWrongException();
         }
     }
 

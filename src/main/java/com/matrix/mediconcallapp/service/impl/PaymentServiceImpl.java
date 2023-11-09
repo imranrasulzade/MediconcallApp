@@ -44,6 +44,7 @@ public class PaymentServiceImpl implements PaymentService {
         reqDto.setReceiverCard(doctor.getBankAccount());
         reqDto.setTimestamp(LocalDateTime.now());
         paymentRepository.save(paymentMapper.toPayment(reqDto));
+        log.info("payment add by userId: {}", userId);
     }
 
     @Override

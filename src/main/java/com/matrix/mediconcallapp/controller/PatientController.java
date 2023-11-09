@@ -80,7 +80,7 @@ public class PatientController {
     }
 
     @GetMapping("comments/{id}")
-    public ResponseEntity<List<RatingRespDto>> getRatingByDoctorId(@PathVariable @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
+    public ResponseEntity<List<RatingRespDto>> getRatingByDoctorId(@PathVariable @Pattern(regexp = "^[0-9]+$") Integer id){
         return ResponseEntity.ok(ratingService.getRatingByDoctorId(id));
     }
 }

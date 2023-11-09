@@ -13,11 +13,13 @@ import com.matrix.mediconcallapp.service.ContactService;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ContactServiceImpl implements ContactService {
@@ -61,10 +63,12 @@ public class ContactServiceImpl implements ContactService {
                     .orElseThrow(ContactNotFoundException::new);
             contact.setStatus(ContactStatus.PENDING.getValue());
             contact.setDeletedByUser(null);
+            log.info("Contact record updated by userId: {}", userId);
         }else {
             contactDto.setPatientId(patientId);
             contactDto.setStatus(ContactStatus.PENDING.getValue());
             contact = contactMapper.toContact(contactDto);
+            log.info("Contact record created by userId: {}", userId);
         }
         contactRepository.save(contact);
     }
@@ -81,6 +85,7 @@ public class ContactServiceImpl implements ContactService {
         }else {
             contact.setStatus(ContactStatus.ACCEPTED.getValue());
             contactRepository.save(contact);
+            log.info("Contact record update by userId: {}", userId);
         }
     }
 
@@ -93,6 +98,7 @@ public class ContactServiceImpl implements ContactService {
         contact.setStatus(ContactStatus.REMOVED.getValue());
         contact.setDeletedByUser(userId);
         contactRepository.save(contact);
+        log.info("Contact record deleted by userId: {}", userId);
     }
 
 
@@ -105,5 +111,6 @@ public class ContactServiceImpl implements ContactService {
         contact.setStatus(ContactStatus.REMOVED.getValue());
         contact.setDeletedByUser(userId);
         contactRepository.save(contact);
+        log.info("Contact record deleted by userId: {}", userId);
     }
 }

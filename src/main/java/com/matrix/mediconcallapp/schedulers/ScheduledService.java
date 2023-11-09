@@ -30,7 +30,7 @@ public class ScheduledService {
         log.info("expired tokens deleted");
     }
 
-    @Scheduled(fixedRate =10 * 60 * 1000) // 10 deqiqe
+    @Scheduled(fixedRate =10 * 60 * 1000) // 10 minute
     public void cleanupCompletedReservation(){
         LocalDateTime now = LocalDateTime.now();
         List<Reservation> expiredReservations = reservationRepository

@@ -32,7 +32,7 @@ public class DoctorController {
     private final PatientService patientService;
 
 
-    //headerden gelen userIdye gore oz datalarina baxmasi
+
     @GetMapping("/info")
     public ResponseEntity<DoctorDto> getDoctorById(HttpServletRequest request){
         return ResponseEntity.ok(doctorService.getByIdFromHeader(request));
@@ -40,7 +40,6 @@ public class DoctorController {
 
 
 
-    //hekimin yeni record elave etmsei
     @PostMapping(value = "new-medical-record", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void> addMedicalRecord(HttpServletRequest request,
                                                  @ModelAttribute @Valid MedicalRecordReqDto medicalRecordReqDto){
@@ -48,13 +47,15 @@ public class DoctorController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    //hekimin yazdigi butun recordlara baxmsi
+
+
     @GetMapping("records")
     public ResponseEntity<List<MedicalRecordResp>> getRecordsByDoctor(HttpServletRequest request){
         return ResponseEntity.ok(medicalRecordService.getRecordsByDoctor(request));
     }
 
-    //hekimin secdiyi pasiyente yazdigi recordlara baxmasi
+
+
     @GetMapping("patient-record")
     public ResponseEntity<List<MedicalRecordResp>> getRecordsByDoctorForPatient(HttpServletRequest request,
                                                                  @RequestParam @NotBlank @Pattern(regexp = "^[0-9]+$")
@@ -62,7 +63,8 @@ public class DoctorController {
         return ResponseEntity.ok(medicalRecordService.getRecordsByDoctorForPatient(request, id));
     }
 
-    //hekimin recordu silmeyi- status -1 olur.
+
+
     @DeleteMapping("delete-record")
     public ResponseEntity<Void> deleteRecord(HttpServletRequest request,
                                              @RequestParam @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
@@ -71,17 +73,19 @@ public class DoctorController {
     }
 
 
-    //Ratinglere baxmasi
+
     @GetMapping("rating")
     public ResponseEntity<List<RatingRespDto>> getRating(HttpServletRequest request){
         return ResponseEntity.ok(ratingService.getRating(request));
     }
 
-    //pasiyentin melumatlarina baxmasi
+
+
     @GetMapping("/patient/{id}")
-    public ResponseEntity<PatientDto> getById(@PathVariable @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
+    public ResponseEntity<PatientDto> getById(@PathVariable @Pattern(regexp = "^[0-9]+$") Integer id){
         return ResponseEntity.ok(patientService.getById(id));
     }
+
 
     @PutMapping("/edit")
     public ResponseEntity<Void> update(HttpServletRequest request,

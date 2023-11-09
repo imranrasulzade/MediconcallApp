@@ -1,7 +1,6 @@
 package com.matrix.mediconcallapp.entity;
 
 import com.matrix.mediconcallapp.enums.ReservationStatus;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.*;
 import lombok.Data;
 

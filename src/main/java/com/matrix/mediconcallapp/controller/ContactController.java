@@ -21,20 +21,19 @@ public class ContactController {
     private final ContactService contactService;
 
 
-    //pasiyent uchun
     @GetMapping("/patient-view-contacts")
     public ResponseEntity<List<ContactResponseDto>> getAllForPatient(HttpServletRequest request){
         return ResponseEntity.status(HttpStatus.OK).body(contactService.getAllForPatient(request));
     }
 
-    //hekim uchun
+
     @GetMapping("/doctor-view-contacts")
     public ResponseEntity<List<ContactResponseDto>> getAllForDoctor(HttpServletRequest request){
         return ResponseEntity.ok(contactService.getAllForDoctor(request));
     }
 
 
-    // pasiyent ucun hekime istek gondermek
+
     @PostMapping("/request")
     public ResponseEntity<Void> connect(HttpServletRequest request,
                                         @RequestBody @Valid ContactDto contactDto){
@@ -42,7 +41,7 @@ public class ContactController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    //hekimin pasiyentden gelen isteyi qebul etmesi
+
     @PatchMapping("/accept")
     public ResponseEntity<Void> accept(HttpServletRequest request,
                                         @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer patientId){
@@ -50,7 +49,7 @@ public class ContactController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 
-    //Hekimin connectionu silmeyi
+
     @DeleteMapping("/doctor")
     public ResponseEntity<Void> deleteByDoctor(HttpServletRequest request,
                                                @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer patientId){
@@ -58,7 +57,7 @@ public class ContactController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
-    //pasiyentin connectionu silmeyi
+
     @DeleteMapping("/patient")
     public ResponseEntity<Void> deleteByPatient(HttpServletRequest request,
                                                 @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer doctorId){

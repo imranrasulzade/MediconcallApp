@@ -17,6 +17,7 @@ import com.matrix.mediconcallapp.service.PatientService;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.HashSet;
 import java.util.Set;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class PatientServiceImpl implements PatientService {
@@ -52,7 +54,7 @@ public class PatientServiceImpl implements PatientService {
             patient.setUser(user);
             user.setPatient(patient);
             userRepository.save(user);
-
+            log.info("users registered as patients, username: {}", user.getUsername());
             return patientRepository.findById(patient.getId())
                     .map(patientMapper::toPatientDto)
                     .orElseThrow(PatientNotFoundException::new);
@@ -83,5 +85,6 @@ public class PatientServiceImpl implements PatientService {
         editReqDto.setId(patient.getId());
         editReqDto.setUserId(userId);
         patientRepository.save(patientMapper.toPatient(editReqDto));
+        log.info("Patient record updated by userId: {}", userId);
     }
 }

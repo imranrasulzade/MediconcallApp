@@ -13,11 +13,11 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class EmailSenderService {
     private final JavaMailSender javaMailSender;
-    private final String myEmail = "rasulzade002@gmail.com";
 
     public void sendSimpleEmail(Email email) {
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(email.getReceiver());
+        String myEmail = "rasulzade002@gmail.com";
         msg.setFrom(myEmail);
         msg.setSubject(email.getSubject());
         msg.setText(email.getText());

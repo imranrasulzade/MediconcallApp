@@ -17,11 +17,13 @@ import com.matrix.mediconcallapp.service.MedicalRecordService;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class MedicalRecordServiceImpl implements MedicalRecordService {
@@ -48,7 +50,9 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
             medicalRecordReqDto.setTimestamp(LocalDateTime.now());
             MedicalRecord medicalRecord = medicalRecordMapper.toMedicalRecord(medicalRecordReqDto);
             medicalRecordRepository.save(medicalRecord);
+            log.info("MedicalRecord record created by userId: {}", userId);
         }else {
+            log.error("medical record could not be added due to lack of reservation by userId: {}", userId);
             throw new ReservationNotFoundException();
         }
     }
@@ -110,7 +114,9 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
         if(medicalRecord.getDoctor().getId().equals(doctorId)){
             medicalRecord.setStatus(-1);
             medicalRecordRepository.save(medicalRecord);
+            log.info("MedicalRecord record deleted by userId: {}", userId);
         } else {
+            log.error("Medical record not found for delete process");
             throw new MedicalRecordNotFoundException();
         }
     }

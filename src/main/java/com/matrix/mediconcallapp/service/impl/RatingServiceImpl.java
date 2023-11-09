@@ -54,10 +54,13 @@ public class RatingServiceImpl implements RatingService {
                 ratingReqDto.setTimestamp(LocalDateTime.now());
                 Rating rating = ratingMapper.toRating(ratingReqDto);
                 ratingRepository.save(rating);
+                log.info("Rating added by patientId: {} for doctorId: {}", patientId, doctor.getId());
             } else {
+                log.error("Rating already exists by userId: {}", userId);
                 throw new RatingAlreadyExistsException();
             }
         }else {
+            log.error("rating could not be added due to lack of medical record, userId: {}", userId);
             throw new MedicalRecordNotFoundException();
         }
 

@@ -4,11 +4,13 @@ import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.stereotype.Service;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class LogoutService implements LogoutHandler {
@@ -20,5 +22,6 @@ public class LogoutService implements LogoutHandler {
             return;
         }
         SecurityContextHolder.clearContext();
+        log.info("user logout");
     }
 }

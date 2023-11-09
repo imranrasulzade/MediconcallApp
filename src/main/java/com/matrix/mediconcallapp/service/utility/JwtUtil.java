@@ -9,6 +9,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -20,6 +21,7 @@ import java.security.Key;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Configuration
 @PropertySource("classpath:application.properties")
 public class JwtUtil {
@@ -29,8 +31,6 @@ public class JwtUtil {
     private String secret_key;
     @Value("${application.security.jwt.expiration}")
     private long accessTokenValidity;
-    private final String TOKEN_HEADER = "Authorization";
-    private final String TOKEN_PREFIX = "Bearer ";
     private static Key key;
     public JwtUtil(UserRepository userRepository){
         this.userRepository = userRepository;
@@ -62,10 +62,9 @@ public class JwtUtil {
                 .setSubject(user.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(tokenValidity)
-                //claims gondermeliyem metodun basinda almaliyam claimleri
                 .addClaims(claimsMap)
                 .signWith(key, SignatureAlgorithm.HS512);
-
+        log.info("Jwt token created for user: {}", user.getUsername());
               return jwtBuilder.compact();
     }
 
@@ -91,7 +90,9 @@ public class JwtUtil {
 
     public String resolveToken(HttpServletRequest request) {
 
+        String TOKEN_HEADER = "Authorization";
         String bearerToken = request.getHeader(TOKEN_HEADER);
+        String TOKEN_PREFIX = "Bearer ";
         if (bearerToken != null && bearerToken.startsWith(TOKEN_PREFIX)) {
             return bearerToken.substring(TOKEN_PREFIX.length());
         }
@@ -106,13 +107,7 @@ public class JwtUtil {
         }
     }
 
-    public String getUsername(Claims claims) {
-        return claims.getSubject();
-    }
 
-    public List<String> getRoles(Claims claims){
-        return (List<String>) claims.get("authorities");
-    }
 
     public Integer getUserId(Claims claims){
         return (Integer) claims.get("user_id");

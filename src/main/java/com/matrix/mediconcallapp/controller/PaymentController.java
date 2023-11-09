@@ -5,7 +5,6 @@ import com.matrix.mediconcallapp.model.dto.response.TransactionDto;
 import com.matrix.mediconcallapp.service.PaymentService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -40,13 +39,13 @@ public class PaymentController {
 
     @GetMapping("doctor/transaction/{id}")
     public ResponseEntity<TransactionDto> getByReceiver(HttpServletRequest request,
-                                                        @PathVariable @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
+                                                        @PathVariable @Pattern(regexp = "^[0-9]+$") Integer id){
         return ResponseEntity.ok(paymentService.getByReceiver(request, id));
     }
 
     @GetMapping("patient/transaction/{id}")
     public ResponseEntity<TransactionDto> getBySender(HttpServletRequest request,
-                                                        @PathVariable @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
+                                                        @PathVariable @Pattern(regexp = "^[0-9]+$") Integer id){
         return ResponseEntity.ok(paymentService.getBySender(request, id));
     }
 }

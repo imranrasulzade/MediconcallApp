@@ -7,7 +7,6 @@ import com.matrix.mediconcallapp.model.dto.request.UserEditReqDto;
 import com.matrix.mediconcallapp.model.dto.request.UserStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.core.io.Resource;
 
 import java.util.List;
 

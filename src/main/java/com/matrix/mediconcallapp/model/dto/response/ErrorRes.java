@@ -1,7 +1,9 @@
 package com.matrix.mediconcallapp.model.dto.response;
 
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@Getter
 public class ErrorRes {
     HttpStatus httpStatus;
     String message;
@@ -11,16 +13,8 @@ public class ErrorRes {
         this.message = message;
     }
 
-    public HttpStatus getHttpStatus() {
-        return httpStatus;
-    }
-
     public void setHttpStatus(HttpStatus httpStatus) {
         this.httpStatus = httpStatus;
-    }
-
-    public String getMessage() {
-        return message;
     }
 
     public void setMessage(String message) {
