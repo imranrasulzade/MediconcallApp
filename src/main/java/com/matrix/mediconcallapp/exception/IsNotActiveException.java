@@ -1,4 +1,4 @@
-package com.matrix.mediconcallapp.exception.parent;
+package com.matrix.mediconcallapp.exception;
 
 public class IsNotActiveException extends RuntimeException{
     public IsNotActiveException(String ex){

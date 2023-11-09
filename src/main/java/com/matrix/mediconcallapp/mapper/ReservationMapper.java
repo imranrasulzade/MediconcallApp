@@ -22,6 +22,7 @@ public abstract class ReservationMapper {
     @Mapping(source = "date", target = "date", qualifiedByName = "mapDateString")
     public abstract ReservationDto toReservationDto(Reservation reservation);
 
+    @Mapping(source = "date", target = "date", qualifiedByName = "mapLocalDateTime")
     public abstract Reservation toReservation(ReservationRequestDto requestDto);
 
     @Named(value = "mapToDoctorFullName")
@@ -39,6 +40,10 @@ public abstract class ReservationMapper {
         return MapDateUtility.mapToDateString(dateTime);
     }
 
+    @Named(value = "mapLocalDateTime")
+    public LocalDateTime mapLocalDateTime(String date){
+        return MapDateUtility.mapToLocalDateTime(date);
+    }
 
 
 

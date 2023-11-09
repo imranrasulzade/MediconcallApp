@@ -4,7 +4,7 @@ import com.matrix.mediconcallapp.entity.Doctor;
 import com.matrix.mediconcallapp.entity.Patient;
 import com.matrix.mediconcallapp.entity.Reservation;
 import com.matrix.mediconcallapp.enums.ReservationStatus;
-import com.matrix.mediconcallapp.exception.*;
+import com.matrix.mediconcallapp.exception.child.*;
 import com.matrix.mediconcallapp.mapper.ReservationMapper;
 import com.matrix.mediconcallapp.model.dto.request.ReservationRequestDto;
 import com.matrix.mediconcallapp.model.dto.request.ReservationStatusDto;
@@ -44,13 +44,14 @@ public class ReservationServiceImpl implements ReservationService {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
 
+        Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(DoctorNotFoundException::new);
         boolean condition = contactRepository.findAcceptedContact(doctorId, patientId).isPresent();
         if(condition){
             List<Reservation> reservations = reservationRepository.findByDoctorId(doctorId)
                     .orElse(Collections.emptyList());
             List<TimeDto> checkedList = new ArrayList<>();
+            List<TimeDto> timeDtoList = TimeUtility.getAllTimes();
             if(!reservations.isEmpty()){
-                List<TimeDto> timeDtoList = TimeUtility.getAllTimes();
                 for(TimeDto t : timeDtoList){
                     for(Reservation reservation : reservations){
                         if(reservation.getDate().getDayOfMonth() == t.getDay() &&
@@ -68,7 +69,12 @@ public class ReservationServiceImpl implements ReservationService {
                     checkedList.add(t);
                 }
             }else {
-                throw new ReservationNotFoundException();
+                for(TimeDto t : timeDtoList){
+                    t.setStatus(1);
+                    t.setDoctorId(doctor.getId());
+                    t.setDoctorName(doctor.getUser().getName());
+                }
+                return timeDtoList;
             }
             return checkedList;
         }else{
@@ -109,7 +115,7 @@ public class ReservationServiceImpl implements ReservationService {
         Doctor doctor = doctorRepository.findById(requestDto.getDoctorId())
                 .orElseThrow(DoctorNotFoundException::new);
         requestDto.setStatus(ReservationStatus.PENDING);
-        checkDateTimeValidity(requestDto.getDate().toString());
+        checkDateTimeValidity(requestDto.getDate());
         checkReservation(doctor.getId(), requestDto);
         Reservation reservation = reservationMapper.toReservation(requestDto);
         reservation.setDoctor(doctor);

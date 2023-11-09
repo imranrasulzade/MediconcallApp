@@ -2,7 +2,7 @@ package com.matrix.mediconcallapp.service.utility;
 
 import com.matrix.mediconcallapp.entity.Authority;
 import com.matrix.mediconcallapp.entity.User;
-import com.matrix.mediconcallapp.exception.UserNotFoundException;
+import com.matrix.mediconcallapp.exception.child.UserNotFoundException;
 import com.matrix.mediconcallapp.repository.UserRepository;
 
 import io.jsonwebtoken.*;
@@ -14,7 +14,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.stereotype.Component;
 
 import javax.naming.AuthenticationException;
 import java.security.Key;

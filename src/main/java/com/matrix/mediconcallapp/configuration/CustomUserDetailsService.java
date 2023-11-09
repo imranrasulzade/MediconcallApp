@@ -2,7 +2,7 @@ package com.matrix.mediconcallapp.configuration;
 
 import com.matrix.mediconcallapp.entity.Authority;
 import com.matrix.mediconcallapp.entity.User;
-import com.matrix.mediconcallapp.exception.UserIsNotActiveException;
+import com.matrix.mediconcallapp.exception.child.UserIsNotActiveException;
 import com.matrix.mediconcallapp.enums.UserStatus;
 import com.matrix.mediconcallapp.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

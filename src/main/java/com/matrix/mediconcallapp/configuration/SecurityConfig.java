@@ -1,6 +1,7 @@
 package com.matrix.mediconcallapp.configuration;
 
-import com.matrix.mediconcallapp.enums.ROLE;
+import com.matrix.mediconcallapp.configuration.enums.AuthUrlMapping;
+import com.matrix.mediconcallapp.configuration.enums.ROLE;
 import com.matrix.mediconcallapp.filter.JwtAuthorizationFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
@@ -28,9 +29,7 @@ public class SecurityConfig {
     public static BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
     private final CustomUserDetailsService userDetailsService;
-
     private final JwtAuthorizationFilter jwtAuthorizationFilter;
     private final LogoutHandler logoutHandler;
 
@@ -42,6 +41,7 @@ public class SecurityConfig {
         return authenticationManagerBuilder.build();
     }
 
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf->csrf.disable())
@@ -49,37 +49,11 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(
                         authorize -> authorize
-                                .requestMatchers( "/api/v1/auth/**",
-                                        "/v2/api-docs",
-                                        "/v3/api-docs",
-                                        "/v3/api-docs/**",
-                                        "/swagger-resources",
-                                        "/swagger-resources/**",
-                                        "/configuration/ui",
-                                        "/swagger-ui/**",
-                                        "/swagger-ui.html").permitAll()
-                                .requestMatchers("/account/**").permitAll()
-                                .requestMatchers("/contact/doctor",
-                                        "contact/doctor-view-contacts",
-                                        "contact/accept").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
-                                .requestMatchers("/contact/patient",
-                                        "contact/patient-view-contacts",
-                                        "contact/request").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
-                                .requestMatchers("/admin/**").hasAnyAuthority(ROLE.ROLE_ADMIN.name())
-                                .requestMatchers("/reservations/doctor",
-                                        "/reservations/view-request",
-                                        "reservations/accept",
-                                        "reservations/status").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
-                                .requestMatchers("/reservations/patient",
-                                        "reservations/times/**",
-                                        "reservations/request",
-                                        "reservations/cancel").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
-                                .requestMatchers("/doctors/**").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
-                                .requestMatchers("/patient/**").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
-                                .requestMatchers("/payment/pay",
-                                        "payment/patient/**").hasAnyAuthority(ROLE.ROLE_PATIENT.name())
-                                .requestMatchers("/payment/doctor/**").hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
-                                .requestMatchers("/users/**").authenticated()
+                                .requestMatchers(AuthUrlMapping.PERMIT_ALL.getUrls()).permitAll()
+                                .requestMatchers(AuthUrlMapping.DOCTOR.getUrls()).hasAnyAuthority(ROLE.ROLE_DOCTOR.name())
+                                .requestMatchers(AuthUrlMapping.PATIENT.getUrls()).hasAnyAuthority(ROLE.ROLE_PATIENT.name())
+                                .requestMatchers(AuthUrlMapping.ADMIN.getUrls()).hasAnyAuthority(ROLE.ROLE_ADMIN.name())
+                                .requestMatchers(AuthUrlMapping.ANY_AUTHENTICATED.getUrls()).authenticated()
                 ).exceptionHandling(exceptionHandling -> exceptionHandling
                         .authenticationEntryPoint((request, response, authException) ->
                                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED)

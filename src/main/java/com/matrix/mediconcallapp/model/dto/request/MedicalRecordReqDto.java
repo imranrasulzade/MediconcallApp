@@ -13,8 +13,7 @@ import java.time.LocalDateTime;
 @Data
 public class MedicalRecordReqDto {
 
-    @NotBlank(message = "patient id can not be empty or null")
-    @Pattern(regexp = "^[0-9]+$")
+    @NotNull(message = "patient id can not be null")
     private Integer patientId;
 
     @Schema(hidden = true)

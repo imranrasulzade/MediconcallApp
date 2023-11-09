@@ -1,7 +1,7 @@
 package com.matrix.mediconcallapp.model.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.matrix.mediconcallapp.customValidation.ValidUserStatus;
+import com.matrix.mediconcallapp.customValidation.annotation.ValidUserStatus;
 import com.matrix.mediconcallapp.enums.UserStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.*;
@@ -52,7 +52,7 @@ public class UserEditReqDto {
 
     @Min(value = 0, message = "gender value only 0 or 1")
     @Max(value = 1, message = "gender value only 0 or 1")
-    @NotBlank(message = "gender can not be empty or null")
+    @NotNull(message = "gender can not be null")
     private Integer gender;
 
     @Size(max = 40)

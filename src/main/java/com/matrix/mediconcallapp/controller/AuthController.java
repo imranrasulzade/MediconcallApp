@@ -1,6 +1,5 @@
 package com.matrix.mediconcallapp.controller;
 
-import com.matrix.mediconcallapp.exception.UserAlreadyExistsException;
 import com.matrix.mediconcallapp.model.dto.response.*;
 import com.matrix.mediconcallapp.model.dto.request.*;
 import com.matrix.mediconcallapp.service.AuthenticationService;

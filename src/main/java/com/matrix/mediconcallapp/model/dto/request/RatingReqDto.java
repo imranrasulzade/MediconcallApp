@@ -15,14 +15,12 @@ public class RatingReqDto {
     @Schema(hidden = true)
     private Integer patientId;
 
-    @NotBlank
-    @Pattern(regexp = "^[0-9]+$")
+    @NotNull(message = "doctor id can not be null")
     private Integer doctorId;
 
-    @Min(0)
-    @Max(5)
-    @NotBlank(message = "rating value can not b empty or null!")
-    @Pattern(regexp = "^[0-5]+$")
+    @Min(value = 0)
+    @Max(value = 5)
+    @NotNull(message = "rating value can not be null!")
     private Integer ratingValue;
 
     private String comment;

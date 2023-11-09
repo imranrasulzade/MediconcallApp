@@ -1,6 +1,6 @@
-package com.matrix.mediconcallapp.exception;
+package com.matrix.mediconcallapp.exception.child;
 
-import com.matrix.mediconcallapp.exception.parent.BadRequestException;
+import com.matrix.mediconcallapp.exception.BadRequestException;
 
 public class DateTimeRangeException extends BadRequestException {
     public DateTimeRangeException(){

@@ -1,8 +1,7 @@
 package com.matrix.mediconcallapp.model.dto.request;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -14,12 +13,14 @@ public class PaymentReqDto {
     @Schema(hidden = true)
     private Integer patientId;
 
-    @NotBlank(message = "doctor id can not be empty or null")
-    @Pattern(regexp = "^[0-9]+$")
+    @NotNull(message = "doctor id can not be null")
+    @Min(value = 0)
+    @Max(value = 3000)
     private Integer doctorId;
 
-    @NotBlank(message = "doctor id can not be empty or null")
-    @Pattern(regexp = "^[0-9]+$")
+    @NotNull(message = "doctor id can not be null")
+    @Min(value = 0)
+    @Max(value = 500)
     private Integer amount;
 
     @Schema(hidden = true)

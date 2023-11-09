@@ -2,7 +2,7 @@ package com.matrix.mediconcallapp.service.impl;
 
 import com.matrix.mediconcallapp.entity.Contact;
 import com.matrix.mediconcallapp.enums.ContactStatus;
-import com.matrix.mediconcallapp.exception.ContactNotFoundException;
+import com.matrix.mediconcallapp.exception.child.ContactNotFoundException;
 import com.matrix.mediconcallapp.mapper.ContactMapper;
 import com.matrix.mediconcallapp.model.dto.request.ContactDto;
 import com.matrix.mediconcallapp.model.dto.response.ContactResponseDto;

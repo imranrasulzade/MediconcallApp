@@ -1,4 +1,4 @@
-package com.matrix.mediconcallapp.enums;
+package com.matrix.mediconcallapp.configuration.enums;
 
 public enum ROLE {
     ROLE_ADMIN,

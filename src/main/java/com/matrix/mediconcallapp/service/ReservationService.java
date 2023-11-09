@@ -1,7 +1,6 @@
 package com.matrix.mediconcallapp.service;
 
 import com.matrix.mediconcallapp.enums.ReservationStatus;
-import com.matrix.mediconcallapp.exception.DateTimeRangeException;
 import com.matrix.mediconcallapp.model.dto.request.ReservationRequestDto;
 import com.matrix.mediconcallapp.model.dto.request.ReservationStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.ReservationDto;

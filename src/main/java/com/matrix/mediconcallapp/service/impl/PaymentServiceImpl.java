@@ -1,8 +1,8 @@
 package com.matrix.mediconcallapp.service.impl;
 
 import com.matrix.mediconcallapp.entity.Doctor;
-import com.matrix.mediconcallapp.exception.DoctorNotFoundException;
-import com.matrix.mediconcallapp.exception.TransactionNotFoundException;
+import com.matrix.mediconcallapp.exception.child.DoctorNotFoundException;
+import com.matrix.mediconcallapp.exception.child.TransactionNotFoundException;
 import com.matrix.mediconcallapp.mapper.PaymentMapper;
 import com.matrix.mediconcallapp.model.dto.request.PaymentReqDto;
 import com.matrix.mediconcallapp.model.dto.response.TransactionDto;
@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

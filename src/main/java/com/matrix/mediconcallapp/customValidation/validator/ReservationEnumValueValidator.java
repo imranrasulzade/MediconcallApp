@@ -1,5 +1,6 @@
-package com.matrix.mediconcallapp.customValidation;
+package com.matrix.mediconcallapp.customValidation.validator;
 
+import com.matrix.mediconcallapp.customValidation.annotation.ValidReservationStatus;
 import com.matrix.mediconcallapp.enums.ReservationStatus;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;

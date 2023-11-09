@@ -2,8 +2,7 @@ package com.matrix.mediconcallapp.service.impl;
 
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.enums.UserStatus;
-import com.matrix.mediconcallapp.exception.UserNotFoundException;
-import com.matrix.mediconcallapp.exception.parent.NotFoundException;
+import com.matrix.mediconcallapp.exception.child.UserNotFoundException;
 import com.matrix.mediconcallapp.mapper.UserMapper;
 import com.matrix.mediconcallapp.model.dto.request.ChangePasswordDto;
 import com.matrix.mediconcallapp.model.dto.request.UserEditReqDto;
@@ -15,15 +14,9 @@ import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.List;
 
 

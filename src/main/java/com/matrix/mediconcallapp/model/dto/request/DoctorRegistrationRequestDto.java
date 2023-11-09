@@ -50,7 +50,7 @@ public class DoctorRegistrationRequestDto {
 
     @Min(value = 0, message = "gender value only 0 or 1")
     @Max(value = 1, message = "gender value only 0 or 1")
-    @NotBlank(message = "gender can not be empty or null")
+    @NotNull(message = "gender can not be null")
     private Integer gender;
 
     @Size(max = 40)

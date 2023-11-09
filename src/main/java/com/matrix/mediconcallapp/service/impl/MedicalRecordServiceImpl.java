@@ -1,9 +1,11 @@
 package com.matrix.mediconcallapp.service.impl;
 
 import com.matrix.mediconcallapp.entity.MedicalRecord;
-import com.matrix.mediconcallapp.entity.Reservation;
 import com.matrix.mediconcallapp.enums.ReservationStatus;
-import com.matrix.mediconcallapp.exception.*;
+import com.matrix.mediconcallapp.exception.child.DoctorNotFoundException;
+import com.matrix.mediconcallapp.exception.child.MedicalRecordNotFoundException;
+import com.matrix.mediconcallapp.exception.child.PatientNotFoundException;
+import com.matrix.mediconcallapp.exception.child.ReservationNotFoundException;
 import com.matrix.mediconcallapp.mapper.MedicalRecordMapper;
 import com.matrix.mediconcallapp.model.dto.request.MedicalRecordReqDto;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;

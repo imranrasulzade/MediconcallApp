@@ -1,6 +1,6 @@
-package com.matrix.mediconcallapp.exception;
+package com.matrix.mediconcallapp.exception.child;
 
-import com.matrix.mediconcallapp.exception.parent.ConflictException;
+import com.matrix.mediconcallapp.exception.ConflictException;
 
 public class ReservationAlreadyExistsException extends ConflictException {
     public ReservationAlreadyExistsException(){

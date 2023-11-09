@@ -1,5 +1,6 @@
-package com.matrix.mediconcallapp.customValidation;
+package com.matrix.mediconcallapp.customValidation.annotation;
 
+import com.matrix.mediconcallapp.customValidation.validator.UserEnumValueValidator;
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 

@@ -12,8 +12,7 @@ public class ContactDto {
     @Schema(hidden = true)
     private Integer patientId;
 
-    @NotBlank(message = "doctor id can not be empty or null")
-    @Pattern(regexp = "^[0-9]+$", message = "Doctor ID must contain only digits")
+    @NotNull(message = "doctor id can not be null")
     private Integer doctorId;
 
     @Schema(hidden = true)
