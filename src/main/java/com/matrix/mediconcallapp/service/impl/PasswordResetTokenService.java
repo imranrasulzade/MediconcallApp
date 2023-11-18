@@ -51,7 +51,7 @@ public class PasswordResetTokenService {
             log.info("token sent with email for recovery password to {}", email);
         }catch (Exception e){
             log.error("Error due to: {}", e.getMessage());
-            ResponseEntity.badRequest().body("Email couldn't sent. Try again.");
+            return ResponseEntity.badRequest().body("Email couldn't sent. Try again.");
         }
 
         return ResponseEntity.ok("Ok. Verify token was sent to your email");
