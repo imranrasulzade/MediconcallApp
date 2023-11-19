@@ -18,9 +18,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reservations")
+@RequestMapping("/reservation")
 @RequiredArgsConstructor
 public class ReservationController {
+
     private final ReservationService reservationService;
 
 
@@ -30,7 +31,7 @@ public class ReservationController {
     }
 
 
-    @GetMapping("times/{doctorId}")
+    @GetMapping("/patient/doctor-times/{doctorId}")
     public ResponseEntity<List<TimeDto>> getAllTimes(HttpServletRequest request,
                                      @PathVariable @Pattern(regexp = "^[0-9]+$") Integer doctorId){
         return ResponseEntity.ok(reservationService.getAllTimes(request, doctorId));
@@ -43,22 +44,23 @@ public class ReservationController {
     }
 
 
-    @PostMapping("/request")
-    public ResponseEntity<Void> add(HttpServletRequest request,
+    @PostMapping("/patient/request")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void add(HttpServletRequest request,
                                     @RequestBody @Valid ReservationRequestDto requestDto){
         reservationService.add(request, requestDto);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 
-    @GetMapping("/view-request")
+    @GetMapping("/doctor/view-status")
     public ResponseEntity<List<ReservationDto>> getByStatus(HttpServletRequest request,
                                             @RequestParam ReservationStatus status){
         return ResponseEntity.ok(reservationService.getByStatus(request, status));
     }
 
 
-    @PatchMapping("/status")
+
+    @PatchMapping("/doctor/status")
     public ResponseEntity<Void> changeStatus(HttpServletRequest request,
                                        @RequestBody @Valid ReservationStatusDto reservationStatusDto){
         reservationService.changeStatus(request, reservationStatusDto);
@@ -66,11 +68,17 @@ public class ReservationController {
     }
 
 
-    @PatchMapping("/cancel")
+    @PatchMapping("/patient/cancel")
     public ResponseEntity<Void> cancel(HttpServletRequest request,
                              @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
         reservationService.cancel(request, id);
         return ResponseEntity.ok().build();
+    }
+
+
+    @GetMapping("/admin/reservations")
+    public ResponseEntity<List<ReservationDto>> getReservations(){
+        return ResponseEntity.ok(reservationService.getAllReservations());
     }
 
 

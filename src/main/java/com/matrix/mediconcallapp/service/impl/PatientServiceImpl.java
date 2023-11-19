@@ -39,6 +39,7 @@ public class PatientServiceImpl implements PatientService {
     @Transactional
     @Override
     public PatientDto add(PatientRegistrationRequestDto requestDto) {
+        log.info("add method start {}", requestDto.getUsername());
         if(userRepository.findByUsername(requestDto.getUsername()).isPresent() ||
                 userRepository.findByEmail(requestDto.getEmail()).isPresent()){
             throw new UserAlreadyExistsException();
@@ -54,10 +55,12 @@ public class PatientServiceImpl implements PatientService {
             patient.setUser(user);
             user.setPatient(patient);
             userRepository.save(user);
-            log.info("users registered as patients, username: {}", user.getUsername());
-            return patientRepository.findById(patient.getId())
+            PatientDto patientDto = patientRepository.findById(patient.getId())
                     .map(patientMapper::toPatientDto)
                     .orElseThrow(PatientNotFoundException::new);
+
+            log.info("users registered as patients, username: {}", user.getUsername());
+            return patientDto;
         }
     }
 

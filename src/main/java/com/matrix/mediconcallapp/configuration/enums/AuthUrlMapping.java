@@ -6,29 +6,36 @@ import lombok.Getter;
 public enum AuthUrlMapping {
     DOCTOR(ROLE.ROLE_DOCTOR.name(), new String[] {
             "/contact/doctor",
-            "/contact/doctor-view-contacts",
-            "/contact/accept",
-            "/reservations/doctor",
-            "/reservations/view-request",
-            "/reservations/accept",
-            "/reservations/status",
-            "/doctors/**",
-            "/payment/doctor/**"
+            "/contact/doctor/**",
+            "/reservation/doctor",
+            "/reservation/doctor/**",
+            "/doctor/info",
+            "/doctor/edit",
+            "/payment/doctor/**",
+            "/medical-record/doctor/**",
+            "/patient/doctor/**",
+            "/rating/doctor",
+            "/rating/doctor/**"
     }),
     PATIENT(ROLE.ROLE_PATIENT.name(), new String[] {
             "/contact/patient",
-            "/contact/patient-view-contacts",
-            "/contact/request",
-            "/reservations/patient",
-            "/reservations/times/**",
-            "/reservations/request",
-            "/reservations/cancel",
-            "/patient/**",
+            "/contact/patient/**",
+            "/reservation/patient",
+            "/reservation/patient/**",
+            "/patient/info",
+            "/patient/edit",
             "/payment/pay",
-            "/payment/patient/**"
+            "/payment/patient/**",
+            "/doctor/patient/**",
+            "/medical-record/patient/**",
+            "/rating/patient/**"
     }),
     ADMIN(ROLE.ROLE_ADMIN.name(), new String[] {
-            "/admin/**"
+            "/doctor/admin/doctor/{id}",
+            "/doctor/admin/doctors",
+            "/reservation/admin/**",
+            "/user/admin/**"
+
     }),
     PERMIT_ALL(null, new String[] {
             "/api/v1/auth/**",
@@ -41,10 +48,14 @@ public enum AuthUrlMapping {
             "/swagger-ui/**",
             "/swagger-ui.html",
             "/account/**",
+            "/doctor/register",
+            "/patient/register"
     }),
 
     ANY_AUTHENTICATED(null, new String[] {
-            "/users/**",
+            "/user/info",
+            "/user/edit",
+            "/user/password"
     });
 
 

@@ -18,23 +18,22 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/contact")
 public class ContactController {
+
     private final ContactService contactService;
 
 
-    @GetMapping("/patient-view-contacts")
+    @GetMapping("/patient/contacts")
     public ResponseEntity<List<ContactResponseDto>> getAllForPatient(HttpServletRequest request){
         return ResponseEntity.status(HttpStatus.OK).body(contactService.getAllForPatient(request));
     }
 
 
-    @GetMapping("/doctor-view-contacts")
+    @GetMapping("/doctor/contacts")
     public ResponseEntity<List<ContactResponseDto>> getAllForDoctor(HttpServletRequest request){
         return ResponseEntity.ok(contactService.getAllForDoctor(request));
     }
 
-
-
-    @PostMapping("/request")
+    @PostMapping("/patient/request")
     public ResponseEntity<Void> connect(HttpServletRequest request,
                                         @RequestBody @Valid ContactDto contactDto){
         contactService.send(request, contactDto);
@@ -42,7 +41,7 @@ public class ContactController {
     }
 
 
-    @PatchMapping("/accept")
+    @PatchMapping("/doctor/accept")
     public ResponseEntity<Void> accept(HttpServletRequest request,
                                         @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer patientId){
         contactService.accept(request, patientId);
