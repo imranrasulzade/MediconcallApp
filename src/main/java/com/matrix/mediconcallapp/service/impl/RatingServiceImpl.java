@@ -39,6 +39,7 @@ public class RatingServiceImpl implements RatingService {
     @Override
     public void addRating(HttpServletRequest request, RatingReqDto ratingReqDto) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("rating add method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
         Doctor doctor = doctorRepository.findById(ratingReqDto.getDoctorId())
                 .orElseThrow(DoctorNotFoundException::new);

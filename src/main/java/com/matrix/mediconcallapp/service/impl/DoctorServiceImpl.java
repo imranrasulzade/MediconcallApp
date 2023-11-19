@@ -81,6 +81,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Transactional
     @Override
     public DoctorDto add(DoctorRegistrationRequestDto requestDto) {
+        log.info("doctor add method started by {}", requestDto.getUsername());
         if(userRepository.findByUsername(requestDto.getUsername()).isPresent() ||
                 userRepository.findByEmail(requestDto.getEmail()).isPresent()){
             throw new UserAlreadyExistsException();
@@ -96,10 +97,11 @@ public class DoctorServiceImpl implements DoctorService {
             doctor.setUser(user);
             user.setDoctor(doctor);
             userRepository.save(user);
-            log.info("user registered as a doctor role, username: {}", user.getUsername());
-            return doctorRepository.findById(doctor.getId())
+            DoctorDto doctorDto = doctorRepository.findById(doctor.getId())
                     .map(doctorMapper::toDoctorDto)
                     .orElseThrow(DoctorNotFoundException::new);
+            log.info("user registered as a doctor role, username: {}", user.getUsername());
+            return doctorDto;
         }
     }
 
@@ -134,6 +136,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public void update(HttpServletRequest request, DoctorEditReqDto editReqDto) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("doctor update method started by userId: {}", userId);
         Doctor doctor = doctorRepository.findByUserId(userId)
                 .orElseThrow(DoctorNotFoundException::new);
         editReqDto.setId(doctor.getId());

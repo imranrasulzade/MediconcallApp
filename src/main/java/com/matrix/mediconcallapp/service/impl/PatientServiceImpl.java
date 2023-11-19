@@ -83,6 +83,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public void update(HttpServletRequest request, PatientEditReqDto editReqDto) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("patient update method started by userId: {}", userId);
         Patient patient = patientRepository.findByUserId(userId)
                 .orElseThrow(PatientNotFoundException::new);
         editReqDto.setId(patient.getId());

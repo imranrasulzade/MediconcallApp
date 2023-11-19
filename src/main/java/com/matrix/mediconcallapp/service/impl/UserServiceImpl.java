@@ -45,18 +45,10 @@ public class UserServiceImpl implements UserService {
                 .toList();
     }
 
-    public void changePassword(User user, String newPassword) {
-        user.setPassword(newPassword);
-        userRepository.save(user);
-    }
-
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email)
-                .orElseThrow(UserNotFoundException::new);
-    }
 
     @Override
     public void updateStatus(UserStatusDto userStatusDto) {
+        log.info("user updateStatus method start");
         User user =  userRepository.findById(userStatusDto.getId())
                 .orElseThrow(UserNotFoundException::new);
         user.setStatus(userStatusDto.getUserStatus());
@@ -74,6 +66,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(HttpServletRequest request, UserEditReqDto userEditReqDto) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("user updateUser method started by userId: {}", userId);
         userEditReqDto.setId(userId);
         User user = userRepository.findById(userId)
                 .orElseThrow(UserNotFoundException::new);
@@ -85,6 +78,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void changePassword(HttpServletRequest request, ChangePasswordDto changePasswordDto) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("user changePassword method started by userId: {}", userId);
         User user = userRepository.findById(userId)
                 .orElseThrow(UserNotFoundException::new);
         if(changePasswordDto.getNewPassword().equals(changePasswordDto.getRetryPassword()) &&
@@ -96,6 +90,17 @@ public class UserServiceImpl implements UserService {
             log.error("failed to change password");
             throw new PasswordWrongException();
         }
+    }
+
+
+    public void changePassword(User user, String newPassword) {
+        user.setPassword(newPassword);
+        userRepository.save(user);
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(UserNotFoundException::new);
     }
 
 

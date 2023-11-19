@@ -54,6 +54,7 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void send(HttpServletRequest request, ContactDto contactDto) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("contact send method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
         boolean condition = contactRepository
                 .findByDoctorIdAndPatientId(contactDto.getDoctorId(), patientId).isPresent();
@@ -68,15 +69,16 @@ public class ContactServiceImpl implements ContactService {
             contactDto.setPatientId(patientId);
             contactDto.setStatus(ContactStatus.PENDING.getValue());
             contact = contactMapper.toContact(contactDto);
-            log.info("Contact record created by userId: {}", userId);
         }
         contactRepository.save(contact);
+        log.info("Contact record created by userId: {}", userId);
     }
 
 
     @Override
     public void accept(HttpServletRequest request, Integer patientId){
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("contact accept method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
         Contact contact = contactRepository.findByDoctorIdAndPatientId(doctorId, patientId).
                 orElseThrow(ContactNotFoundException::new);
@@ -92,6 +94,7 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void deleteByDoctor(HttpServletRequest request, Integer patientId){
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("contact deleteByDoctor method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
         Contact contact = contactRepository.findByDoctorIdAndPatientId(doctorId, patientId)
                         .orElseThrow(ContactNotFoundException::new);
@@ -105,6 +108,7 @@ public class ContactServiceImpl implements ContactService {
     @Override
     public void deleteByPatient(HttpServletRequest request, Integer doctorId){
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("contact deleteByPatient method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
         Contact contact = contactRepository.findByDoctorIdAndPatientId(doctorId, patientId)
                 .orElseThrow(ContactNotFoundException::new);

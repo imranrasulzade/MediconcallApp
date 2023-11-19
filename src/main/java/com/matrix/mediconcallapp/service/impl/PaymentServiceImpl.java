@@ -33,6 +33,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public void add(HttpServletRequest request, PaymentReqDto reqDto) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("payment add method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
         String patientBankAccount = patientRepository
                 .findPatientByUserId(userId).getBankAccount();

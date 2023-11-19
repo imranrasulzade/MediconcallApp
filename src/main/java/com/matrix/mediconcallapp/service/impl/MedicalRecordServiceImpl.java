@@ -38,6 +38,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     @Override
     public void addMedicalRecord(HttpServletRequest request, MedicalRecordReqDto medicalRecordReqDto) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("medical-record add method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
         Integer patientId = patientRepository.findById(medicalRecordReqDto.getPatientId())
                 .orElseThrow(PatientNotFoundException::new).getId();
@@ -108,6 +109,7 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     @Override
     public void deleteRecord(HttpServletRequest request, Integer id) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("medical-record delete method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
         MedicalRecord medicalRecord = medicalRecordRepository.findById(id)
                 .orElseThrow(MedicalRecordNotFoundException::new);

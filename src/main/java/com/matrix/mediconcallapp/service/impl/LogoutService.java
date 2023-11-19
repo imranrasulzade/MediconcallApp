@@ -17,6 +17,7 @@ public class LogoutService implements LogoutHandler {
     private final JwtUtil jwtUtil;
     @Override
     public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+        log.info("logout method start");
         String auth = jwtUtil.resolveToken(request);
         if(auth ==null || !auth.startsWith("Bearer ")){
             return;

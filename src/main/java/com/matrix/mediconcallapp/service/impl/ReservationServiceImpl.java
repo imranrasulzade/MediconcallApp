@@ -112,6 +112,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void add(HttpServletRequest request, ReservationRequestDto requestDto) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("reservation add method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
         Patient patient = new Patient();
         patient.setId(patientId);
@@ -139,6 +140,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void changeStatus(HttpServletRequest request, ReservationStatusDto reservationStatusDto) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("reservation changeStatus method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
         Reservation reservation = reservationRepository.findById(reservationStatusDto.getId())
                 .orElseThrow(ReservationNotFoundException::new);
@@ -154,6 +156,7 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public void cancel(HttpServletRequest request, Integer id) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("reservation cancel method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
         Reservation reservation = reservationRepository.findById(id)
                 .orElseThrow(ReservationNotFoundException::new);

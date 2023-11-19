@@ -43,6 +43,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public ResponseEntity<?> authenticate(LoginReq loginReq){
+        log.info("authenticate method started by: {}", loginReq.getUsername());
         try {
             Authentication authentication =
                     authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginReq.getUsername(),
@@ -58,12 +59,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             return ResponseEntity.status(HttpStatus.OK).headers(headers).body(loginRes);
 
         }catch (BadCredentialsException e){
-            log.error("Error due to {} ", e.getMessage());
             ErrorRes errorResponse = new ErrorRes(HttpStatus.BAD_REQUEST,"Invalid username or password");
+            log.error("Error due to {} ", e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }catch (Exception e){
-            log.error("Error due to {} ", e.getMessage());
             ErrorRes errorResponse = new ErrorRes(HttpStatus.BAD_REQUEST, e.getMessage());
+            log.error("Error due to {} ", e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
     }
@@ -71,8 +72,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Override
     public ResponseEntity<String> requestPasswordReset(String email) {
+        log.info("requestPasswordReset method started by: {}", email);
         User user = userService.findByEmail(email);
         if (user == null) {
+            log.info("user is null for requestPasswordReset method");
             return ResponseEntity.badRequest().body("User not found with this email!");
         }
         String token = generateRandomToken();
@@ -87,28 +90,29 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         receiverEmail.setSubject("Mediconcall - recovery password");
         try{
             emailSenderService.sendSimpleEmail(receiverEmail);
-            log.info("token sent with email for recovery password to {}", email);
         }catch (Exception e){
             log.error("Error due to: {}", e.getMessage());
             return ResponseEntity.badRequest().body("Email couldn't sent. Try again.");
         }
-
+        log.info("token sent with email for recovery password to {}", email);
         return ResponseEntity.ok("Ok. Verify token was sent to your email");
     }
 
 
     @Override
     public ResponseEntity<String> resetPassword(RecoveryPassword recoveryPassword) {
+        log.info("resetPassword method started by token: {}", recoveryPassword.getToken());
         if(recoveryPassword.getNewPassword().equals(recoveryPassword.getRetryPassword())){
             PasswordResetToken passwordResetToken = tokenRepository.findByToken(recoveryPassword.getToken());
             if (!isTokenValid(passwordResetToken)) {
+                log.info("Token is not valid");
                 return ResponseEntity.badRequest().body("Ops! Something went wrong!");
             }
             User user = passwordResetToken.getUser();
             userService.changePassword(user, passwordEncoder.encode(recoveryPassword.getNewPassword()));
             log.info("password changed for userId: {}", user.getId());
             deleteToken(passwordResetToken);
-
+            log.info("Password successfully reset by token: {}", recoveryPassword.getToken());
             return ResponseEntity.ok("Password reset successfully!");
         }else
             log.error("passwords entered do not match");

@@ -80,9 +80,11 @@ public class JwtUtil {
             }
             return null;
         } catch (ExpiredJwtException ex) {
+            log.error("Error due to: {}", ex.getMessage());
             req.setAttribute("expired", ex.getMessage());
             throw ex;
         } catch (Exception ex) {
+            log.error("Error due to: {}", ex.getMessage());
             req.setAttribute("invalid", ex.getMessage());
             throw ex;
         }
@@ -110,26 +112,10 @@ public class JwtUtil {
 
 
     public Integer getUserId(Claims claims){
+        log.info("userId find from token");
         return (Integer) claims.get("user_id");
     }
 
-
-    /*
-    public List<String> getRoles2(Claims claims) {
-        Object authoritiesObj = claims.get("authorities");
-        if (authoritiesObj instanceof List<?> authoritiesList) {
-            List<String> roles = new ArrayList<>();
-            for (Object authority : authoritiesList) {
-                if (authority instanceof String) {
-                    roles.add((String) authority);
-                }
-            }
-            return roles;
-        }
-
-        return Collections.emptyList();
-    }
-*/
 
 
     public Collection<GrantedAuthority> extractAuthorities(Claims claims) {
