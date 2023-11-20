@@ -18,7 +18,7 @@ public class DoctorProfileDto {
     private String email;
     private String phone;
     private String placeOfWork;
-    private Date birthday;
+    private String birthday;
     private Integer gender;
     private String address;
     private String info;
