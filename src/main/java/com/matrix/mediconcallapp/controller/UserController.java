@@ -9,9 +9,7 @@ import com.matrix.mediconcallapp.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,42 +21,39 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/info")
-    public ResponseEntity<UserDto> getById(HttpServletRequest request) {
-        return ResponseEntity.ok(userService.getById(request));
+    public UserDto getById(HttpServletRequest request) {
+        return userService.getById(request);
     }
 
 
     @PutMapping(value = "/edit", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Void> updateUser(HttpServletRequest request,
+    public void updateUser(HttpServletRequest request,
                                            @ModelAttribute @Valid UserEditReqDto userEditReqDto){
         userService.updateUser(request, userEditReqDto);
-        return ResponseEntity.ok().build();
     }
 
     @PatchMapping("/password")
-    public ResponseEntity<Void> changePassword(HttpServletRequest request,
+    public void changePassword(HttpServletRequest request,
                                                @RequestBody @Valid ChangePasswordDto changePasswordDto){
         userService.changePassword(request, changePasswordDto);
-        return ResponseEntity.ok().build();
     }
 
 
     @GetMapping("/admin/view-status")
-    public ResponseEntity<List<UserDto>> getUserByStatus(@RequestParam UserStatus userStatus){
-        return ResponseEntity.ok(userService.getUserByStatus(userStatus));
+    public List<UserDto> getUserByStatus(@RequestParam UserStatus userStatus){
+        return userService.getUserByStatus(userStatus);
     }
 
 
 
     @PatchMapping("/admin/status")
-    public ResponseEntity<Void> updateStatus(@Valid @RequestBody UserStatusDto userStatusDto){
+    public void updateStatus(@Valid @RequestBody UserStatusDto userStatusDto){
         userService.updateStatus(userStatusDto);
-        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 
     @GetMapping("/admin/users")
-    public ResponseEntity<List<UserDto>> getAllUser() {
-        return ResponseEntity.ok(userService.getAll());
+    public List<UserDto> getAllUser() {
+        return userService.getAll();
     }
 }

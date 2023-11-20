@@ -12,7 +12,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,21 +25,21 @@ public class ReservationController {
 
 
     @GetMapping("/doctor")
-    public ResponseEntity<List<ReservationDto>> getReservationsOfDoctor(HttpServletRequest request){
-        return ResponseEntity.ok(reservationService.getReservationsOfDoctor(request));
+    public List<ReservationDto> getReservationsOfDoctor(HttpServletRequest request){
+        return reservationService.getReservationsOfDoctor(request);
     }
 
 
     @GetMapping("/patient/doctor-times/{doctorId}")
-    public ResponseEntity<List<TimeDto>> getAllTimes(HttpServletRequest request,
+    public List<TimeDto> getAllTimes(HttpServletRequest request,
                                      @PathVariable @Pattern(regexp = "^[0-9]+$") Integer doctorId){
-        return ResponseEntity.ok(reservationService.getAllTimes(request, doctorId));
+        return reservationService.getAllTimes(request, doctorId);
     }
 
 
     @GetMapping("/patient")
-    public ResponseEntity<List<ReservationDto>> getByPatient(HttpServletRequest request){
-        return ResponseEntity.ok(reservationService.getByPatient(request));
+    public List<ReservationDto> getByPatient(HttpServletRequest request){
+        return reservationService.getByPatient(request);
     }
 
 
@@ -53,32 +52,30 @@ public class ReservationController {
 
 
     @GetMapping("/doctor/view-status")
-    public ResponseEntity<List<ReservationDto>> getByStatus(HttpServletRequest request,
+    public List<ReservationDto> getByStatus(HttpServletRequest request,
                                             @RequestParam ReservationStatus status){
-        return ResponseEntity.ok(reservationService.getByStatus(request, status));
+        return reservationService.getByStatus(request, status);
     }
 
 
 
     @PatchMapping("/doctor/status")
-    public ResponseEntity<Void> changeStatus(HttpServletRequest request,
+    public void changeStatus(HttpServletRequest request,
                                        @RequestBody @Valid ReservationStatusDto reservationStatusDto){
         reservationService.changeStatus(request, reservationStatusDto);
-        return ResponseEntity.ok().build();
     }
 
 
     @PatchMapping("/patient/cancel")
-    public ResponseEntity<Void> cancel(HttpServletRequest request,
+    public void cancel(HttpServletRequest request,
                              @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
         reservationService.cancel(request, id);
-        return ResponseEntity.ok().build();
     }
 
 
     @GetMapping("/admin/reservations")
-    public ResponseEntity<List<ReservationDto>> getReservations(){
-        return ResponseEntity.ok(reservationService.getAllReservations());
+    public List<ReservationDto> getReservations(){
+        return reservationService.getAllReservations();
     }
 
 

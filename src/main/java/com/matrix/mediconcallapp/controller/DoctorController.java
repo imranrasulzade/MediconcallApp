@@ -26,44 +26,43 @@ public class DoctorController {
 
 
     @PostMapping(value = "/register", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<DoctorDto> add(@ModelAttribute @Valid DoctorRegistrationRequestDto requestDto){
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(doctorService.add(requestDto));
+    @ResponseStatus(HttpStatus.CREATED)
+    public DoctorDto add(@ModelAttribute @Valid DoctorRegistrationRequestDto requestDto){
+        return doctorService.add(requestDto);
     }
 
 
     @GetMapping("/info")
-    public ResponseEntity<DoctorDto> getDoctorById(HttpServletRequest request){
-        return ResponseEntity.ok(doctorService.getByIdFromHeader(request));
+    public DoctorDto getDoctorById(HttpServletRequest request){
+        return doctorService.getByIdFromHeader(request);
     }
 
 
     @PutMapping("/edit")
-    public ResponseEntity<Void> update(HttpServletRequest request,
+    public void update(HttpServletRequest request,
                                        @RequestBody @Valid DoctorEditReqDto editReqDto){
         doctorService.update(request, editReqDto);
-        return ResponseEntity.ok().build();
     }
 
 
     @GetMapping("admin/doctor/{id}")
-    public ResponseEntity<DoctorDto> getDoctorById(@PathVariable @Valid Integer id){
-        return ResponseEntity.ok(doctorService.getById(id));
+    public DoctorDto getDoctorById(@PathVariable @Valid Integer id){
+        return doctorService.getById(id);
     }
 
 
     @GetMapping("admin/doctors")
-    public ResponseEntity<List<DoctorDto>> getAll(){
-        return ResponseEntity.ok(doctorService.getAll());
+    public List<DoctorDto> getAll(){
+        return doctorService.getAll();
     }
 
 
 
     @GetMapping("patient/doctor-name")
-    public ResponseEntity<List<DoctorForListProfileDto>> getDoctorByName(@RequestParam @Size(max = 15)
+    public List<DoctorForListProfileDto> getDoctorByName(@RequestParam @Size(max = 15)
                                                                          @NotBlank(message = "Name cannot be empty or null")
                                                                          @Pattern(regexp = "^[A-Za-z]+$") String name){
-        return ResponseEntity.ok(doctorService.getDoctorByName(name));
+        return doctorService.getDoctorByName(name);
     }
 
 

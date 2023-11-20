@@ -10,7 +10,6 @@ import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,30 +22,29 @@ public class PatientController {
 
 
     @GetMapping("/info")
-    public ResponseEntity<PatientDto> get(HttpServletRequest request){
-        return ResponseEntity.ok(patientService.get(request));
+    public PatientDto get(HttpServletRequest request){
+        return patientService.get(request);
     }
 
 
     @PutMapping(value = "/edit", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Void> update(HttpServletRequest request,
+    public void update(HttpServletRequest request,
                                        @ModelAttribute @Valid PatientEditReqDto editReqDto){
         patientService.update(request, editReqDto);
-        return ResponseEntity.ok().build();
     }
 
 
 
     @GetMapping("doctor/patient/{id}")
-    public ResponseEntity<PatientDto> getById(@PathVariable @Pattern(regexp = "^[0-9]+$") Integer id){
-        return ResponseEntity.ok(patientService.getById(id));
+    public PatientDto getById(@PathVariable @Pattern(regexp = "^[0-9]+$") Integer id){
+        return patientService.getById(id);
     }
 
 
 
     @PostMapping(value = "/register", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<PatientDto> add(@ModelAttribute @Valid PatientRegistrationRequestDto requestDto){
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(patientService.add(requestDto));
+    @ResponseStatus(HttpStatus.CREATED)
+    public PatientDto add(@ModelAttribute @Valid PatientRegistrationRequestDto requestDto){
+        return patientService.add(requestDto);
     }
 }

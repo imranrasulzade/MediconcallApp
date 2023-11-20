@@ -9,7 +9,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,47 +20,46 @@ public class ContactController {
 
     private final ContactService contactService;
 
-
     @GetMapping("/patient/contacts")
-    public ResponseEntity<List<ContactResponseDto>> getAllForPatient(HttpServletRequest request){
-        return ResponseEntity.status(HttpStatus.OK).body(contactService.getAllForPatient(request));
+    public List<ContactResponseDto> getAllForPatient(HttpServletRequest request){
+        return contactService.getAllForPatient(request);
     }
 
 
     @GetMapping("/doctor/contacts")
-    public ResponseEntity<List<ContactResponseDto>> getAllForDoctor(HttpServletRequest request){
-        return ResponseEntity.ok(contactService.getAllForDoctor(request));
+    public List<ContactResponseDto> getAllForDoctor(HttpServletRequest request){
+        return contactService.getAllForDoctor(request);
     }
 
     @PostMapping("/patient/request")
-    public ResponseEntity<Void> connect(HttpServletRequest request,
+    @ResponseStatus(HttpStatus.CREATED)
+    public void connect(HttpServletRequest request,
                                         @RequestBody @Valid ContactDto contactDto){
         contactService.send(request, contactDto);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+
     }
 
 
     @PatchMapping("/doctor/accept")
-    public ResponseEntity<Void> accept(HttpServletRequest request,
+    public void accept(HttpServletRequest request,
                                         @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer patientId){
         contactService.accept(request, patientId);
-        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
 
     @DeleteMapping("/doctor")
-    public ResponseEntity<Void> deleteByDoctor(HttpServletRequest request,
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteByDoctor(HttpServletRequest request,
                                                @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer patientId){
         contactService.deleteByDoctor(request, patientId);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 
     @DeleteMapping("/patient")
-    public ResponseEntity<Void> deleteByPatient(HttpServletRequest request,
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteByPatient(HttpServletRequest request,
                                                 @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer doctorId){
         contactService.deleteByPatient(request, doctorId);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
 }

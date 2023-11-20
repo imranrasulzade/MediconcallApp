@@ -8,7 +8,6 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,21 +21,21 @@ public class RatingController {
 
 
     @PostMapping("patient/doctor/rate")
-    public ResponseEntity<Void> addRating(HttpServletRequest request,
+    @ResponseStatus(HttpStatus.CREATED)
+    public void addRating(HttpServletRequest request,
                                           @RequestBody @Valid RatingReqDto reqDto){
         ratingService.addRating(request, reqDto);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 
     @GetMapping("patient/doctor-comments/{id}")
-    public ResponseEntity<List<RatingRespDto>> getRatingByDoctorId(@PathVariable @Pattern(regexp = "^[0-9]+$") Integer id){
-        return ResponseEntity.ok(ratingService.getRatingByDoctorId(id));
+    public List<RatingRespDto> getRatingByDoctorId(@PathVariable @Pattern(regexp = "^[0-9]+$") Integer id){
+        return ratingService.getRatingByDoctorId(id);
     }
 
 
     @GetMapping("doctor")
-    public ResponseEntity<List<RatingRespDto>> getRating(HttpServletRequest request){
-        return ResponseEntity.ok(ratingService.getRating(request));
+    public List<RatingRespDto> getRating(HttpServletRequest request){
+        return ratingService.getRating(request);
     }
 }
