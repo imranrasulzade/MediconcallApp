@@ -2,7 +2,9 @@ package com.matrix.mediconcallapp.service.impl;
 
 import com.matrix.mediconcallapp.entity.Contact;
 import com.matrix.mediconcallapp.enums.ContactStatus;
+import com.matrix.mediconcallapp.exception.child.ContactAlreadyExistsException;
 import com.matrix.mediconcallapp.exception.child.ContactNotFoundException;
+import com.matrix.mediconcallapp.exception.child.DoctorNotFoundException;
 import com.matrix.mediconcallapp.mapper.ContactMapper;
 import com.matrix.mediconcallapp.model.dto.request.ContactDto;
 import com.matrix.mediconcallapp.model.dto.response.ContactResponseDto;
@@ -56,15 +58,18 @@ public class ContactServiceImpl implements ContactService {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         log.info("contact send method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
+        doctorRepository.findById(contactDto.getDoctorId()).orElseThrow(DoctorNotFoundException::new);
         boolean condition = contactRepository
                 .findByDoctorIdAndPatientId(contactDto.getDoctorId(), patientId).isPresent();
         Contact contact;
         if(condition){
             contact = contactRepository.findByDoctorIdAndPatientId(contactDto.getDoctorId(), patientId)
                     .orElseThrow(ContactNotFoundException::new);
+            if(contact.getStatus() == ContactStatus.ACCEPTED.getValue()){
+                throw new ContactAlreadyExistsException();
+            }
             contact.setStatus(ContactStatus.PENDING.getValue());
             contact.setDeletedByUser(null);
-            log.info("Contact record updated by userId: {}", userId);
         }else {
             contactDto.setPatientId(patientId);
             contactDto.setStatus(ContactStatus.PENDING.getValue());
