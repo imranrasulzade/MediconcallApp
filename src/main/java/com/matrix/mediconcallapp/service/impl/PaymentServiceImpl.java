@@ -51,40 +51,52 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public List<TransactionDto> getAllByReceiver(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("payment getAllByReceiver method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        return paymentRepository.findByDoctorId(doctorId)
+        List<TransactionDto> transactionDtoList = paymentRepository.findByDoctorId(doctorId)
                 .orElseThrow(TransactionNotFoundException::new)
                 .stream()
                 .map(paymentMapper::toTransactionDto)
                 .toList();
+        log.info("payment getAllByReceiver method done by userId: {}", userId);
+        return transactionDtoList;
     }
 
     @Override
     public List<TransactionDto> getAllBySender(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("payment getAllBySender method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
-        return paymentRepository.findByPatientId(patientId)
+        List<TransactionDto> transactionDtoList = paymentRepository.findByPatientId(patientId)
                 .orElseThrow(TransactionNotFoundException::new)
                 .stream()
                 .map(paymentMapper::toTransactionDto)
                 .toList();
+        log.info("payment getAllBySender method done by userId: {}", userId);
+        return transactionDtoList;
     }
 
     @Override
     public TransactionDto getByReceiver(HttpServletRequest request, Integer id) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("payment getByReceiver method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        return paymentRepository.findByIdAndDoctorId(id, doctorId)
+        TransactionDto transactionDto = paymentRepository.findByIdAndDoctorId(id, doctorId)
                 .map(paymentMapper::toTransactionDto)
                 .orElseThrow(TransactionNotFoundException::new);
+        log.info("payment getByReceiver method done by userId: {}", userId);
+        return transactionDto;
     }
 
     @Override
     public TransactionDto getBySender(HttpServletRequest request, Integer id) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("payment getBySender method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
-        return paymentRepository.findByIdAndPatientId(id, patientId)
+        TransactionDto transactionDto = paymentRepository.findByIdAndPatientId(id, patientId)
                 .map(paymentMapper::toTransactionDto)
                 .orElseThrow(TransactionNotFoundException::new);
+        log.info("payment getBySender method done by userId: {}", userId);
+        return transactionDto;
     }
 }

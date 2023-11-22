@@ -44,8 +44,8 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public List<TimeDto> getAllTimes(HttpServletRequest request, Integer doctorId){
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("reservation getAllTimes method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
-
         Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(DoctorNotFoundException::new);
         boolean condition = contactRepository.findAcceptedContact(doctorId, patientId).isPresent();
         if(condition){
@@ -76,8 +76,10 @@ public class ReservationServiceImpl implements ReservationService {
                     t.setDoctorId(doctor.getId());
                     t.setDoctorName(doctor.getUser().getName());
                 }
+                log.info("reservation getAllTimes method done by userId: {}", userId);
                 return timeDtoList;
             }
+            log.info("reservation getAllTimes method done by userId: {}", userId);
             return checkedList;
         }else{
             log.error("times could not be given because contact could not be found, userId: {}", userId);
@@ -86,26 +88,35 @@ public class ReservationServiceImpl implements ReservationService {
     }
     @Override
     public List<ReservationDto> getAllReservations() throws ReservationNotFoundException {
-        return reservationRepository.findAll()
+        log.info("reservation getAllReservations method started");
+        List<ReservationDto> reservationDtoList = reservationRepository.findAll()
                 .stream().map(reservationMapper::toReservationDto).toList();
+        log.info("reservation getAllReservations method done");
+        return reservationDtoList;
     }
 
     @Override
     public List<ReservationDto> getReservationsOfDoctor(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("reservation getReservationsOfDoctor method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        return reservationRepository.findByDoctorId(doctorId)
+        List<ReservationDto> reservationDtoList = reservationRepository.findByDoctorId(doctorId)
                 .orElseThrow(ReservationNotFoundException::new)
                 .stream().map(reservationMapper::toReservationDto).toList();
+        log.info("reservation getReservationsOfDoctor method done by userId: {}", userId);
+        return reservationDtoList;
     }
 
     @Override
     public List<ReservationDto> getByPatient(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("reservation getByPatient method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
-        return reservationRepository.findByPatientId(patientId)
+        List<ReservationDto> reservationDtoList = reservationRepository.findByPatientId(patientId)
                 .orElseThrow(ReservationNotFoundException::new)
                 .stream().map(reservationMapper::toReservationDto).toList();
+        log.info("reservation getByPatient method done by userId: {}", userId);
+        return reservationDtoList;
     }
 
     @Transactional
@@ -135,10 +146,13 @@ public class ReservationServiceImpl implements ReservationService {
     @Override
     public List<ReservationDto> getByStatus(HttpServletRequest request, ReservationStatus status) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("reservation getByStatus method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        return reservationRepository.findByStatusAndDoctorId(status, doctorId)
+        List<ReservationDto> reservationDtoList = reservationRepository.findByStatusAndDoctorId(status, doctorId)
                 .orElseThrow(ReservationNotFoundException::new)
                 .stream().map(reservationMapper::toReservationDto).toList();
+        log.info("reservation getByStatus method done by userId: {}", userId);
+        return reservationDtoList;
     }
 
     @Override

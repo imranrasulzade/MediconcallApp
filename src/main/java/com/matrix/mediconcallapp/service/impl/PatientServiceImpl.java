@@ -67,17 +67,23 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public PatientDto get(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("patient get method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
-        return patientRepository.findById(patientId)
+        PatientDto patientDto = patientRepository.findById(patientId)
                 .map(patientMapper::toPatientDto)
                 .orElseThrow(PatientNotFoundException::new);
+        log.info("patient get method done by userId: {}", userId);
+        return patientDto;
     }
 
     @Override
     public PatientDto getById(Integer patientId) {
-        return patientRepository.findById(patientId)
+        log.info("patient getById method started for patientId: {}", patientId);
+        PatientDto patientDto = patientRepository.findById(patientId)
                 .map(patientMapper::toPatientDto)
                 .orElseThrow(PatientNotFoundException::new);
+        log.info("patient getById method done for patientId: {}", patientId);
+        return patientDto;
     }
 
     @Override

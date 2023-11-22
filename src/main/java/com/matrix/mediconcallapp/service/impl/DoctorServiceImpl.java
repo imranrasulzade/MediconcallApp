@@ -45,26 +45,31 @@ public class DoctorServiceImpl implements DoctorService {
     private final JwtUtil jwtUtil;
     @Override
     public DoctorDto getById(Integer id) {
+        log.info("Doctor getById method started for {}", id);
         DoctorDto doctorDto = doctorRepository.findById(id)
                 .map(doctorMapper::toDoctorDto)
                 .orElseThrow(DoctorNotFoundException::new);
         doctorDto.setAvgRating(ratingRepository.findAverageRatingByDoctorId(id).orElse(0d));
+        log.info("Doctor getById method done {}", id);
         return doctorDto;
     }
 
     @Override
     public DoctorDto getByIdFromHeader(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("doctor getByIdFromHeader method started by userId: {}", userId);
         Integer id = doctorRepository.findDoctorByUserId(userId).getId();
         DoctorDto doctorDto = doctorRepository.findById(id)
                 .map(doctorMapper::toDoctorDto)
                 .orElseThrow(DoctorNotFoundException::new);
         doctorDto.setAvgRating(ratingRepository.findAverageRatingByDoctorId(id).orElse(0d));
+        log.info("doctor getByIdFromHeader method started by userId: {}", userId);
         return doctorDto;
     }
 
     @Override
     public List<DoctorDto> getAll() {
+        log.info("doctor getAll method started");
         List<Doctor> doctors = doctorRepository.findAll();
         List<DoctorDto> doctorDtos = new ArrayList<>();
 
@@ -74,7 +79,7 @@ public class DoctorServiceImpl implements DoctorService {
             doctorDto.setAvgRating(avgRating);
             doctorDtos.add(doctorDto);
         }
-
+        log.info("doctor getAll method done");
         return doctorDtos;
     }
 
@@ -107,15 +112,20 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public List<DoctorForListProfileDto> getDoctorByName(String name) {
-        return userRepository.findDoctorsByNameLike(name)
+        log.info("doctor getDoctorByName method started for {}", name);
+        List<DoctorForListProfileDto> doctorForListProfileDtoList = userRepository
+                .findDoctorsByNameLike(name)
                 .orElseThrow(DoctorNotFoundException::new).stream()
                 .map(userMapper::toDoctorForListProfileDto)
                 .toList();
+        log.info("doctor getDoctorByName method done for {}", name);
+        return doctorForListProfileDtoList;
     }
 
     @Override
     public ResponseEntity<?> getDoctorByIdForPatient(HttpServletRequest request, Integer doctorId) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("doctor getDoctorByIdForPatient method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
         Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(DoctorNotFoundException::new);
         Integer contactCondition = contactRepository
@@ -125,10 +135,12 @@ public class DoctorServiceImpl implements DoctorService {
         if(contactCondition > 0){
             DoctorProfileDto doctorProfileDto = doctorMapper.toDoctorProfileDto(doctor);
             doctorProfileDto.setAvgRating(avgRating);
+            log.info("doctor getDoctorByIdForPatient method done by userId: {}", userId);
             return ResponseEntity.ok(doctorProfileDto);
         }else {
             SimpleDoctorProfileDto simpleDoctorProfileDto = doctorMapper.toSimpleDoctorProfileDto(doctor);
             simpleDoctorProfileDto.setAvgRating(avgRating);
+            log.info("doctor getDoctorByIdForPatient method done by userId: {}", userId);
             return ResponseEntity.ok(simpleDoctorProfileDto);
         }
     }

@@ -61,21 +61,29 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     @Override
     public List<MedicalRecordResp> getRecordsByDoctor(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("medicalRecord getRecordsByDoctor method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        return medicalRecordRepository.findByDoctorIdAndStatus(doctorId, 1)
+        List<MedicalRecordResp> medicalRecordRespList = medicalRecordRepository
+                .findByDoctorIdAndStatus(doctorId, 1)
                 .orElseThrow(MedicalRecordNotFoundException::new).stream()
                 .map(medicalRecordMapper::toMedicalRecordResp).toList();
+        log.info("medicalRecord getRecordsByDoctor method done by userId: {}", userId);
+        return medicalRecordRespList;
     }
 
     @Override
     public List<MedicalRecordResp> getRecordsByDoctorForPatient(HttpServletRequest request, Integer patientId) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("medicalRecord getRecordsByDoctorForPatient method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
         boolean condition = patientRepository.findById(patientId).isPresent();
         if(condition){
-            return medicalRecordRepository.findByDoctorIdAndPatientIdAndStatus(doctorId, patientId, 1)
+            List<MedicalRecordResp> medicalRecordRespList = medicalRecordRepository
+                    .findByDoctorIdAndPatientIdAndStatus(doctorId, patientId, 1)
                     .orElseThrow(MedicalRecordNotFoundException::new).stream()
                     .map(medicalRecordMapper::toMedicalRecordResp).toList();
+            log.info("medicalRecord getRecordsByDoctorForPatient method done by userId: {}", userId);
+            return medicalRecordRespList;
 
         }else {
             throw new PatientNotFoundException();
@@ -85,21 +93,29 @@ public class MedicalRecordServiceImpl implements MedicalRecordService {
     @Override
     public List<MedicalRecordResp> getRecordsByPatient(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("medicalRecord getRecordsByPatient method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
-        return medicalRecordRepository.findByPatientIdAndStatus(patientId, 1)
+        List<MedicalRecordResp> medicalRecordRespList = medicalRecordRepository
+                .findByPatientIdAndStatus(patientId, 1)
                 .orElseThrow(MedicalRecordNotFoundException::new).stream()
                 .map(medicalRecordMapper::toMedicalRecordResp).toList();
+        log.info("medicalRecord getRecordsByPatient method done by userId: {}", userId);
+        return medicalRecordRespList;
     }
 
     @Override
     public List<MedicalRecordResp> getRecordsByPatientForDoctor(HttpServletRequest request, Integer doctorId) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("medicalRecord getRecordsByPatientForDoctor method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
         boolean condition = doctorRepository.findById(doctorId).isPresent();
         if(condition){
-            return medicalRecordRepository.findByDoctorIdAndPatientIdAndStatus(doctorId, patientId, 1)
+            List<MedicalRecordResp> medicalRecordRespList = medicalRecordRepository
+                    .findByDoctorIdAndPatientIdAndStatus(doctorId, patientId, 1)
                     .orElseThrow(MedicalRecordNotFoundException::new).stream()
                     .map(medicalRecordMapper::toMedicalRecordResp).toList();
+            log.info("medicalRecord getRecordsByPatientForDoctor method done by userId: {}", userId);
+            return medicalRecordRespList;
 
         }else {
             throw new DoctorNotFoundException();

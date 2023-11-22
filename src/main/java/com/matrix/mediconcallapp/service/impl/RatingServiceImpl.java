@@ -71,19 +71,25 @@ public class RatingServiceImpl implements RatingService {
     @Override
     public List<RatingRespDto> getRating(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("rating getRating method started by userId: {}", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        return ratingRepository.findByRatedDoctorId(doctorId)
+        List<RatingRespDto> ratingRespDtoList = ratingRepository.findByRatedDoctorId(doctorId)
                 .orElseThrow(RatingNotFoundException::new)
                 .stream().map(ratingMapper::toRatingRespDto).toList();
+        log.info("rating getRating method done by userId: {}", userId);
+        return ratingRespDtoList;
     }
 
     @Override
     public List<RatingRespDto> getRatingByDoctorId(Integer id) {
+        log.info("rating getRatingByDoctorId method started for id: {}", id);
         Doctor doctor = doctorRepository.findById(id)
                 .orElseThrow(DoctorNotFoundException::new);
-        return ratingRepository.findByRatedDoctorId(doctor.getId())
+        List<RatingRespDto> ratingRespDtoList = ratingRepository.findByRatedDoctorId(doctor.getId())
                 .orElseThrow(RatingNotFoundException::new)
                 .stream().map(ratingMapper::toRatingRespDto).toList();
+        log.info("rating getRatingByDoctorId method done for id: {}", id);
+        return ratingRespDtoList;
     }
 
 

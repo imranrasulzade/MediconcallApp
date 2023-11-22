@@ -32,17 +32,23 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto getById(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
-        return userRepository.findById(userId)
+        log.info("user getById method started by userId: {}", userId);
+        UserDto userDto = userRepository.findById(userId)
                 .map(userMapper::toUserDto)
                 .orElseThrow(UserNotFoundException::new);
+        log.info("user getById method done by userId: {}", userId);
+        return userDto;
     }
 
     @Override
     public List<UserDto> getAll() {
-        return userRepository.findAll()
+        log.info("user getAll method started");
+        List<UserDto> userDtoList = userRepository.findAll()
                 .stream()
                 .map(userMapper::toUserDto)
                 .toList();
+        log.info("user getAll method done");
+        return userDtoList;
     }
 
 
@@ -58,9 +64,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<UserDto> getUserByStatus(UserStatus userStatus) {
-         return userRepository.findByStatus(userStatus)
-                 .orElseThrow(UserNotFoundException::new)
-                 .stream().map(userMapper::toUserDto).toList();
+        log.info("user getUserByStatus method started for userStatus: {}", userStatus.name());
+        List<UserDto> userDtoList = userRepository.findByStatus(userStatus)
+                .orElseThrow(UserNotFoundException::new)
+                .stream().map(userMapper::toUserDto).toList();
+        log.info("user getUserByStatus method done for userStatus: {}", userStatus.name());
+         return userDtoList;
     }
 
     @Override

@@ -34,22 +34,29 @@ public class ContactServiceImpl implements ContactService {
 
     public List<ContactResponseDto> getAllForPatient(HttpServletRequest request){
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("contact getAllForPatient method started by userId:{} ", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
-        return contactRepository.findByPatientIdAndStatus(patientId, ContactStatus.ACCEPTED.getValue())
+        List<ContactResponseDto> contactResponseDtoList = contactRepository
+                .findByPatientIdAndStatus(patientId, ContactStatus.ACCEPTED.getValue())
                 .stream()
                 .map(contactMapper::toContactResponseDto)
                 .toList();
+        log.info("contact getAllForPatient method done by userId: {}", userId);
+        return contactResponseDtoList;
 
     }
 
     @Override
     public List<ContactResponseDto> getAllForDoctor(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        log.info("contact getAllForDoctor method started by userId:{} ", userId);
         Integer doctorId = doctorRepository.findDoctorByUserId(userId).getId();
-        return contactRepository.findByDoctor(doctorId)
+        List<ContactResponseDto> contactResponseDtoList = contactRepository.findByDoctor(doctorId)
                 .stream()
                 .map(contactMapper::toContactResponseDto)
                 .toList();
+        log.info("contact getAllForDoctor method done by userId: {}", userId);
+        return contactResponseDtoList;
     }
 
     @Transactional
