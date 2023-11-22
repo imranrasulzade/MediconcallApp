@@ -112,7 +112,6 @@ public class JwtUtil {
 
 
     public Integer getUserId(Claims claims){
-        log.info("userId find from token");
         return (Integer) claims.get("user_id");
     }
 
