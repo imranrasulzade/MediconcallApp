@@ -63,7 +63,7 @@ public class DoctorServiceImpl implements DoctorService {
                 .map(doctorMapper::toDoctorDto)
                 .orElseThrow(DoctorNotFoundException::new);
         doctorDto.setAvgRating(ratingRepository.findAverageRatingByDoctorId(id).orElse(0d));
-        log.info("doctor getByIdFromHeader method started by userId: {}", userId);
+        log.info("doctor getByIdFromHeader method done by userId: {}", userId);
         return doctorDto;
     }
 
