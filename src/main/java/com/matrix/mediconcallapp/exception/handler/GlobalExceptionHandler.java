@@ -84,9 +84,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorDetails> userException(Exception ex, WebRequest webRequest) {
         log.error("Exception -> EXCEPTION {}", ex.getMessage());
-        ErrorDetails errorDetails = ErrorDetails.builder().timestamp(new Date()).status(HttpStatus.BAD_REQUEST.value())
-                .error(HttpStatus.BAD_REQUEST.getReasonPhrase()).message(ex.getMessage()).errorDetail(ex.getMessage())
-                .path(webRequest.getDescription(false)).build();
+        ErrorDetails errorDetails = ErrorDetails.builder()
+                .timestamp(new Date())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
+                .message(ex.getMessage())
+                .errorDetail(ex.getMessage())
+                .path(webRequest.getDescription(false))
+                .build();
         return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
