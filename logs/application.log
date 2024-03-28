@@ -1,0 +1,30 @@
+15:22:52.480 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.9 with PID 6220 (C:\Users\imran\IdeaProjects\MediConCallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+15:22:52.485 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+15:22:52.486 [INFO] [main] c.m.m.MediConCallAppApplication - No active profile set, falling back to 1 default profile: "default"
+15:22:58.498 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+15:22:59.886 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 8.051 seconds (process running for 9.094)
+15:23:00.023 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+15:23:00.031 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+15:23:16.320 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+15:23:16.599 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+15:23:16.610 [INFO] [http-nio-8080-exec-1] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+15:23:16.632 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+15:25:13.014 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+15:25:13.017 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+15:26:15.322 [INFO] [http-nio-8080-exec-9] c.m.m.s.impl.ReservationServiceImpl - reservation getAllReservations method started
+15:26:15.334 [INFO] [http-nio-8080-exec-9] c.m.m.s.impl.ReservationServiceImpl - reservation getAllReservations method done
+15:26:47.570 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+15:26:47.689 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+15:26:47.689 [INFO] [http-nio-8080-exec-1] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+15:26:47.689 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+15:28:01.261 [INFO] [http-nio-8080-exec-3] c.m.m.s.impl.PatientServiceImpl - patient get method started by userId: 2
+15:28:01.301 [INFO] [http-nio-8080-exec-3] c.m.m.s.impl.PatientServiceImpl - patient get method done by userId: 2
+15:28:26.903 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.DoctorServiceImpl - doctor getDoctorByName method started for a
+15:28:26.928 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.DoctorServiceImpl - doctor getDoctorByName method done for a
+15:28:55.256 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.DoctorServiceImpl - doctor getDoctorByIdForPatient method started by userId: 2
+15:28:55.267 [ERROR] [http-nio-8080-exec-7] c.m.m.e.h.GlobalExceptionHandler - NotFoundException ->  Doctor Not found!
+15:31:01.382 [ERROR] [http-nio-8080-exec-9] c.m.m.e.h.GlobalExceptionHandler - RuntimeException -> MethodArgumentNotValidException Validation failed for argument [1] in public void com.matrix.mediconcallapp.controller.PatientController.update(jakarta.servlet.http.HttpServletRequest,com.matrix.mediconcallapp.model.dto.request.PatientEditReqDto): [Field error in object 'patientEditReqDto' on field 'bankAccount': rejected value [3454]; codes [Size.patientEditReqDto.bankAccount,Size.bankAccount,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [patientEditReqDto.bankAccount,bankAccount]; arguments []; default message [bankAccount],16,16]; default message [size must be between 16 and 16]] 
+15:32:59.893 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+15:32:59.898 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+15:34:20.912 [INFO] [http-nio-8080-exec-10] c.m.m.s.impl.PatientServiceImpl - add method start imran
+15:34:20.912 [ERROR] [http-nio-8080-exec-10] c.m.m.e.h.GlobalExceptionHandler - ConflictException ->  User already exists  - conflict!
