@@ -9,9 +9,9 @@ import com.matrix.mediconcallapp.model.dto.request.RecoveryPassword;
 import com.matrix.mediconcallapp.model.dto.response.ErrorRes;
 import com.matrix.mediconcallapp.model.dto.response.LoginRes;
 import com.matrix.mediconcallapp.repository.PasswordResetTokenRepository;
-import com.matrix.mediconcallapp.service.AuthenticationService;
-import com.matrix.mediconcallapp.service.EmailSenderService;
-import com.matrix.mediconcallapp.service.UserService;
+import com.matrix.mediconcallapp.service.service_interfaces.AuthenticationService;
+import com.matrix.mediconcallapp.service.service_interfaces.EmailSenderService;
+import com.matrix.mediconcallapp.service.service_interfaces.UserService;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +24,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;

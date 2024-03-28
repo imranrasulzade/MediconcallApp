@@ -2,7 +2,7 @@ package com.matrix.mediconcallapp.controller;
 
 import com.matrix.mediconcallapp.model.dto.request.RatingReqDto;
 import com.matrix.mediconcallapp.model.dto.response.RatingRespDto;
-import com.matrix.mediconcallapp.service.RatingService;
+import com.matrix.mediconcallapp.service.service_interfaces.RatingService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;

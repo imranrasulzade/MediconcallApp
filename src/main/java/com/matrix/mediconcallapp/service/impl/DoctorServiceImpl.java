@@ -15,7 +15,7 @@ import com.matrix.mediconcallapp.model.dto.response.DoctorForListProfileDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorProfileDto;
 import com.matrix.mediconcallapp.model.dto.response.SimpleDoctorProfileDto;
 import com.matrix.mediconcallapp.repository.*;
-import com.matrix.mediconcallapp.service.DoctorService;
+import com.matrix.mediconcallapp.service.service_interfaces.DoctorService;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

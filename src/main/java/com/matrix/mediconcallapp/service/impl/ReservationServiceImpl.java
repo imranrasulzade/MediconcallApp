@@ -14,7 +14,7 @@ import com.matrix.mediconcallapp.repository.ContactRepository;
 import com.matrix.mediconcallapp.repository.DoctorRepository;
 import com.matrix.mediconcallapp.repository.PatientRepository;
 import com.matrix.mediconcallapp.repository.ReservationRepository;
-import com.matrix.mediconcallapp.service.ReservationService;
+import com.matrix.mediconcallapp.service.service_interfaces.ReservationService;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import com.matrix.mediconcallapp.service.utility.TimeUtility;
 import jakarta.servlet.http.HttpServletRequest;

@@ -13,7 +13,7 @@ import com.matrix.mediconcallapp.model.dto.response.PatientDto;
 import com.matrix.mediconcallapp.model.dto.request.PatientRegistrationRequestDto;
 import com.matrix.mediconcallapp.repository.PatientRepository;
 import com.matrix.mediconcallapp.repository.UserRepository;
-import com.matrix.mediconcallapp.service.PatientService;
+import com.matrix.mediconcallapp.service.service_interfaces.PatientService;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

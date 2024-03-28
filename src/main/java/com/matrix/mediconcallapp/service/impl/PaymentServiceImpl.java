@@ -9,7 +9,7 @@ import com.matrix.mediconcallapp.model.dto.response.TransactionDto;
 import com.matrix.mediconcallapp.repository.DoctorRepository;
 import com.matrix.mediconcallapp.repository.PatientRepository;
 import com.matrix.mediconcallapp.repository.PaymentRepository;
-import com.matrix.mediconcallapp.service.PaymentService;
+import com.matrix.mediconcallapp.service.service_interfaces.PaymentService;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

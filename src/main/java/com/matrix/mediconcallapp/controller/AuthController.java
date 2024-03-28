@@ -1,7 +1,7 @@
 package com.matrix.mediconcallapp.controller;
 
 import com.matrix.mediconcallapp.model.dto.request.*;
-import com.matrix.mediconcallapp.service.AuthenticationService;
+import com.matrix.mediconcallapp.service.service_interfaces.AuthenticationService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

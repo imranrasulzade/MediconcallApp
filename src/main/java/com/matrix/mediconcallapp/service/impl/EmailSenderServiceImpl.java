@@ -1,7 +1,7 @@
 package com.matrix.mediconcallapp.service.impl;
 
 import com.matrix.mediconcallapp.model.dto.request.Email;
-import com.matrix.mediconcallapp.service.EmailSenderService;
+import com.matrix.mediconcallapp.service.service_interfaces.EmailSenderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;

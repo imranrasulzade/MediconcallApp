@@ -2,7 +2,7 @@ package com.matrix.mediconcallapp.controller;
 
 import com.matrix.mediconcallapp.model.dto.request.PaymentReqDto;
 import com.matrix.mediconcallapp.model.dto.response.TransactionDto;
-import com.matrix.mediconcallapp.service.PaymentService;
+import com.matrix.mediconcallapp.service.service_interfaces.PaymentService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Pattern;

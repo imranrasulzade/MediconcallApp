@@ -5,7 +5,7 @@ import com.matrix.mediconcallapp.model.dto.request.ReservationRequestDto;
 import com.matrix.mediconcallapp.model.dto.request.ReservationStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.ReservationDto;
 import com.matrix.mediconcallapp.model.dto.response.TimeDto;
-import com.matrix.mediconcallapp.service.ReservationService;
+import com.matrix.mediconcallapp.service.service_interfaces.ReservationService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

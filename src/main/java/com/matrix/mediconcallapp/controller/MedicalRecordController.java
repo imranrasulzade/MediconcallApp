@@ -2,7 +2,7 @@ package com.matrix.mediconcallapp.controller;
 
 import com.matrix.mediconcallapp.model.dto.request.MedicalRecordReqDto;
 import com.matrix.mediconcallapp.model.dto.response.MedicalRecordResp;
-import com.matrix.mediconcallapp.service.MedicalRecordService;
+import com.matrix.mediconcallapp.service.service_interfaces.MedicalRecordService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

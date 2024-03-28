@@ -5,7 +5,7 @@ import com.matrix.mediconcallapp.model.dto.request.ChangePasswordDto;
 import com.matrix.mediconcallapp.model.dto.request.UserEditReqDto;
 import com.matrix.mediconcallapp.model.dto.request.UserStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
-import com.matrix.mediconcallapp.service.UserService;
+import com.matrix.mediconcallapp.service.service_interfaces.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

@@ -14,7 +14,7 @@ import com.matrix.mediconcallapp.repository.DoctorRepository;
 import com.matrix.mediconcallapp.repository.MedicalRecordRepository;
 import com.matrix.mediconcallapp.repository.PatientRepository;
 import com.matrix.mediconcallapp.repository.RatingRepository;
-import com.matrix.mediconcallapp.service.RatingService;
+import com.matrix.mediconcallapp.service.service_interfaces.RatingService;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;

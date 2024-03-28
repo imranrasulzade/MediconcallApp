@@ -1,4 +1,4 @@
-package com.matrix.mediconcallapp.service;
+package com.matrix.mediconcallapp.service.service_interfaces;
 
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.enums.UserStatus;
