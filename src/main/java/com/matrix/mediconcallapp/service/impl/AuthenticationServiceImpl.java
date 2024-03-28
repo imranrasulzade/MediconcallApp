@@ -24,11 +24,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -78,18 +80,21 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             log.info("user is null for requestPasswordReset method");
             return ResponseEntity.badRequest().body("User not found with this email!");
         }
-        String token = generateRandomToken();
+        Integer userId = user.getId();
+        Optional<PasswordResetToken> passwordResetToken = tokenRepository.findByUserId(userId);
+        passwordResetToken.ifPresent(tokenRepository::delete);
+        String newToken = generateRandomToken();
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.MINUTE, 5);
         Date expiryDate = calendar.getTime();
-        createToken(user, token, expiryDate);
 
         Email receiverEmail = new Email();
         receiverEmail.setReceiver(email);
-        receiverEmail.setText(token);
+        receiverEmail.setText(newToken);
         receiverEmail.setSubject("Mediconcall - recovery password");
         try{
             emailSenderService.sendSimpleEmail(receiverEmail);
+            createToken(user, newToken, expiryDate);
         }catch (Exception e){
             log.error("Error due to: {}", e.getMessage());
             return ResponseEntity.badRequest().body("Email couldn't sent. Try again.");
@@ -126,6 +131,10 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
     private void deleteToken(PasswordResetToken token) {
         tokenRepository.delete(token);
+    }
+
+    private void deleteTokenByUserId(Integer userId){
+        tokenRepository.deleteByUserId(userId);
     }
 
     private String generateRandomToken() {
