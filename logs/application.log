@@ -28,3 +28,10 @@
 15:32:59.898 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
 15:34:20.912 [INFO] [http-nio-8080-exec-10] c.m.m.s.impl.PatientServiceImpl - add method start imran
 15:34:20.912 [ERROR] [http-nio-8080-exec-10] c.m.m.e.h.GlobalExceptionHandler - ConflictException ->  User already exists  - conflict!
+09:58:01.096 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.9 with PID 15520 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+09:58:01.122 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+09:58:01.123 [INFO] [main] c.m.m.MediConCallAppApplication - No active profile set, falling back to 1 default profile: "default"
+09:58:12.168 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+09:58:14.111 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 14.106 seconds (process running for 16.269)
+09:58:14.323 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+09:58:14.346 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
