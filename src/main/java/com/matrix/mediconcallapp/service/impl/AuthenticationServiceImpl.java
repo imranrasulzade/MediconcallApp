@@ -22,14 +22,13 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -52,10 +51,14 @@ public class AuthenticationServiceImpl implements AuthenticationService {
             log.info("authentication details: {}", authentication);
             String username = authentication.getName();
             User user = new User(username,"");
+            Set<String> roles = new HashSet<>();
+            for (GrantedAuthority grantedAuthority : authentication.getAuthorities()) {
+                roles.add(grantedAuthority.getAuthority());
+            }
             String token = jwtUtil.createToken(user);
             HttpHeaders headers = new HttpHeaders();
             headers.add(HttpHeaders.AUTHORIZATION, "Bearer " + token);
-            LoginRes loginRes = new LoginRes(username,token);
+            LoginRes loginRes = new LoginRes(username,token, roles);
             log.info("user: {} logged in",  user.getUsername());
             return ResponseEntity.status(HttpStatus.OK).headers(headers).body(loginRes);
 

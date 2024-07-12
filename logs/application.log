@@ -90,3 +90,23 @@
 04:33:29.045 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
 04:33:29.049 [INFO] [http-nio-8080-exec-3] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
 04:33:29.050 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+04:51:39.478 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 18740 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+04:51:39.484 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+04:51:39.484 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+04:51:45.584 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+04:51:46.829 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 7.976 seconds (process running for 8.973)
+04:51:46.961 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+04:51:46.967 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+04:52:11.885 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+04:52:11.938 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+04:56:44.955 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 11044 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+04:56:44.958 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+04:56:44.959 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+04:56:51.969 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+04:56:54.590 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 10.236 seconds (process running for 11.21)
+04:56:54.933 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+04:56:54.974 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+04:57:16.579 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+04:57:16.913 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+04:57:16.946 [INFO] [http-nio-8080-exec-8] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+04:57:16.954 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
