@@ -1,0 +1,52 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: imran
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: username
+                  type: varchar(255)
+              - column:
+                  name: password
+                  type: varchar(255)
+              - column:
+                  name: email
+                  type: varchar(255)
+              - column:
+                  name: phone
+                  type: varchar(255)
+              - column:
+                  name: name
+                  type: varchar(255)
+              - column:
+                  name: surname
+                  type: varchar(255)
+              - column:
+                  name: gender
+                  type: int
+              - column:
+                  name: birthday
+                  type: datetime(6)
+              - column:
+                  name: address
+                  type: varchar(255)
+              - column:
+                  name: info
+                  type: varchar(255)
+              - column:
+                  name: photo_url
+                  type: varchar(255)
+              - column:
+                  name: status
+                  type: varchar(255)
+                  constraints:
+                    nullable: false

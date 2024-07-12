@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 8
+      author: imran
+      changes:
+        - createTable:
+            tableName: reservation
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: patient_id
+                  type: int
+              - column:
+                  name: doctor_id
+                  type: int
+              - column:
+                  name: date
+                  type: datetime(6)
+              - column:
+                  name: status
+                  type: varchar(20)
+                  constraints:
+                    nullable: true
+        - addForeignKeyConstraint:
+            baseColumnNames: doctor_id
+            baseTableName: reservation
+            constraintName: FKmh96fg24x7cdhex42l051fmhp
+            referencedColumnNames: id
+            referencedTableName: doctor
+        - addForeignKeyConstraint:
+            baseColumnNames: patient_id
+            baseTableName: reservation
+            constraintName: FKrrjvkskqqxgliwmqgbl3ijc4n
+            referencedColumnNames: id
+            referencedTableName: patient

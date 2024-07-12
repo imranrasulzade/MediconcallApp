@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 6
+      author: imran
+      changes:
+        - createTable:
+            tableName: patient
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: int
+              - column:
+                  name: document_path
+                  type: varchar(255)
+              - column:
+                  name: bank_account
+                  type: varchar(255)
+              - column:
+                  name: status
+                  type: int
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            columnNames: user_id
+            constraintName: UK_6i3fp8wcdxk473941mbcvdao4
+            tableName: patient
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: patient
+            constraintName: FKp6ttmfrxo2ejiunew4ov805uc
+            referencedColumnNames: id
+            referencedTableName: user

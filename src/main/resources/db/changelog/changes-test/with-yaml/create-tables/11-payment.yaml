@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 11
+      author: imran
+      changes:
+        - createTable:
+            tableName: payment
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: sender_id
+                  type: int
+              - column:
+                  name: sender_card
+                  type: varchar(255)
+              - column:
+                  name: receiver_id
+                  type: int
+              - column:
+                  name: receiver_card
+                  type: varchar(255)
+              - column:
+                  name: amount
+                  type: int
+              - column:
+                  name: timestamp
+                  type: datetime(6)
+              - column:
+                  name: status
+                  type: int
+        - addForeignKeyConstraint:
+            baseColumnNames: sender_id
+            baseTableName: payment
+            constraintName: FKd8cr6jjfhvdilg46qoha5a1i2
+            referencedColumnNames: id
+            referencedTableName: patient
+        - addForeignKeyConstraint:
+            baseColumnNames: receiver_id
+            baseTableName: payment
+            constraintName: FKqxpr1ceum6yiv4erb3bermswm
+            referencedColumnNames: id
+            referencedTableName: doctor

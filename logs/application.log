@@ -35,3 +35,58 @@
 09:58:14.111 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 14.106 seconds (process running for 16.269)
 09:58:14.323 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
 09:58:14.346 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+01:48:46.223 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 13900 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+01:48:46.225 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+01:48:46.226 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+01:48:53.250 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+01:48:54.495 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 8.807 seconds (process running for 10.032)
+01:48:54.674 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+01:48:54.685 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+02:41:37.957 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 2584 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+02:41:37.959 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+02:41:37.960 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+02:41:44.793 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+02:41:45.983 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 8.641 seconds (process running for 9.643)
+02:41:46.117 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+02:41:46.124 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+02:42:42.866 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+02:42:43.161 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+02:42:43.184 [INFO] [http-nio-8080-exec-5] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+02:42:43.198 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+02:44:47.757 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 15524 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+02:44:47.760 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+02:44:47.760 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+02:45:42.274 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 20164 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+02:45:42.277 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+02:45:42.278 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+02:46:35.180 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 6980 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+02:46:35.183 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+02:46:35.184 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+02:46:41.182 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+02:46:42.334 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 7.658 seconds (process running for 8.542)
+02:46:42.519 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+02:46:42.530 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+02:48:34.774 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 17804 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+02:48:34.778 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+02:48:34.778 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+02:50:22.911 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 21416 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+02:50:22.913 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+02:50:22.914 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+04:30:47.415 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 15720 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+04:30:47.418 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+04:30:47.419 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+04:30:53.230 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+04:30:54.370 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 7.54 seconds (process running for 8.616)
+04:30:54.572 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+04:30:54.577 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+04:31:19.246 [INFO] [http-nio-8080-exec-4] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+04:31:19.536 [INFO] [http-nio-8080-exec-4] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+04:31:19.564 [INFO] [http-nio-8080-exec-4] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+04:31:19.577 [INFO] [http-nio-8080-exec-4] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+04:32:43.544 [ERROR] [http-nio-8080-exec-5] c.m.m.e.h.GlobalExceptionHandler - RuntimeException -> MethodArgumentNotValidException Validation failed for argument [0] in public com.matrix.mediconcallapp.model.dto.response.PatientDto com.matrix.mediconcallapp.controller.PatientController.add(com.matrix.mediconcallapp.model.dto.request.PatientRegistrationRequestDto) with 2 errors: [Field error in object 'patientRegistrationRequestDto' on field 'phone': rejected value [+994107133033]; codes [Size.patientRegistrationRequestDto.phone,Size.phone,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [patientRegistrationRequestDto.phone,phone]; arguments []; default message [phone],12,10]; default message [boyut '10' ile '12' arasında olmalı]] [Field error in object 'patientRegistrationRequestDto' on field 'phone': rejected value [+994107133033]; codes [Pattern.patientRegistrationRequestDto.phone,Pattern.phone,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [patientRegistrationRequestDto.phone,phone]; arguments []; default message [phone],[Ljakarta.validation.constraints.Pattern$Flag;@73da10bc,^[0-9]+$]; default message ['^[0-9]+$' ile eşleşmeli]] 
+04:33:01.616 [INFO] [http-nio-8080-exec-7] c.m.m.s.impl.PatientServiceImpl - add method start imran
+04:33:01.794 [INFO] [http-nio-8080-exec-7] c.m.m.s.impl.PatientServiceImpl - users registered as patients, username: imran
+04:33:28.921 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+04:33:29.045 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+04:33:29.049 [INFO] [http-nio-8080-exec-3] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+04:33:29.050 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in

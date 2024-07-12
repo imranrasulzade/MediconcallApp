@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: 7
+      author: imran
+      changes:
+        - createTable:
+            tableName: contact
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: patient_id
+                  type: int
+              - column:
+                  name: doctor_id
+                  type: int
+              - column:
+                  name: status
+                  type: int
+              - column:
+                  name: deleted_by_user
+                  type: int
+        - addForeignKeyConstraint:
+            baseColumnNames: doctor_id
+            baseTableName: contact
+            constraintName: FK1pii9c87wntl182twslyyt2h8
+            referencedColumnNames: id
+            referencedTableName: doctor
+        - addForeignKeyConstraint:
+            baseColumnNames: patient_id
+            baseTableName: contact
+            constraintName: FK2ygsb9t4baokpt9iqb5b9pdcc
+            referencedColumnNames: id
+            referencedTableName: patient

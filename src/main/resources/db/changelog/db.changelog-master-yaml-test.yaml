@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes-test/with-yaml/create-tables/01-user.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/create-tables/02-authorities.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/create-tables/03-password-reset-token.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/create-tables/04-user-authorities.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/create-tables/05-doctor.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/create-tables/06-patient.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/create-tables/07-contact.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/create-tables/08-reservation.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/create-tables/09-medical-record.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/create-tables/10-rating.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/create-tables/11-payment.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/insert-rows/001-insert-authorities.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/insert-rows/002-insert-admin.yaml
+
+  - include:
+      file: db/changelog/changes-test/with-yaml/insert-rows/003-insert-admin-auth.yaml
