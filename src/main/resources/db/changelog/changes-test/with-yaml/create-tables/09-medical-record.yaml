@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 9
+      author: imran
+      changes:
+        - createTable:
+            tableName: medicalrecord
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: patient_id
+                  type: int
+              - column:
+                  name: doctor_id
+                  type: int
+              - column:
+                  name: diagnosis
+                  type: varchar(255)
+              - column:
+                  name: treatment
+                  type: varchar(255)
+              - column:
+                  name: document_path
+                  type: varchar(255)
+              - column:
+                  name: timestamp
+                  type: datetime(6)
+              - column:
+                  name: status
+                  type: int
+        - addForeignKeyConstraint:
+            baseColumnNames: doctor_id
+            baseTableName: medicalrecord
+            constraintName: FKmp3yuvputf4s2yb7f9428vna6
+            referencedColumnNames: id
+            referencedTableName: doctor
+        - addForeignKeyConstraint:
+            baseColumnNames: patient_id
+            baseTableName: medicalrecord
+            constraintName: FKsvmdups3ln5phnc5qlvn93lmm
+            referencedColumnNames: id
+            referencedTableName: patient

@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: 10
+      author: imran
+      changes:
+        - createTable:
+            tableName: rating
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: rater_patient_id
+                  type: int
+              - column:
+                  name: rated_doctor_id
+                  type: int
+              - column:
+                  name: rating_value
+                  type: int
+              - column:
+                  name: comment
+                  type: varchar(255)
+              - column:
+                  name: timestamp
+                  type: datetime(6)
+              - column:
+                  name: status
+                  type: int
+
+        - sql:
+            dbms: mysql
+            splitStatements: true
+            endDelimiter: ";"
+            sql: |
+              ALTER TABLE rating
+              ADD CONSTRAINT FKmdaioukhokxkdgbedygx8evp7
+              FOREIGN KEY (rater_patient_id) REFERENCES patient(id);
+
+              ALTER TABLE rating
+              ADD CONSTRAINT FKoybjeft2su3t5uagauxxxmr9d
+              FOREIGN KEY (rated_doctor_id) REFERENCES doctor(id);
+
+              ALTER TABLE rating
+              ADD CONSTRAINT check_rating_value CHECK (rating_value <= 5);

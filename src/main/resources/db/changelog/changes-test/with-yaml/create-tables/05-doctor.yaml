@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: imran
+      changes:
+        - createTable:
+            tableName: doctor
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: int
+              - column:
+                  name: specialty
+                  type: varchar(255)
+              - column:
+                  name: academic_title
+                  type: varchar(255)
+              - column:
+                  name: qualification
+                  type: varchar(255)
+              - column:
+                  name: place_of_work
+                  type: varchar(255)
+              - column:
+                  name: bank_account
+                  type: varchar(16)
+              - column:
+                  name: status
+                  type: int
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            columnNames: user_id
+            constraintName: UK_3q0j5r6i4e9k3afhypo6uljph
+            tableName: doctor
+        - addForeignKeyConstraint:
+            baseColumnNames: user_id
+            baseTableName: doctor
+            constraintName: FK9roto9ydtnjfkixvexq5vxyl5
+            referencedColumnNames: id
+            referencedTableName: user
