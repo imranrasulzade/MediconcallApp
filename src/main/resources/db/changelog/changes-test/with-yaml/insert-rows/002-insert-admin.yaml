@@ -1,0 +1,43 @@
+databaseChangeLog:
+  - changeSet:
+      id: 13
+      author: imran
+      changes:
+        - insert:
+            tableName: user
+            columns:
+              - column:
+                  name: username
+                  value: 'admin'
+              - column:
+                  name: password
+                  value: '$2a$10$buP1YFnhFWAhvONKgZH0muT7X.irpXklsiaR/C/YRQfEaA5EI1aOe'  # hashed password
+              - column:
+                  name: name
+                  value: 'Admin'
+              - column:
+                  name: surname
+                  value: 'AdminSurname'
+              - column:
+                  name: email
+                  value: 'admin@example.com'
+              - column:
+                  name: phone
+                  value: '123456789'
+              - column:
+                  name: birthday
+                  value: '2000-01-01'
+              - column:
+                  name: gender
+              - column:
+                  name: address
+                  value: 'Admin Address'
+              - column:
+                  name: info
+                  value: 'Admin Info'
+              - column:
+                  name: photo_url
+                  value: 'admin.jpg'
+              - column:
+                  name: status
+                  value: 'ACTIVE'
