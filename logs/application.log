@@ -110,3 +110,104 @@
 04:57:16.913 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
 04:57:16.946 [INFO] [http-nio-8080-exec-8] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
 04:57:16.954 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+19:01:31.151 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 16892 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+19:01:31.154 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+19:01:31.154 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+19:01:38.189 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+19:01:39.483 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 9.092 seconds (process running for 10.836)
+19:01:39.650 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+19:01:39.657 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+19:11:39.496 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+19:11:39.500 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+19:16:57.216 [INFO] [http-nio-8080-exec-5] c.m.m.s.impl.PatientServiceImpl - add method start imran2
+19:16:57.489 [INFO] [http-nio-8080-exec-5] c.m.m.s.impl.PatientServiceImpl - users registered as patients, username: imran2
+19:19:38.637 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 17048 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+19:19:38.640 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+19:19:38.641 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+19:19:44.791 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+19:19:46.042 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 7.968 seconds (process running for 8.796)
+19:19:46.243 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+19:19:46.249 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+19:20:53.644 [INFO] [http-nio-8080-exec-1] c.m.m.s.impl.PatientServiceImpl - add method start imran2
+19:20:53.683 [ERROR] [http-nio-8080-exec-1] c.m.m.e.h.GlobalExceptionHandler - ConflictException ->  User already exists  - conflict!
+19:23:39.201 [INFO] [http-nio-8080-exec-5] c.m.m.s.impl.PatientServiceImpl - add method start imran2
+19:23:39.383 [INFO] [http-nio-8080-exec-5] c.m.m.s.impl.PatientServiceImpl - users registered as patients, username: imran2
+19:29:46.058 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+19:29:46.065 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+19:34:22.335 [INFO] [http-nio-8080-exec-3] c.m.m.s.impl.PatientServiceImpl - add method start test
+19:34:22.499 [INFO] [http-nio-8080-exec-3] c.m.m.s.impl.PatientServiceImpl - users registered as patients, username: test
+19:35:36.423 [ERROR] [http-nio-8080-exec-7] c.m.m.e.h.GlobalExceptionHandler - RuntimeException -> MethodArgumentNotValidException Validation failed for argument [0] in public com.matrix.mediconcallapp.model.dto.response.PatientDto com.matrix.mediconcallapp.controller.PatientController.add(com.matrix.mediconcallapp.model.dto.request.PatientRegistrationRequestDto) with 4 errors: [Field error in object 'patientRegistrationRequestDto' on field 'phone': rejected value [cscds]; codes [Size.patientRegistrationRequestDto.phone,Size.phone,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [patientRegistrationRequestDto.phone,phone]; arguments []; default message [phone],12,10]; default message [size must be between 10 and 12]] [Field error in object 'patientRegistrationRequestDto' on field 'bankAccount': rejected value [adsds]; codes [Size.patientRegistrationRequestDto.bankAccount,Size.bankAccount,Size.java.lang.String,Size]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [patientRegistrationRequestDto.bankAccount,bankAccount]; arguments []; default message [bankAccount],16,16]; default message [size must be between 16 and 16]] [Field error in object 'patientRegistrationRequestDto' on field 'bankAccount': rejected value [adsds]; codes [Pattern.patientRegistrationRequestDto.bankAccount,Pattern.bankAccount,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [patientRegistrationRequestDto.bankAccount,bankAccount]; arguments []; default message [bankAccount],[Ljakarta.validation.constraints.Pattern$Flag;@2de5da65,^[0-9]+$]; default message [must match "^[0-9]+$"]] [Field error in object 'patientRegistrationRequestDto' on field 'phone': rejected value [cscds]; codes [Pattern.patientRegistrationRequestDto.phone,Pattern.phone,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [patientRegistrationRequestDto.phone,phone]; arguments []; default message [phone],[Ljakarta.validation.constraints.Pattern$Flag;@2de5da65,^[0-9]+$]; default message [must match "^[0-9]+$"]] 
+19:39:03.783 [INFO] [http-nio-8080-exec-9] c.m.m.s.impl.PatientServiceImpl - add method start salam
+19:39:03.926 [INFO] [http-nio-8080-exec-9] c.m.m.s.impl.PatientServiceImpl - users registered as patients, username: salam
+19:39:46.056 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+19:39:46.063 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+19:49:46.066 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+19:49:46.073 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+19:59:46.084 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+19:59:46.089 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+20:04:05.304 [INFO] [http-nio-8080-exec-3] c.m.m.s.impl.PatientServiceImpl - add method start baba
+20:04:05.538 [INFO] [http-nio-8080-exec-3] c.m.m.s.impl.PatientServiceImpl - users registered as patients, username: baba
+20:09:46.054 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+20:09:46.058 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+20:19:46.062 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+20:19:46.071 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+20:29:46.053 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+20:29:46.082 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+20:39:46.065 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+20:39:46.071 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+20:49:46.057 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+20:49:46.064 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+20:51:35.287 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.DoctorServiceImpl - doctor add method started by doctor
+20:51:35.503 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.DoctorServiceImpl - user registered as a doctor role, username: doctor
+20:55:12.767 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: doctor
+20:55:12.914 [ERROR] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - Error due to User is not active 
+20:56:46.884 [ERROR] [http-nio-8080-exec-5] c.m.m.e.h.GlobalExceptionHandler - RuntimeException -> MethodArgumentNotValidException Validation failed for argument [0] in public com.matrix.mediconcallapp.model.dto.response.DoctorDto com.matrix.mediconcallapp.controller.DoctorController.add(com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto) with 2 errors: [Field error in object 'doctorRegistrationRequestDto' on field 'surname': rejected value [doc1ov]; codes [Pattern.doctorRegistrationRequestDto.surname,Pattern.surname,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [doctorRegistrationRequestDto.surname,surname]; arguments []; default message [surname],[Ljakarta.validation.constraints.Pattern$Flag;@2de5da65,^[A-Za-z]+$]; default message [must match "^[A-Za-z]+$"]] [Field error in object 'doctorRegistrationRequestDto' on field 'name': rejected value [doc1]; codes [Pattern.doctorRegistrationRequestDto.name,Pattern.name,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [doctorRegistrationRequestDto.name,name]; arguments []; default message [name],[Ljakarta.validation.constraints.Pattern$Flag;@2de5da65,^[A-Za-z]+$]; default message [must match "^[A-Za-z]+$"]] 
+20:59:37.670 [ERROR] [http-nio-8080-exec-4] c.m.m.e.h.GlobalExceptionHandler - RuntimeException -> MethodArgumentNotValidException Validation failed for argument [0] in public com.matrix.mediconcallapp.model.dto.response.DoctorDto com.matrix.mediconcallapp.controller.DoctorController.add(com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto) with 2 errors: [Field error in object 'doctorRegistrationRequestDto' on field 'surname': rejected value [qqq1]; codes [Pattern.doctorRegistrationRequestDto.surname,Pattern.surname,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [doctorRegistrationRequestDto.surname,surname]; arguments []; default message [surname],[Ljakarta.validation.constraints.Pattern$Flag;@2de5da65,^[A-Za-z]+$]; default message [must match "^[A-Za-z]+$"]] [Field error in object 'doctorRegistrationRequestDto' on field 'name': rejected value [qqq1]; codes [Pattern.doctorRegistrationRequestDto.name,Pattern.name,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [doctorRegistrationRequestDto.name,name]; arguments []; default message [name],[Ljakarta.validation.constraints.Pattern$Flag;@2de5da65,^[A-Za-z]+$]; default message [must match "^[A-Za-z]+$"]] 
+20:59:46.071 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+20:59:46.077 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+21:03:13.982 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.DoctorServiceImpl - doctor add method started by qqqq
+21:03:14.123 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.DoctorServiceImpl - user registered as a doctor role, username: qqqq
+21:06:47.368 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+21:06:47.658 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+21:06:47.764 [INFO] [http-nio-8080-exec-8] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+21:06:47.819 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+21:07:02.590 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+21:07:02.623 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+21:09:46.053 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+21:09:46.056 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+21:19:46.054 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+21:19:46.058 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+21:29:46.171 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+21:29:46.181 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+21:32:50.879 [INFO] [http-nio-8080-exec-4] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+21:32:51.064 [INFO] [http-nio-8080-exec-4] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+21:32:51.072 [INFO] [http-nio-8080-exec-4] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+21:32:51.099 [INFO] [http-nio-8080-exec-4] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+21:32:57.878 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+21:32:57.995 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+21:32:57.999 [INFO] [http-nio-8080-exec-6] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+21:32:58.001 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+21:35:39.026 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+21:35:39.168 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+21:35:39.175 [INFO] [http-nio-8080-exec-8] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+21:35:39.178 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+21:36:40.783 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+21:36:40.937 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+21:36:40.940 [INFO] [http-nio-8080-exec-1] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+21:36:40.941 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+21:37:01.648 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+21:37:01.758 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+21:37:01.761 [INFO] [http-nio-8080-exec-2] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+21:37:01.762 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+21:37:54.032 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+21:37:54.142 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+21:37:54.147 [INFO] [http-nio-8080-exec-5] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+21:37:54.149 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+21:38:14.393 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+21:38:14.754 [ERROR] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - Error due to Bad credentials 
+21:38:30.803 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+21:38:30.914 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+21:38:30.918 [INFO] [http-nio-8080-exec-6] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+21:38:30.919 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+21:39:46.058 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+21:39:46.062 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
