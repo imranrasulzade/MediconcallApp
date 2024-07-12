@@ -1,0 +1,42 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changes-test/with-sql/create-tables/01-user.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/create-tables/02-authorities.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/create-tables/03-password-reset-token.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/create-tables/04-user-authorities.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/create-tables/05-doctor.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/create-tables/06-patient.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/create-tables/07-contact.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/create-tables/08-reservation.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/create-tables/09-medical-record.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/create-tables/10-rating.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/create-tables/11-payment.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/insert-rows/001-insert-authorities.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/insert-rows/002-insert-admin.sql
+
+  - include:
+      file: db/changelog/changes-test/with-sql/insert-rows/003-insert-admin-auth.sql
