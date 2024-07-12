@@ -211,3 +211,441 @@
 21:38:30.919 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
 21:39:46.058 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
 21:39:46.062 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+22:28:09.412 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 18392 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+22:28:09.422 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+22:28:09.426 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+22:28:28.501 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+22:28:31.708 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 23.761 seconds (process running for 25.667)
+22:28:31.983 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+22:28:31.994 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+22:38:31.731 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+22:38:31.738 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+22:52:41.636 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired tokens deleted
+22:52:41.650 [INFO] [scheduling-1] c.m.m.schedulers.ScheduledService - expired reservations deleted
+22:55:02.514 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 4492 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+22:55:02.519 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+22:55:02.522 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+22:55:11.937 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+22:55:13.170 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 11.886 seconds (process running for 13.991)
+22:55:44.500 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+22:55:44.885 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+22:55:44.909 [INFO] [http-nio-8080-exec-3] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+22:55:44.931 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+22:56:14.662 [INFO] [http-nio-8080-exec-9] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+22:56:14.775 [INFO] [http-nio-8080-exec-9] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+22:56:14.778 [INFO] [http-nio-8080-exec-9] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+22:56:14.779 [INFO] [http-nio-8080-exec-9] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+23:00:48.660 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+23:00:48.771 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+23:00:48.775 [INFO] [http-nio-8080-exec-3] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+23:00:48.777 [INFO] [http-nio-8080-exec-3] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+23:02:17.380 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 9012 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+23:02:17.383 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+23:02:17.383 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+23:02:22.992 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+23:02:24.139 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 7.324 seconds (process running for 8.084)
+23:04:48.550 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 14132 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+23:04:48.552 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+23:04:48.553 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+23:04:53.952 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+23:04:55.139 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 7.071 seconds (process running for 7.828)
+23:07:24.031 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 17776 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+23:07:24.033 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+23:07:24.034 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+23:07:29.764 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+23:07:30.855 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 7.375 seconds (process running for 8.142)
+23:09:13.798 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+23:09:14.244 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+23:09:14.281 [INFO] [http-nio-8080-exec-2] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+23:09:14.315 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+23:10:19.371 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+23:10:19.425 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+23:10:44.061 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+23:10:44.067 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+23:11:23.908 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 18348 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+23:11:23.910 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+23:11:23.911 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+23:11:29.718 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+23:11:30.811 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 7.481 seconds (process running for 8.289)
+23:21:02.819 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 17724 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+23:21:02.822 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+23:21:02.822 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+23:21:09.318 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+23:21:10.542 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 8.246 seconds (process running for 9.136)
+23:21:26.408 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+23:21:26.510 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+23:26:46.711 [INFO] [http-nio-8080-exec-4] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+23:26:47.073 [INFO] [http-nio-8080-exec-4] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+23:26:47.083 [INFO] [http-nio-8080-exec-4] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+23:26:47.095 [INFO] [http-nio-8080-exec-4] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+23:26:47.132 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+23:26:47.138 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+23:30:15.000 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+23:30:15.109 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+23:30:15.112 [INFO] [http-nio-8080-exec-7] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+23:30:15.114 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+23:30:15.151 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+23:30:15.158 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+23:33:48.862 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 10636 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+23:33:48.864 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+23:33:48.865 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+23:33:55.911 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+23:33:57.224 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 9.039 seconds (process running for 11.042)
+23:44:20.885 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+23:44:21.245 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+23:44:21.264 [INFO] [http-nio-8080-exec-1] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+23:44:21.286 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+23:44:21.396 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+23:44:21.423 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+23:47:23.970 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+23:47:24.085 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+23:47:24.090 [INFO] [http-nio-8080-exec-5] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+23:47:24.091 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+23:47:24.116 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+23:47:24.122 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+23:49:56.525 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+23:49:56.637 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+23:49:56.640 [INFO] [http-nio-8080-exec-6] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+23:49:56.641 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+23:49:56.675 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+23:49:56.681 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+23:50:23.979 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+23:50:24.095 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+23:50:24.099 [INFO] [http-nio-8080-exec-2] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+23:50:24.100 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+23:50:24.132 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+23:50:24.138 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:01:28.431 [INFO] [http-nio-8080-exec-9] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+00:01:28.619 [INFO] [http-nio-8080-exec-9] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+00:01:28.627 [INFO] [http-nio-8080-exec-9] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+00:01:28.646 [INFO] [http-nio-8080-exec-9] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+00:01:28.760 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:01:28.775 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:01:34.351 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+00:01:34.474 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+00:01:34.479 [INFO] [http-nio-8080-exec-10] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+00:01:34.486 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+00:01:34.517 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+00:01:34.527 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+00:01:50.894 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+00:01:51.010 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+00:01:51.015 [INFO] [http-nio-8080-exec-5] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+00:01:51.017 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+00:01:51.047 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:01:51.055 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:22:46.638 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+00:22:47.146 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+00:22:47.252 [ERROR] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - Error due to Bad credentials 
+00:22:47.458 [ERROR] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - Error due to Bad credentials 
+00:22:53.771 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+00:22:53.888 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+00:22:53.894 [INFO] [http-nio-8080-exec-2] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+00:22:53.901 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+00:22:53.949 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:22:53.965 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:23:07.369 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+00:23:07.483 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+00:23:07.486 [INFO] [http-nio-8080-exec-7] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+00:23:07.488 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+00:23:07.514 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+00:23:07.521 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+00:23:51.692 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+00:23:51.701 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+00:23:52.387 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+00:23:52.394 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+00:23:55.203 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+00:23:55.208 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+00:35:29.343 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+00:35:29.467 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+00:35:29.470 [INFO] [http-nio-8080-exec-8] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+00:35:29.472 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+00:35:29.502 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:35:29.507 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:36:04.985 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:36:04.991 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:36:07.687 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:36:07.695 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:51:57.627 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:51:57.797 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:54:45.984 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:54:45.997 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:55:09.244 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+00:55:09.398 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+00:55:09.402 [INFO] [http-nio-8080-exec-10] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+00:55:09.404 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+00:55:09.439 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:55:09.444 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:55:15.339 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:55:15.345 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:55:50.275 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:55:50.284 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:55:53.164 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:55:53.172 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:55:54.205 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:55:54.214 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+00:57:05.271 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+00:57:05.279 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+01:09:43.311 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+01:09:43.359 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+01:09:45.932 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+01:09:45.939 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+01:09:51.762 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+01:09:51.878 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+01:09:51.881 [INFO] [http-nio-8080-exec-7] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+01:09:51.882 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+01:09:51.913 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+01:09:51.917 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+01:10:15.874 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+01:10:15.996 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+01:10:15.999 [INFO] [http-nio-8080-exec-1] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+01:10:15.999 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+01:10:16.032 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+01:10:16.057 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+01:10:58.988 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+01:10:59.111 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+01:10:59.116 [INFO] [http-nio-8080-exec-5] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+01:10:59.117 [INFO] [http-nio-8080-exec-5] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+01:10:59.151 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:10:59.156 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:11:58.574 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+01:11:58.687 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+01:11:58.690 [INFO] [http-nio-8080-exec-10] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+01:11:58.691 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+01:11:58.719 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:11:58.726 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:12:09.134 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:12:09.139 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:12:14.783 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:12:14.790 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:12:17.012 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:12:17.019 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:12:58.282 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:12:58.292 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:13:14.030 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:13:14.034 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:13:18.596 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:13:18.602 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:13:38.260 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:13:38.339 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:13:40.523 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:13:40.534 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:13:49.201 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:13:49.209 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:13:55.570 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:13:55.575 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:14:09.889 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:14:09.896 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:14:29.264 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:14:29.270 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:14:30.864 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:14:30.870 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:16:30.265 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:16:30.272 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:17:27.315 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:17:27.322 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:18:23.632 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:18:23.639 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:18:30.854 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:18:30.861 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:18:53.795 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:18:53.800 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:20:26.175 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: doctor
+01:20:26.377 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=doctor, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_DOCTOR]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_DOCTOR]]
+01:20:26.393 [INFO] [http-nio-8080-exec-10] c.m.m.service.utility.JwtUtil - Jwt token created for user: doctor
+01:20:26.397 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - user: doctor logged in
+01:21:15.236 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 8
+01:21:15.242 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 8
+01:22:02.008 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+01:22:02.018 [INFO] [http-nio-8080-exec-5] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+01:23:57.867 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+01:23:57.991 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+01:23:57.994 [INFO] [http-nio-8080-exec-8] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+01:23:57.996 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+01:23:58.027 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:23:58.033 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:24:58.909 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+01:24:59.106 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+01:24:59.109 [INFO] [http-nio-8080-exec-2] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+01:24:59.110 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+01:25:14.492 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:25:14.498 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:25:49.258 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:25:49.263 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:26:02.969 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:26:02.978 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:26:12.137 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:26:12.146 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:27:11.457 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:27:11.462 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:27:33.519 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:27:33.529 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:28:07.255 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:28:07.260 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:28:35.001 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:28:35.006 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:28:37.183 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:28:37.190 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:28:51.007 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:28:51.012 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:28:58.256 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:28:58.261 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:29:03.263 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:29:03.268 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:29:13.553 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:29:13.560 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:29:24.260 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:29:24.266 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:29:31.852 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:29:31.857 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:29:44.072 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:29:44.076 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:29:49.261 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:29:49.265 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:30:01.280 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:30:01.287 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:30:22.266 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:30:22.272 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:31:16.259 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:31:16.266 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:32:13.902 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:32:13.918 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:32:28.260 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:32:28.275 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:34:01.262 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:34:01.298 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:38:12.270 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:38:12.276 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:38:15.098 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:38:15.105 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:38:45.263 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:38:45.267 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:38:53.267 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:38:53.274 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:50:49.194 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 9948 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+01:50:49.197 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+01:50:49.198 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+01:50:55.673 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+01:50:56.958 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 8.554 seconds (process running for 10.472)
+01:50:57.636 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:50:57.756 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:53:27.671 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 9148 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+01:53:27.673 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+01:53:27.673 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+01:53:33.791 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+01:53:35.065 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 7.962 seconds (process running for 9.393)
+01:53:36.094 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:53:36.207 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:55:08.422 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:55:08.431 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:55:40.580 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:55:40.593 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:55:47.260 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:55:47.270 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:58:08.270 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:58:08.284 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+01:58:11.591 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+01:58:11.603 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:00:01.783 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:00:01.796 [INFO] [http-nio-8080-exec-4] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:03:29.271 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:03:29.283 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:05:53.512 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:05:53.524 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:07:30.589 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:07:30.605 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:07:36.933 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:07:36.951 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:07:45.495 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+02:07:45.880 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+02:07:45.891 [INFO] [http-nio-8080-exec-6] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+02:07:45.909 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+02:07:45.947 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:07:45.957 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:07:55.996 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+02:07:56.115 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+02:07:56.118 [INFO] [http-nio-8080-exec-7] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+02:07:56.120 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+02:07:56.154 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:07:56.165 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:08:13.144 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+02:08:13.261 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+02:08:13.265 [INFO] [http-nio-8080-exec-8] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+02:08:13.266 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+02:08:13.293 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:08:13.303 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:08:38.843 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:08:38.855 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:08:41.925 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:08:41.937 [INFO] [http-nio-8080-exec-3] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:09:59.770 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:09:59.780 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:10:05.633 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:10:05.643 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:10:48.820 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:10:48.835 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:10:59.571 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:10:59.577 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:11:14.277 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:11:14.287 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:11:29.256 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:11:29.264 [INFO] [http-nio-8080-exec-10] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:15:06.206 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:15:06.213 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:15:08.091 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:15:08.103 [INFO] [http-nio-8080-exec-6] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:15:10.079 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:15:10.088 [INFO] [http-nio-8080-exec-1] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:15:10.897 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:15:10.905 [INFO] [http-nio-8080-exec-2] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:15:12.465 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+02:15:12.472 [INFO] [http-nio-8080-exec-7] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+02:32:30.374 [ERROR] [http-nio-8080-exec-6] c.m.m.e.h.GlobalExceptionHandler - Exception -> EXCEPTION Required request parameter 'email' for method parameter type String is not present
+02:34:18.449 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - requestPasswordReset method started by: imran.asus25@gmail.com
+02:34:24.069 [ERROR] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - Error due to: Mail server connection failed. Failed messages: com.sun.mail.util.MailConnectException: Couldn't connect to host, port: smtp.gmail.com, 587; timeout 5000;
+  nested exception is:
+	java.net.SocketTimeoutException: Connect timed out
+02:35:35.962 [INFO] [main] c.m.m.MediConCallAppApplication - Starting MediConCallAppApplication using Java 17.0.10 with PID 6400 (C:\Users\imran\IdeaProjects\MediconcallApp\build\classes\java\main started by imran in C:\Users\imran\IdeaProjects\MediConCallApp)
+02:35:35.965 [DEBUG] [main] c.m.m.MediConCallAppApplication - Running with Spring Boot v3.1.2, Spring v6.0.11
+02:35:35.965 [INFO] [main] c.m.m.MediConCallAppApplication - The following 1 profile is active: "test"
+02:35:43.465 [DEBUG] [main] c.m.m.filter.JwtAuthorizationFilter - Filter 'jwtAuthorizationFilter' configured for use
+02:35:44.690 [INFO] [main] c.m.m.MediConCallAppApplication - Started MediConCallAppApplication in 9.332 seconds (process running for 10.158)
+02:35:53.815 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - requestPasswordReset method started by: imran.asus25@gmail.com
+02:35:56.128 [INFO] [http-nio-8080-exec-1] c.m.m.s.impl.EmailSenderServiceImpl - Successfully sent email to imran.asus25@gmail.com
+02:35:56.196 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - Token created for forgot password function
+02:35:56.196 [INFO] [http-nio-8080-exec-1] c.m.m.s.i.AuthenticationServiceImpl - token sent with email for recovery password to imran.asus25@gmail.com
+02:53:37.463 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - resetPassword method started by token: 251cbe14497d8b18f342b46dc7e88382
+02:53:37.468 [ERROR] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - passwords entered do not match
+02:53:37.481 [ERROR] [http-nio-8080-exec-8] c.m.m.e.h.GlobalExceptionHandler - BadRequestException ->  Retry password do not matching new password
+02:55:03.620 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - resetPassword method started by token: 251cbe14497d8b18f342b46dc7e88382
+02:55:04.048 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - password changed for userId: 2
+02:55:04.082 [INFO] [http-nio-8080-exec-6] c.m.m.s.i.AuthenticationServiceImpl - Password successfully reset by token: 251cbe14497d8b18f342b46dc7e88382
+03:05:27.900 [INFO] [http-nio-8080-exec-4] c.m.m.s.i.AuthenticationServiceImpl - requestPasswordReset method started by: adsadas@aasc.cs
+03:05:27.954 [ERROR] [http-nio-8080-exec-4] c.m.m.e.h.GlobalExceptionHandler - NotFoundException ->  User Not found!
+03:09:04.482 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - requestPasswordReset method started by: imran.asus25@gmail.com
+03:09:07.014 [INFO] [http-nio-8080-exec-10] c.m.m.s.impl.EmailSenderServiceImpl - Successfully sent email to imran.asus25@gmail.com
+03:09:07.055 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - Token created for forgot password function
+03:09:07.055 [INFO] [http-nio-8080-exec-10] c.m.m.s.i.AuthenticationServiceImpl - token sent with email for recovery password to imran.asus25@gmail.com
+03:10:42.704 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - requestPasswordReset method started by: admin@example.com
+03:10:44.629 [INFO] [http-nio-8080-exec-2] c.m.m.s.impl.EmailSenderServiceImpl - Successfully sent email to admin@example.com
+03:10:44.642 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - Token created for forgot password function
+03:10:44.642 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - token sent with email for recovery password to admin@example.com
+03:12:03.645 [INFO] [http-nio-8080-exec-8] c.m.m.s.i.AuthenticationServiceImpl - requestPasswordReset method started by: adddmin@example.com
+03:12:03.652 [ERROR] [http-nio-8080-exec-8] c.m.m.e.h.GlobalExceptionHandler - NotFoundException ->  User Not found!
+03:12:27.808 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: imran
+03:12:28.121 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=imran, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_PATIENT]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_PATIENT]]
+03:12:28.183 [INFO] [http-nio-8080-exec-7] c.m.m.service.utility.JwtUtil - Jwt token created for user: imran
+03:12:28.251 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - user: imran logged in
+03:12:28.383 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 2
+03:12:28.419 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 2
+03:12:40.363 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: admin
+03:12:40.480 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=admin, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_ADMIN]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_ADMIN]]
+03:12:40.483 [INFO] [http-nio-8080-exec-2] c.m.m.service.utility.JwtUtil - Jwt token created for user: admin
+03:12:40.484 [INFO] [http-nio-8080-exec-2] c.m.m.s.i.AuthenticationServiceImpl - user: admin logged in
+03:12:40.553 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 1
+03:12:40.568 [INFO] [http-nio-8080-exec-8] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 1
+03:12:52.724 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authenticate method started by: doctor
+03:12:52.835 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - authentication details: UsernamePasswordAuthenticationToken [Principal=org.springframework.security.core.userdetails.User [Username=doctor, Password=[PROTECTED], Enabled=true, AccountNonExpired=true, credentialsNonExpired=true, AccountNonLocked=true, Granted Authorities=[ROLE_DOCTOR]], Credentials=[PROTECTED], Authenticated=true, Details=null, Granted Authorities=[ROLE_DOCTOR]]
+03:12:52.839 [INFO] [http-nio-8080-exec-7] c.m.m.service.utility.JwtUtil - Jwt token created for user: doctor
+03:12:52.840 [INFO] [http-nio-8080-exec-7] c.m.m.s.i.AuthenticationServiceImpl - user: doctor logged in
+03:12:52.872 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method started by userId: 8
+03:12:52.882 [INFO] [http-nio-8080-exec-9] c.m.m.service.impl.UserServiceImpl - user getById method done by userId: 8

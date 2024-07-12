@@ -11,6 +11,7 @@ import com.matrix.mediconcallapp.model.dto.request.UserStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
 import com.matrix.mediconcallapp.repository.UserRepository;
 import com.matrix.mediconcallapp.service.service_interfaces.UserService;
+import com.matrix.mediconcallapp.service.utility.ImageToBase64;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,8 @@ public class UserServiceImpl implements UserService {
         UserDto userDto = userRepository.findById(userId)
                 .map(userMapper::toUserDto)
                 .orElseThrow(UserNotFoundException::new);
+        String base64ImageUrl = ImageToBase64.convertLocalImageToBase64(userDto.getPhotoUrl());
+        userDto.setPhotoUrl(base64ImageUrl);
         log.info("user getById method done by userId: {}", userId);
         return userDto;
     }
