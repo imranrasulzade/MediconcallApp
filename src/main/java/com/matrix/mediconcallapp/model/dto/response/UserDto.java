@@ -18,5 +18,6 @@ public class UserDto {
     private String address;
     private String info;
     private String photoUrl;
+    private String role;
     private UserStatus status;
 }

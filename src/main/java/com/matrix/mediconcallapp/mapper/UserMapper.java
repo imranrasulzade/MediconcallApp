@@ -1,5 +1,6 @@
 package com.matrix.mediconcallapp.mapper;
 
+import com.matrix.mediconcallapp.entity.Authority;
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.mapper.mappingUtil.MapPathUtility;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 @Slf4j
 @Mapper(componentModel = "spring")
@@ -26,6 +28,7 @@ public abstract class UserMapper {
     private String UPLOAD_DIR;
 
     @Mapping(source = "birthday", target = "birthday", qualifiedByName = "mapToDate")
+    @Mapping(source = "authorities", target = "role", qualifiedByName = "mapToRole")
     public abstract UserDto toUserDto(User user);
 
     @Mapping(source = "photo", target = "photoUrl", qualifiedByName = "mapPath")
@@ -54,5 +57,13 @@ public abstract class UserMapper {
     public String mapToDate(Date date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(date);
+    }
+
+    @Named(value = "mapToRole")
+    public String mapToRole(Set<Authority> authorities){
+        for (Authority value : authorities) {
+            return value.getName();
+        }
+        return null;
     }
 }
