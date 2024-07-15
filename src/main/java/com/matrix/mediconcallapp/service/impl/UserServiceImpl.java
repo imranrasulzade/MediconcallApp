@@ -1,5 +1,6 @@
 package com.matrix.mediconcallapp.service.impl;
 
+import com.matrix.mediconcallapp.entity.Doctor;
 import com.matrix.mediconcallapp.entity.User;
 import com.matrix.mediconcallapp.enums.UserStatus;
 import com.matrix.mediconcallapp.exception.child.PasswordWrongException;
@@ -9,6 +10,7 @@ import com.matrix.mediconcallapp.model.dto.request.ChangePasswordDto;
 import com.matrix.mediconcallapp.model.dto.request.UserEditReqDto;
 import com.matrix.mediconcallapp.model.dto.request.UserStatusDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
+import com.matrix.mediconcallapp.repository.DoctorRepository;
 import com.matrix.mediconcallapp.repository.UserRepository;
 import com.matrix.mediconcallapp.service.service_interfaces.UserService;
 import com.matrix.mediconcallapp.service.utility.FilePathProcessor;
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -31,6 +34,8 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final JwtUtil jwtUtil;
     private final BCryptPasswordEncoder passwordEncoder;
+    private final DoctorRepository doctorRepository;
+
     @Override
     public UserDto getById(HttpServletRequest request) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
@@ -60,11 +65,21 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    @Transactional
     public void updateStatus(UserStatusDto userStatusDto) {
         log.info("user updateStatus method start");
         User user =  userRepository.findById(userStatusDto.getId())
                 .orElseThrow(UserNotFoundException::new);
-        user.setStatus(userStatusDto.getUserStatus());
+        if(user.getDoctor() != null){
+            Doctor doctor = user.getDoctor();
+            doctor.setStatus(convertStatusToInteger(userStatusDto.getUserStatus()));
+            doctorRepository.save(doctor);
+        }
+        if(user.getDoctor() == null && user.getPatient() == null){
+            user.setStatus(UserStatus.ACTIVE);
+        }else{
+            user.setStatus(userStatusDto.getUserStatus());
+        }
         userRepository.save(user);
         log.info("User (userId: {}) status updated by admin", user.getId());
     }
@@ -117,6 +132,18 @@ public class UserServiceImpl implements UserService {
     public User findByEmail(String email) {
         return userRepository.findByEmail(email)
                 .orElseThrow(UserNotFoundException::new);
+    }
+
+    private Integer convertStatusToInteger(UserStatus status){
+        int s;
+        if(status == UserStatus.ACTIVE){
+            s = 1;
+        }else if(status == UserStatus.INACTIVE){
+            s = 0;
+        }else {
+            s = -1;
+        }
+        return s;
     }
 
 
