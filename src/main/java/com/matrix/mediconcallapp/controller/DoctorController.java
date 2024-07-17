@@ -1,5 +1,6 @@
 package com.matrix.mediconcallapp.controller;
 
+import com.matrix.mediconcallapp.model.dto.PageDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorEditReqDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
@@ -17,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -58,11 +60,13 @@ public class DoctorController {
 
 
 
-    @GetMapping("patient/doctor-name")
-    public List<DoctorForListProfileDto> getDoctorByName(@RequestParam @Size(max = 15)
-                                                                         @NotBlank(message = "Name cannot be empty or null")
-                                                                         @Pattern(regexp = "^[A-Za-z]+$") String name){
-        return doctorService.getDoctorByName(name);
+    @GetMapping("patient/search")
+    public PageDto<?> getDoctorByName(@RequestParam(required = false) @Size(max = 15)
+                                                                @Pattern(regexp = "^[A-Za-z]+$") Optional<String> name,
+                                                            @RequestParam(required = false) Optional<Integer> page,
+                                                            @RequestParam(required = false) Optional<Integer> size,
+                                                            @RequestParam(required = false) Optional<String> specialty){
+        return doctorService.searchDoctors(page, size, name, specialty);
     }
 
 
@@ -71,6 +75,11 @@ public class DoctorController {
     public ResponseEntity<?> getDoctorByIdForPatient(HttpServletRequest request,
                                                      @RequestParam @NotBlank @Pattern(regexp = "^[0-9]+$") Integer id){
         return doctorService.getDoctorByIdForPatient(request, id);
+    }
+
+    @GetMapping("/specialties")
+    public List<String> getSpecialties(){
+        return doctorService.getSpecialties();
     }
 
 }

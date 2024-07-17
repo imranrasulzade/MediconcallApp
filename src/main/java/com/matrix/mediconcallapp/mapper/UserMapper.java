@@ -8,6 +8,7 @@ import com.matrix.mediconcallapp.model.dto.request.PatientRegistrationRequestDto
 import com.matrix.mediconcallapp.model.dto.request.UserEditReqDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorForListProfileDto;
 import com.matrix.mediconcallapp.model.dto.response.UserDto;
+import com.matrix.mediconcallapp.service.utility.FilePathProcessor;
 import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -45,6 +46,7 @@ public abstract class UserMapper {
     @Mapping(source = "doctor.placeOfWork", target = "placeOfWork")
     @Mapping(source = "id", target = "userId")
     @Mapping(source = "doctor.id", target = "doctorId")
+    @Mapping(source = "photoUrl", target = "photoUrl", qualifiedByName = "mapToPhotoUrl")
     public abstract DoctorForListProfileDto toDoctorForListProfileDto(User user);
 
 
@@ -65,5 +67,10 @@ public abstract class UserMapper {
             return value.getName();
         }
         return null;
+    }
+
+    @Named(value = "mapToPhotoUrl")
+    public String mapToPhotoUrl(String photoUrl){
+        return FilePathProcessor.processFilePath(photoUrl);
     }
 }

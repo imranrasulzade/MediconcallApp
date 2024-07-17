@@ -55,7 +55,8 @@ public enum AuthUrlMapping {
     ANY_AUTHENTICATED(null, new String[] {
             "/user/info",
             "/user/edit",
-            "/user/password"
+            "/user/password",
+            "/doctor/specialties"
     });
 
 

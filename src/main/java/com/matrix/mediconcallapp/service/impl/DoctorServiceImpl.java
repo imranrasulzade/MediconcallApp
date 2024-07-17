@@ -8,6 +8,7 @@ import com.matrix.mediconcallapp.exception.child.DoctorNotFoundException;
 import com.matrix.mediconcallapp.exception.child.UserAlreadyExistsException;
 import com.matrix.mediconcallapp.mapper.DoctorMapper;
 import com.matrix.mediconcallapp.mapper.UserMapper;
+import com.matrix.mediconcallapp.model.dto.PageDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorEditReqDto;
 import com.matrix.mediconcallapp.model.dto.response.DoctorDto;
 import com.matrix.mediconcallapp.model.dto.request.DoctorRegistrationRequestDto;
@@ -20,15 +21,15 @@ import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -37,12 +38,14 @@ public class DoctorServiceImpl implements DoctorService {
     private final DoctorRepository doctorRepository;
     private final UserRepository userRepository;
     private final DoctorMapper doctorMapper;
+    private final UserCriteriaRepository userCriteriaRepository;
     private final UserMapper userMapper;
     private final BCryptPasswordEncoder passwordEncoder;
     private final RatingRepository ratingRepository;
     private final PatientRepository patientRepository;
     private final ContactRepository contactRepository;
     private final JwtUtil jwtUtil;
+
     @Override
     public DoctorDto getById(Integer id) {
         log.info("Doctor getById method started for {}", id);
@@ -87,8 +90,8 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public DoctorDto add(DoctorRegistrationRequestDto requestDto) {
         log.info("doctor add method started by {}", requestDto.getUsername());
-        if(userRepository.findByUsername(requestDto.getUsername()).isPresent() ||
-                userRepository.findByEmail(requestDto.getEmail()).isPresent()){
+        if (userRepository.findByUsername(requestDto.getUsername()).isPresent() ||
+                userRepository.findByEmail(requestDto.getEmail()).isPresent()) {
             throw new UserAlreadyExistsException();
         } else {
             requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
@@ -111,15 +114,18 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<DoctorForListProfileDto> getDoctorByName(String name) {
-        log.info("doctor getDoctorByName method started for {}", name);
-        List<DoctorForListProfileDto> doctorForListProfileDtoList = userRepository
-                .findDoctorsByNameLike(name)
-                .orElseThrow(DoctorNotFoundException::new).stream()
-                .map(userMapper::toDoctorForListProfileDto)
-                .toList();
-        log.info("doctor getDoctorByName method done for {}", name);
-        return doctorForListProfileDtoList;
+    public PageDto searchDoctors(Optional<Integer> page,
+                                 Optional<Integer> size,
+                                 Optional<String> name,
+                                 Optional<String> specialty) {
+        log.info("doctor search method started for {}, {}", name, specialty);
+        Pageable pageable = PageRequest.of(page.orElse(1) - 1, size.orElse(4));
+        Page<User> userPage = userCriteriaRepository
+                .findDoctorWithFilter(pageable, name.orElse(null), specialty.orElse(null));
+        List<User> users = userPage.getContent();
+        List<DoctorForListProfileDto> doctorForListProfileDtoList = users.stream().map(userMapper::toDoctorForListProfileDto).toList();
+        log.info("doctor search method done for {}, {}", name, specialty);
+        return new PageDto<>(userPage.getPageable().getPageNumber(), userPage.getPageable().getPageSize(), userPage.getTotalElements(), doctorForListProfileDtoList);
     }
 
     @Override
@@ -132,12 +138,12 @@ public class DoctorServiceImpl implements DoctorService {
                 .countByDoctorIdAndPatientIdAndStatus(doctorId, patientId, 1)
                 .orElse(0);
         Double avgRating = ratingRepository.findAverageRatingByDoctorId(doctorId).orElse(0d);
-        if(contactCondition > 0){
+        if (contactCondition > 0) {
             DoctorProfileDto doctorProfileDto = doctorMapper.toDoctorProfileDto(doctor);
             doctorProfileDto.setAvgRating(avgRating);
             log.info("doctor getDoctorByIdForPatient method done by userId: {}", userId);
             return ResponseEntity.ok(doctorProfileDto);
-        }else {
+        } else {
             SimpleDoctorProfileDto simpleDoctorProfileDto = doctorMapper.toSimpleDoctorProfileDto(doctor);
             simpleDoctorProfileDto.setAvgRating(avgRating);
             log.info("doctor getDoctorByIdForPatient method done by userId: {}", userId);
@@ -155,5 +161,10 @@ public class DoctorServiceImpl implements DoctorService {
         editReqDto.setUserId(userId);
         doctorRepository.save(doctorMapper.toDoctor(editReqDto));
         log.info("Doctor record updated by userId: {}", userId);
+    }
+
+    @Override
+    public List<String> getSpecialties() {
+        return doctorRepository.getSpecialties();
     }
 }
