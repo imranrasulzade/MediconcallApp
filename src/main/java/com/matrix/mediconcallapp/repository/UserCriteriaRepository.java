@@ -32,12 +32,18 @@ public class UserCriteriaRepository {
         List<Predicate> predicates = new ArrayList<>();
         predicates.add(builder.equal(root.get("status"), UserStatus.ACTIVE));
 
-        if (name != null) {
-            predicates.add(builder.equal(root.get("name"), name));
-        }
+//        if (name != null) {
+//            predicates.add(builder.equal(root.get("name"), name));
+//        }
 
         if (name != null) {
-            predicates.add(builder.equal(root.get("surname"), name));
+            String lowerCaseName = name.toLowerCase();
+            Path<String> namePath = root.get("name");
+            Path<String> surnamePath = root.get("surname");
+            predicates.add(builder.or(
+                    builder.like(builder.lower(namePath), "%" + lowerCaseName + "%"),
+                    builder.like(builder.lower(surnamePath), "%" + lowerCaseName + "%")
+            ));
         }
 
         if (specialty != null) {
