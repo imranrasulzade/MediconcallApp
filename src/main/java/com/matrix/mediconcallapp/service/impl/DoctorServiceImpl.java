@@ -17,6 +17,7 @@ import com.matrix.mediconcallapp.model.dto.response.DoctorProfileDto;
 import com.matrix.mediconcallapp.model.dto.response.SimpleDoctorProfileDto;
 import com.matrix.mediconcallapp.repository.*;
 import com.matrix.mediconcallapp.service.service_interfaces.DoctorService;
+import com.matrix.mediconcallapp.service.utility.FilePathProcessor;
 import com.matrix.mediconcallapp.service.utility.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -140,12 +141,14 @@ public class DoctorServiceImpl implements DoctorService {
         Double avgRating = ratingRepository.findAverageRatingByDoctorId(doctorId).orElse(0d);
         if (contactCondition > 0) {
             DoctorProfileDto doctorProfileDto = doctorMapper.toDoctorProfileDto(doctor);
+            doctorProfileDto.setPhotoUrl(FilePathProcessor.processFilePath(doctorProfileDto.getPhotoUrl()));
             doctorProfileDto.setAvgRating(avgRating);
             log.info("doctor getDoctorByIdForPatient method done by userId: {}", userId);
             return ResponseEntity.ok(doctorProfileDto);
         } else {
             SimpleDoctorProfileDto simpleDoctorProfileDto = doctorMapper.toSimpleDoctorProfileDto(doctor);
             simpleDoctorProfileDto.setAvgRating(avgRating);
+            simpleDoctorProfileDto.setPhotoUrl(FilePathProcessor.processFilePath(simpleDoctorProfileDto.getPhotoUrl()));
             log.info("doctor getDoctorByIdForPatient method done by userId: {}", userId);
             return ResponseEntity.ok(simpleDoctorProfileDto);
         }
