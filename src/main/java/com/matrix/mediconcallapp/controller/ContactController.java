@@ -34,15 +34,19 @@ public class ContactController {
     @PostMapping("/patient/request")
     @ResponseStatus(HttpStatus.CREATED)
     public void connect(HttpServletRequest request,
-                                        @RequestBody @Valid ContactDto contactDto){
-        contactService.send(request, contactDto);
+                                        @RequestParam
+                                        @NotBlank
+                                        @Pattern(regexp = "^[0-9]+$") Integer doctorId){
+        contactService.send(request, doctorId);
 
     }
 
 
     @PatchMapping("/doctor/accept")
     public void accept(HttpServletRequest request,
-                                        @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer patientId){
+                                        @RequestBody
+                                        @NotBlank
+                                        @Pattern(regexp = "^[0-9]+$") Integer patientId){
         contactService.accept(request, patientId);
     }
 
@@ -50,7 +54,9 @@ public class ContactController {
     @DeleteMapping("/doctor")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteByDoctor(HttpServletRequest request,
-                                               @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer patientId){
+                                               @RequestParam
+                                               @NotBlank
+                                               @Pattern(regexp = "^[0-9]+$") Integer patientId){
         contactService.deleteByDoctor(request, patientId);
     }
 
@@ -58,8 +64,18 @@ public class ContactController {
     @DeleteMapping("/patient")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteByPatient(HttpServletRequest request,
-                                                @RequestBody @NotBlank @Pattern(regexp = "^[0-9]+$") Integer doctorId){
+                                                @RequestParam
+                                                @NotBlank
+                                                @Pattern(regexp = "^[0-9]+$") Integer doctorId){
         contactService.deleteByPatient(request, doctorId);
+    }
+
+    @GetMapping("/patient/check")
+    public Integer checkByPatient(HttpServletRequest request,
+                         @RequestParam
+                         @NotBlank
+                         @Pattern(regexp = "^[0-9]+$") Integer doctorId){
+        return contactService.checkByPatient(request, doctorId);
     }
 
 }

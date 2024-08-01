@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface ContactService {
-    void send(HttpServletRequest request, ContactDto contactDto);
+    void send(HttpServletRequest request, Integer doctorId);
 
     void accept(HttpServletRequest request, Integer patientId);
 
@@ -18,4 +18,6 @@ public interface ContactService {
     List<ContactResponseDto> getAllForPatient(HttpServletRequest request);
 
     List<ContactResponseDto> getAllForDoctor(HttpServletRequest request);
+
+    Integer checkByPatient(HttpServletRequest request, Integer doctorId);
 }

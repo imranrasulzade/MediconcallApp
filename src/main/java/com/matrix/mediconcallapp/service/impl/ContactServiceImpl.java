@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -59,18 +60,30 @@ public class ContactServiceImpl implements ContactService {
         return contactResponseDtoList;
     }
 
+    @Override
+    public Integer checkByPatient(HttpServletRequest request, Integer doctorId) {
+        Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
+        Integer patientId = patientRepository.findPatientByUserId(userId).getId();
+        doctorRepository.findById(doctorId).orElseThrow(DoctorNotFoundException::new);
+        Optional<Contact> contact = contactRepository.findByDoctorIdAndPatientId(doctorId, patientId);
+        if(contact.isPresent()){
+            return contact.get().getStatus();
+        }
+        return -1;
+    }
+
     @Transactional
     @Override
-    public void send(HttpServletRequest request, ContactDto contactDto) {
+    public void send(HttpServletRequest request, Integer doctorId) {
         Integer userId = jwtUtil.getUserId(jwtUtil.resolveClaims(request));
         log.info("contact send method started by userId: {}", userId);
         Integer patientId = patientRepository.findPatientByUserId(userId).getId();
-        doctorRepository.findById(contactDto.getDoctorId()).orElseThrow(DoctorNotFoundException::new);
+        doctorRepository.findById(doctorId).orElseThrow(DoctorNotFoundException::new);
         boolean condition = contactRepository
-                .findByDoctorIdAndPatientId(contactDto.getDoctorId(), patientId).isPresent();
+                .findByDoctorIdAndPatientId(doctorId, patientId).isPresent();
         Contact contact;
         if(condition){
-            contact = contactRepository.findByDoctorIdAndPatientId(contactDto.getDoctorId(), patientId)
+            contact = contactRepository.findByDoctorIdAndPatientId(doctorId, patientId)
                     .orElseThrow(ContactNotFoundException::new);
             if(contact.getStatus() == ContactStatus.ACCEPTED.getValue()){
                 throw new ContactAlreadyExistsException();
@@ -78,6 +91,8 @@ public class ContactServiceImpl implements ContactService {
             contact.setStatus(ContactStatus.PENDING.getValue());
             contact.setDeletedByUser(null);
         }else {
+            ContactDto contactDto = new ContactDto();
+            contactDto.setDoctorId(doctorId);
             contactDto.setPatientId(patientId);
             contactDto.setStatus(ContactStatus.PENDING.getValue());
             contact = contactMapper.toContact(contactDto);
